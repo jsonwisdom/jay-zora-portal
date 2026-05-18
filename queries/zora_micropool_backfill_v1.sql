@@ -1,0 +1,40 @@
+-- BACKFILL_QUERY_SPEC_V1
+-- File: queries/zora_micropool_backfill_v1.sql
+-- State: READY_FOR_EXECUTION_AWAITING_SQL_BODY
+-- Mode: STRICT_STRUCTURAL_GROUPING
+--
+-- Guardrails:
+--   - No embedded result rows
+--   - No synthetic telemetry
+--   - No price joins
+--   - No social joins
+--   - No intent/rug/malicious labels
+--   - pool_key_hash clusters coins
+--   - paymaster_address clusters wallets
+--   - post-mint trace proves extraction
+--
+-- Required structural inputs:
+--   - CoinCreatedV4 topic0 values, version-pinned
+--   - pool_key_hash / poolKeyHash
+--   - UserOperationEvent topic0
+--   - paymaster_address
+--   - sender_address
+--   - sender nonce sequence
+--   - supply split: total_supply = 1000000000, creator_allocation = 10000000
+--
+-- Known topic:
+--   UserOperationEvent(bytes32,address,address,uint256,bool,uint256,uint256)
+--   0x49628dd123b3da59ec474c0921bb1feab9cd036d649d2112e4df6373b9e83ea8
+--
+-- CoinCreatedV4 topic0 must be pinned to the exact factory/implementation version
+-- before this query is treated as executable.
+--
+-- Expected output row contexts:
+--   POOL_KEY_AGG  | pool_key_hash  | distinct_creators | coins_deployed
+--   NONCE_CADENCE | sender_address | operation_count   | temporal_range_sec
+--
+-- Pipeline transition:
+--   READY_FOR_EXECUTION_AWAITING_SQL_BODY -> READY_FOR_EXECUTION_AWAITING_ROWS
+--
+-- SQL BODY INTENTIONALLY NOT FABRICATED.
+-- Paste or commit the exact executable SQL below this line when confirmed.
