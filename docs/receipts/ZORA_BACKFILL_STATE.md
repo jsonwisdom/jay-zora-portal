@@ -44,3 +44,15 @@ AA linkage check:
 
 Next valid transition:
 AA_LINKAGE_CHECK_WINDOW_COMPLETE -> TX_RECEIPT_TRACE_CHECK
+
+TX receipt trace check:
+- Sample receipts: 3
+- All sampled tx `to` values target EntryPoint 0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789.
+- Receipt statuses: all 0x1.
+- Log counts: 55, 52, 30.
+- Correction: AA linkage is visible at transaction target layer.
+- Prior UserOperationEvent topic scan returned 0 and remains recorded as a negative topic-query result.
+- Behavioral claims remain blocked.
+
+Next valid transition:
+TX_RECEIPT_TRACE_CHECK_CONFIRMED -> ENTRYPOINT_EVENT_TOPIC_MAPPING
