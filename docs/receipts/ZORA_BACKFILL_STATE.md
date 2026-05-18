@@ -56,3 +56,15 @@ TX receipt trace check:
 
 Next valid transition:
 TX_RECEIPT_TRACE_CHECK_CONFIRMED -> ENTRYPOINT_EVENT_TOPIC_MAPPING
+
+EntryPoint event topic mapping:
+- Observed EntryPoint topic counts from 3 sampled receipts:
+  - 0x49628fd1471006c1482da88028e9ce4dbb080b815c9b0344d39e5a8e6ec1419f: 4
+  - 0xbb47ee3e183a558b1a2ff0874b079f3fc5478b7454eacf2bfc5af2ff5878f972: 3
+  - 0x2da466a7b24304f47e87fa2e1e5a81b9831ce54fec19055ce277ca2f39ba42c4: 2
+- Correction: previous UserOperationEvent topic query used an unobserved topic hash for this receipt set.
+- AA linkage is confirmed at transaction target layer and EntryPoint event-layer topics are now mapped.
+- Behavioral claims remain blocked.
+
+Next valid transition:
+ENTRYPOINT_EVENT_TOPIC_MAPPING -> REQUERY_ENTRYPOINT_OBSERVED_TOPIC
