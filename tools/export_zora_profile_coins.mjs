@@ -50,15 +50,54 @@ function normalizeNode(node) {
   };
 }
 
-const response = await getProfileCoins({ identifier, count });
+let after = undefined;
+let page = 0;
+let allEdges = [];
+let lastResponse = null;
+
+while (true) {
+  page += 1;
+
+  const response = await getProfileCoins({
+    identifier,
+    count,
+    after
+  });
+
+  lastResponse = response;
+
+  const createdCoins = response?.data?.profile?.createdCoins;
+  const edges = createdCoins?.edges || [];
+  const pageInfo = createdCoins?.pageInfo || {};
+
+  allEdges.push(...edges);
+
+  console.log(JSON.stringify({
+    page,
+    edges: edges.length,
+    total_edges: allEdges.length,
+    hasNextPage: !!pageInfo.hasNextPage,
+    endCursor: pageInfo.endCursor ? "present" : null
+  }));
+
+  if (!pageInfo.hasNextPage || !pageInfo.endCursor || edges.length === 0) {
+    break;
+  }
+
+  after = pageInfo.endCursor;
+}
 
 fs.writeFileSync(
   "discovery/zora/latest_profile_coins_response.json",
-  JSON.stringify(response, null, 2)
+  JSON.stringify(lastResponse, null, 2)
 );
 
-const edges = response?.data?.profile?.createdCoins?.edges || [];
-const items = edges.map((edge) => normalizeNode(edge.node)).filter((x) => x.contract);
+fs.writeFileSync(
+  "discovery/zora/latest_profile_coins_edges.json",
+  JSON.stringify(allEdges, null, 2)
+);
+
+const items = allEdges.map((edge) => normalizeNode(edge.node)).filter((x) => x.contract);
 
 fs.writeFileSync(
   "data/live_zora_items.json",
@@ -68,8 +107,10 @@ fs.writeFileSync(
 console.log(JSON.stringify({
   ok: true,
   identifier,
-  requested: count,
+  page_size: count,
+  pages: page,
   exported: items.length,
   raw_receipt: "discovery/zora/latest_profile_coins_response.json",
+  raw_edges: "discovery/zora/latest_profile_coins_edges.json",
   normalized: "data/live_zora_items.json"
 }, null, 2));

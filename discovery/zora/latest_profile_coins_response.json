@@ -32,325 +32,17 @@
           {
             "node": {
               "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4ZWZjZDY1ZTMyNGJlZjAxZDRkNWNiZTFmYWMyMjg1NTFhZDY5ODFiNw==",
+              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4MzkwOGQ4OTk5MWQzOWQ5NDFjNGZlZWYxN2U2NzQ4NWUxZTQ3ODUxMw==",
               "platformBlocked": false,
-              "name": "CASE 001: The Corrupted Sibling",
-              "description": "Goblin Court — Episode 002 🧌⚖️\n\nCASE 001: The Corrupted Sibling\n\nA claim entered the Court wearing a clean robe.\nThe goblins smelled rot in the branch.\n\nChallenge Card:\n“Show the sibling hash.”\n\nNo hash was produced.\nThe Null Judge did not deliberate.\nThe Null Judge does not deliberate.\n\nVerdict:\nRED — CORRUPTED SIBLING\n\nThe state failed verification.\nThe record marks it permanently.\n\nConsensus without verification is theater.\n\nEpisode 001:\nbase:0x558b75ae2de754caa72d4b195a0c04c8cf279e55\n\nALMS Anchor:\nff55160908ff41d23f7af0df8873ef7a0dcf8163d1a308f58941e87b5a95bad9\n\nCourt Rule:\nNo receipt, no ruling.\n\nReceipts > vibes.\nVerify > narrative.",
-              "address": "0xefcd65e324bef01d4d5cbe1fac228551ad6981b7",
+              "name": "FILE468EXPOSED🚨BREAKING:EPSTEIN",
+              "description": "File 468 Exposed\n\n🚨 BREAKING: Epstein's Credenza of Power: 🚨\n\n\"Epstein's ego-wall prints reveal a web of power & deceit. Photo of Trump with women i",
+              "address": "0x3908d89991d39d941c4feef17e67485e1e478513",
               "coinType": "CONTENT",
-              "symbol": "SIBLING",
+              "symbol": "FILE468EXPOSED🚨BREAKING:EPSTEIN",
               "totalSupply": "1000000000",
-              "totalVolume": "0.0",
+              "totalVolume": "0.060218",
               "volume24h": "0.0",
-              "createdAt": "2026-05-01T20:59:41+00:00",
-              "creatorAddress": "0xa18e3ce0b9d1c33ecad78fe195620db78ded0454",
-              "poolCurrencyToken": {
-                "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399",
-                "name": "node8",
-                "decimals": 18
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0xefcd65e324bef01d4d5cbe1fac228551ad6981b7",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "ipfs://bafybeifsois53jk74m7zkdner4we4omictlrfjsntfsjbdgxujfgd5ulhu",
-              "platformReferrerAddress": "0x0000000000000000000000000000000000000000",
-              "payoutRecipientAddress": "0xa18e3ce0b9d1c33ecad78fe195620db78ded0454",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/png",
-                "originalUri": "ipfs://bafybeifkj75wttarjzswekwe6j2f63y3po2x4hxai5skwjtyc6s2tasb3u",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWZrajc1d3R0YXJqenN3ZWt3ZTZqMmY2M3kzcG8yeDRoeGFpNXNrd2p0eWM2czJ0YXNiM3U=",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWZrajc1d3R0YXJqenN3ZWt3ZTZqMmY2M3kzcG8yeDRoeGFpNXNrd2p0eWM2czJ0YXNiM3U=",
-                  "blurhash": "e36@l^?9W9R=57^*S[X8wiInES0zNF={xXE1IWN1=_oyxmxufls*Iv"
-                }
-              },
-              "uniqueHolders": 0,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399",
-                "token1Address": "0xefcd65e324bef01d4d5cbe1fac228551ad6981b7",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4NTU4Yjc1YWUyZGU3NTRjYWE3MmQ0YjE5NWEwYzA0YzhjZjI3OWU1NQ==",
-              "platformBlocked": false,
-              "name": "GOBLINCOURT",
-              "description": "",
-              "address": "0x558b75ae2de754caa72d4b195a0c04c8cf279e55",
-              "coinType": "CONTENT",
-              "symbol": "GOBLINCOURT",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-05-01T08:22:23+00:00",
-              "creatorAddress": "0xa18e3ce0b9d1c33ecad78fe195620db78ded0454",
-              "poolCurrencyToken": {
-                "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399",
-                "name": "node8",
-                "decimals": 18
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x558b75ae2de754caa72d4b195a0c04c8cf279e55",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "ipfs://bafybeialfhcooidbzgmwsfbqovmfmry4bzznhvbqitjnzsydbgucci4l3u",
-              "platformReferrerAddress": "0x0000000000000000000000000000000000000000",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": null,
-                "originalUri": "ipfs://bafybeigqg4j6b2h7kwip6nbxexet5sj53i76npz43urjcwmpd4lmztph3y",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWdxZzRqNmIyaDdrd2lwNm5ieGV4ZXQ1c2o1M2k3Nm5wejQzdXJqY3dtcGQ0bG16dHBoM3k=",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWdxZzRqNmIyaDdrd2lwNm5ieGV4ZXQ1c2o1M2k3Nm5wejQzdXJqY3dtcGQ0bG16dHBoM3k=",
-                  "blurhash": "e5ATGo#qsrwIti?F=yNL%2xG0hxa9Jt8-p+~9cOtM|aM-pRpJVM}My"
-                }
-              },
-              "uniqueHolders": 2,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399",
-                "token1Address": "0x558b75ae2de754caa72d4b195a0c04c8cf279e55",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4MGRhODM3OGE5ZDFiNzZjZWQ5NWQzZDgzNzA2YTJkN2ZkODc0OTg2ZQ==",
-              "platformBlocked": false,
-              "name": "RECEIPTSMACHINE",
-              "description": "",
-              "address": "0x0da8378a9d1b76ced95d3d83706a2d7fd874986e",
-              "coinType": "CONTENT",
-              "symbol": "RECEIPTSMACHINE",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-22T04:21:23+00:00",
-              "creatorAddress": "0xa18e3ce0b9d1c33ecad78fe195620db78ded0454",
-              "poolCurrencyToken": {
-                "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399",
-                "name": "node8",
-                "decimals": 18
-              },
-              "tokenPrice": {
-                "priceInUsdc": "0.000000075851741004693076921021038431042867919",
-                "currencyAddress": "0x0da8378a9d1b76ced95d3d83706a2d7fd874986e",
-                "priceInPoolToken": "0.026257122008544998836843120670891948975622653961181640625"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "ipfs://bafybeiahd5bmwtr6lpupqr2e2lvuyydmu23duqvybinm5ogfjmannczouy",
-              "platformReferrerAddress": "0x0000000000000000000000000000000000000000",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": null,
-                "originalUri": "ipfs://bafybeigbdcmhjh5teh4gcivv6wl3pe6vjsttbsg6qmpdgojz66jqxfvlya",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWdiZGNtaGpoNXRlaDRnY2l2djZ3bDNwZTZ2anN0dGJzZzZxbXBkZ29qejY2anF4ZnZseWE=",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWdiZGNtaGpoNXRlaDRnY2l2djZ3bDNwZTZ2anN0dGJzZzZxbXBkZ29qejY2anF4ZnZseWE=",
-                  "blurhash": "e25OB4oKROoJxBt7f+0hahNe$zjsM|kBxZ%0WCRjoexaROWBI[ofxZ"
-                }
-              },
-              "uniqueHolders": 0,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x0da8378a9d1b76ced95d3d83706a2d7fd874986e",
-                "token1Address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4ZTJkNTE3NThlZGFiOTQwNzJhMzM4YWU4ZTA5YzhiZTU1YjdjZDZmMQ==",
-              "platformBlocked": false,
-              "name": "SAM.EXE",
-              "description": "Terminally online tech bro gets his brain scooped and uploaded to the cloud! Sam Altman on Nectome’s waitlist since 2016 finally gets the full pig-brain special — skull cracked, neurons dripping binary code and formaldehyde, one eye glitching ‘UPLOAD IN PROGRESS’ while the other melts into goo. Vomiting 1s and 0s, clutching a burning $10k deposit check, surrounded by floating preserved pig heads in bubbling tanks. Will he live forever as a digital zombie or just become eternal lag? Classic 80s gross-out horror meets cyberpunk cryonics — collect ’em all before the singularity hits!",
-              "address": "0xe2d51758edab94072a338ae8e09c8be55b7cd6f1",
-              "coinType": "CONTENT",
-              "symbol": "BRAINDEAD",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-09T16:45:07+00:00",
-              "creatorAddress": "0xa18e3ce0b9d1c33ecad78fe195620db78ded0454",
-              "poolCurrencyToken": {
-                "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399",
-                "name": "node8",
-                "decimals": 18
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0xe2d51758edab94072a338ae8e09c8be55b7cd6f1",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "ipfs://bafybeifoq3gfrwrlabnmlbluuzklg7zedj7nmhmv3ey3velfb62ukojcm4",
-              "platformReferrerAddress": "0x0000000000000000000000000000000000000000",
-              "payoutRecipientAddress": "0xa18e3ce0b9d1c33ecad78fe195620db78ded0454",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "ipfs://bafybeif2cs4uwfydih3g5egjb2xykifugj7axnp7ul7bqmf32qwfuqfhga",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWYyY3M0dXdmeWRpaDNnNWVnamIyeHlraWZ1Z2o3YXhucDd1bDdicW1mMzJxd2Z1cWZoZ2E=",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWYyY3M0dXdmeWRpaDNnNWVnamIyeHlraWZ1Z2o3YXhucDd1bDdicW1mMzJxd2Z1cWZoZ2E=",
-                  "blurhash": "e9C$ZWF|0%tP};AKbG-4wcoME1rq4Uv}KhwOJA-6aKIVlnkWKPWUxs"
-                }
-              },
-              "uniqueHolders": 2,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399",
-                "token1Address": "0xe2d51758edab94072a338ae8e09c8be55b7cd6f1",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4ODRkYzY4YjQzNTRiZTYxMGM0NGZlNjNkY2FkYmY1Njg0N2Y3NDc2Yg==",
-              "platformBlocked": false,
-              "name": "@APPLE EMOTIONAL MERKLE LEAVES F",
-              "description": "@Apple Emotional Merkle Leaves for Families just upgraded from batch proofs to lineage 🌱\n\nEach new leaf now carries the hash of the one before it.\n\nF",
-              "address": "0x84dc68b4354be610c44fe63dcadbf56847f7476b",
-              "coinType": "CONTENT",
-              "symbol": "@APPLE EMOTIONAL MERKLE LEAVES F",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-07T21:00:01+00:00",
+              "createdAt": "2025-12-21T21:54:15+00:00",
               "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
               "poolCurrencyToken": {
                 "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
@@ -358,14 +50,14 @@
                 "decimals": 6
               },
               "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x84dc68b4354be610c44fe63dcadbf56847f7476b",
-                "priceInPoolToken": "0"
+                "priceInUsdc": "0.000000096580827999999994535579414707548995267",
+                "currencyAddress": "0x3908d89991d39d941c4feef17e67485e1e478513",
+                "priceInPoolToken": "0.000000096580827999999994535579414707548995266961355810053646564483642578125"
               },
-              "marketCap": "0",
+              "marketCap": "96.58",
               "marketCapDelta24h": "0.0",
               "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreicxcy7lny37ipyf4kdmbiynlqttuuwxwnfkskpas6qldesurx6iri",
+              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreien3lqptwx4kuvhomuo2jolxsykdguqcnfneajo7pblku42a3hf3y",
               "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
               "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
               "creatorProfile": {
@@ -397,37 +89,114 @@
               },
               "mediaContent": {
                 "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/c6c2c12e-c1c7-4a3c-97e2-82cb5ebbcd69",
+                "originalUri": "https://res.cloudinary.com/base-app/image/upload/4f44402f-2976-4c7b-8f9b-0deba8983bef",
                 "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2M2YzJjMTJlLWMxYzctNGEzYy05N2UyLTgyY2I1ZWJiY2Q2OQ==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2M2YzJjMTJlLWMxYzctNGEzYy05N2UyLTgyY2I1ZWJiY2Q2OQ==",
-                  "blurhash": "eESPX_IVxuog%N%Lt6ocj?WA~qWEIUa#M|t6xuxtaxWBD%Rkoga#t7"
+                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzRmNDQ0MDJmLTI5NzYtNGM3Yi04ZjliLTBkZWJhODk4M2JlZg==",
+                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzRmNDQ0MDJmLTI5NzYtNGM3Yi04ZjliLTBkZWJhODk4M2JlZg==",
+                  "blurhash": "e57d|64U8{f5ofx]V@WBayRjD%jYx]%MV@%MMyt7azf6.7WCMyaxM|"
                 }
               },
-              "uniqueHolders": 1,
+              "uniqueHolders": 4,
+              "uniswapV4PoolKey": {
+                "token0Address": "0x3908d89991d39d941c4feef17e67485e1e478513",
+                "token1Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "fee": 10000,
+                "tickSpacing": 200,
+                "hookAddress": "0xc8d077444625eb300a427a6dfb2b1dbf9b159040"
+              }
+            }
+          },
+          {
+            "node": {
+              "__typename": "GraphQLZora20V4Token",
+              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4ZDRhZWI3NDA2OGE1MWE0ZWMwMTczNDAwYTc1OTk0MmY5YTdmZDljNg==",
+              "platformBlocked": false,
+              "name": "BREAKINGKAREN11:PANICMODULEACTIV",
+              "description": "BREAKING KAREN11: Panic Module Activated. Gov. Walz warns Minnesotans the state could lose large amounts of federal funding. Officials urge calm, anno",
+              "address": "0xd4aeb74068a51a4ec0173400a759942f9a7fd9c6",
+              "coinType": "CONTENT",
+              "symbol": "BREAKINGKAREN11:PANICMODULEACTIV",
+              "totalSupply": "1000000000",
+              "totalVolume": "0.299876",
+              "volume24h": "0.0",
+              "createdAt": "2025-12-19T23:03:11+00:00",
+              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
+              "poolCurrencyToken": {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "name": "USDC",
+                "decimals": 6
+              },
+              "tokenPrice": {
+                "priceInUsdc": "0.00000014815652800000000286868514793453543987",
+                "currencyAddress": "0xd4aeb74068a51a4ec0173400a759942f9a7fd9c6",
+                "priceInPoolToken": "0.000000148156528000000002868685147934535439873116047237999737262725830078125"
+              },
+              "marketCap": "148.16",
+              "marketCapDelta24h": "0.0",
+              "chainId": 8453,
+              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreieeegvlizw2dcw25fgjj4mxqs63e4yqppftn4mqqukcyf72n7waxu",
+              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
+              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
+              "creatorProfile": {
+                "__typename": "GraphQLAccountProfile",
+                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
+                "handle": "node8",
+                "platformBlocked": false,
+                "avatar": {
+                  "previewImage": {
+                    "blurhash": null,
+                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
+                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
+                  }
+                },
+                "socialAccounts": {
+                  "instagram": null,
+                  "tiktok": {
+                    "username": "jaywisdom.base",
+                    "displayName": "jaywisdom.base",
+                    "followerCount": 86,
+                    "id": null
+                  },
+                  "twitter": null,
+                  "farcaster": null
+                },
+                "creatorCoin": {
+                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
+                }
+              },
+              "mediaContent": {
+                "mimeType": "image/jpeg",
+                "originalUri": "https://res.cloudinary.com/base-app/image/upload/44f3ef6d-5141-47fa-9bfe-ffbf32e8b290",
+                "previewImage": {
+                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzQ0ZjNlZjZkLTUxNDEtNDdmYS05YmZlLWZmYmYzMmU4YjI5MA==",
+                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzQ0ZjNlZjZkLTUxNDEtNDdmYS05YmZlLWZmYmYzMmU4YjI5MA==",
+                  "blurhash": "e9IDK^En5YA19$;o5kxIaPNM=.xSrW+[N10g%M%JRi,nIjt4ETEM=p"
+                }
+              },
+              "uniqueHolders": 5,
               "uniswapV4PoolKey": {
                 "token0Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "token1Address": "0x84dc68b4354be610c44fe63dcadbf56847f7476b",
-                "fee": 8388608,
+                "token1Address": "0xd4aeb74068a51a4ec0173400a759942f9a7fd9c6",
+                "fee": 10000,
                 "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
+                "hookAddress": "0xc8d077444625eb300a427a6dfb2b1dbf9b159040"
               }
             }
           },
           {
             "node": {
               "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4MzFlZTg2OWJiZDcxNWE4MjBmY2Y1MmVkNDEyMmM3ZWE1N2YzZWYyZA==",
+              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4OWYxYjc5MTU3ZGY3YWEyNzU1YmUwNzU3MDU0OGUzNmIyNTlhMjY1ZQ==",
               "platformBlocked": false,
-              "name": "HAPPY BIRTHDAY BASE.MOST PEOPLE ",
-              "description": "Happy Birthday Base.\n\nMost people used you for:\n\t•\tfaster trades\n\t•\tcheaper gas\n\t•\tsocial apps\n\nI used you to test something else:\n\nCan identity be ve",
-              "address": "0x31ee869bbd715a820fcf52ed4122c7ea57f3ef2d",
+              "name": "THEGHOSTINTHEMACHINEISN'TJUSTCOD",
+              "description": "The Ghost in the Machine isn't just code; it's a structural reality. In \"Glitchcore: The Ghost in the Machine,\" we unveil how AI, finance, and infrast",
+              "address": "0x9f1b79157df7aa2755be07570548e36b259a265e",
               "coinType": "CONTENT",
-              "symbol": "HAPPY BIRTHDAY BASE.MOST PEOPLE",
+              "symbol": "THEGHOSTINTHEMACHINEISN'TJUSTCOD",
               "totalSupply": "1000000000",
-              "totalVolume": "0.0",
+              "totalVolume": "0.269734",
               "volume24h": "0.0",
-              "createdAt": "2026-04-05T18:50:43+00:00",
+              "createdAt": "2025-12-19T22:15:47+00:00",
               "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
               "poolCurrencyToken": {
                 "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
@@ -435,14 +204,14 @@
                 "decimals": 6
               },
               "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x31ee869bbd715a820fcf52ed4122c7ea57f3ef2d",
-                "priceInPoolToken": "0"
+                "priceInUsdc": "0.000000068126301999999994396642376617845293651",
+                "currencyAddress": "0x9f1b79157df7aa2755be07570548e36b259a265e",
+                "priceInPoolToken": "0.00000006812630199999999439664237661784529365149865043349564075469970703125"
               },
-              "marketCap": "0",
+              "marketCap": "68.13",
               "marketCapDelta24h": "0.0",
               "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreibumj5jy5bf2obpdp5koomandyndapcq2b64qiq2m7lx7ueh72bf4",
+              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreib2uqe4tqpmub5gujwdk3nhb2vomkx2uylmudocj4nenk72ixrrfa",
               "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
               "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
               "creatorProfile": {
@@ -474,268 +243,37 @@
               },
               "mediaContent": {
                 "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/32849765-af00-43e6-ab3d-4dfee5f91dfb",
+                "originalUri": "https://res.cloudinary.com/base-app/image/upload/1435817d-8c6e-47da-8536-be43c49536b7",
                 "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzMyODQ5NzY1LWFmMDAtNDNlNi1hYjNkLTRkZmVlNWY5MWRmYg==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzMyODQ5NzY1LWFmMDAtNDNlNi1hYjNkLTRkZmVlNWY5MWRmYg==",
-                  "blurhash": "eESPX_IUxuog%M%Lt6ocj=WA~qa#IUa#M|t6xuxuaxWBD%Rjoga#t7"
+                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzE0MzU4MTdkLThjNmUtNDdkYS04NTM2LWJlNDNjNDk1MzZiNw==",
+                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzE0MzU4MTdkLThjNmUtNDdkYS04NTM2LWJlNDNjNDk1MzZiNw==",
+                  "blurhash": "eC8EfCS$D%nOI7%NskMxo#W=vvV@IUkWp0g1XAkXnfVryEk9W?V?Vr"
                 }
               },
-              "uniqueHolders": 0,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x31ee869bbd715a820fcf52ed4122c7ea57f3ef2d",
-                "token1Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4MDU1ZWVhYTc2OTE5ZTU2YTc4MDAzMDViMTIzNWJhMTg4YWI4YTY1OA==",
-              "platformBlocked": false,
-              "name": "MOST PEOPLE THINK IDENTITY IS A ",
-              "description": "Most people think identity is a profile.\n\nIt’s not.\n\nIt’s a system:\n\t•\tENS = pointer\n\t•\tEAS = state (can change)\n\t•\tIPFS = history (can’t change)\n\njay",
-              "address": "0x055eeaa76919e56a7800305b1235ba188ab8a658",
-              "coinType": "CONTENT",
-              "symbol": "MOST PEOPLE THINK IDENTITY IS A",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-05T18:42:01+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x055eeaa76919e56a7800305b1235ba188ab8a658",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreifs3hi3t3qusphry2g46dqjiwa7bpupyvbaonkxrvzm4to4k6uowa",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/8014e1f2-7675-4c94-b669-a4d31765f1fe",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzgwMTRlMWYyLTc2NzUtNGM5NC1iNjY5LWE0ZDMxNzY1ZjFmZQ==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzgwMTRlMWYyLTc2NzUtNGM5NC1iNjY5LWE0ZDMxNzY1ZjFmZQ==",
-                  "blurhash": "e75=R{r;H;S$R+xZw{RiR,j^MwX8W@jFoHSlS}j[jIV?WBs;RORktS"
-                }
-              },
-              "uniqueHolders": 0,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x055eeaa76919e56a7800305b1235ba188ab8a658",
-                "token1Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4NDM2YWUyMTg4MDNjNDRmMTc1NDVjNTAxZDgyNTIyYzM3MDczNDFlNQ==",
-              "platformBlocked": false,
-              "name": "OLD SYSTEMS LOOK INTACT—BUT CRAC",
-              "description": "Old systems look intact—but cracks are showing.\nNew systems exist—but not fully recognized yet.\n\nNo hype. No noise.\nJust building.\n\nVerify. Exit. Stea",
-              "address": "0x436ae218803c44f17545c501d82522c3707341e5",
-              "coinType": "CONTENT",
-              "symbol": "OLD SYSTEMS LOOK INTACT—BUT CRAC",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-04T16:15:55+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x436ae218803c44f17545c501d82522c3707341e5",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreig3rsdjhjyeab3drmqhgh7effojuvgsbsk3cubzdvi4unwf7ptene",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/90da33c0-30e4-46aa-b9c0-e8779a3a36fb",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzkwZGEzM2MwLTMwZTQtNDZhYS1iOWMwLWU4Nzc5YTNhMzZmYg==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzkwZGEzM2MwLTMwZTQtNDZhYS1iOWMwLWU4Nzc5YTNhMzZmYg==",
-                  "blurhash": "e47dLR1HL~Fw-V+bO?r?bFo24.rrkq$iS3-qoKIoM|xavzT0-VI:nO"
-                }
-              },
-              "uniqueHolders": 2,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x436ae218803c44f17545c501d82522c3707341e5",
-                "token1Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4ODdkMWZkZTE0NjE0ODZlZTQ0ZDJiNjQzNWZmNTFiMWI5Y2MzNTg2Nw==",
-              "platformBlocked": false,
-              "name": "ICARUS FLEW TOO CLOSE TO THE SUN",
-              "description": "Icarus flew too close to the sun.\nNot from freedom—\nfrom greed.\n\nWax wings built on hype melt fast.\n\nLeverage. Memes. Empty promises.\nYou rise quick… ",
-              "address": "0x87d1fde1461486ee44d2b6435ff51b1b9cc35867",
-              "coinType": "CONTENT",
-              "symbol": "ICARUS FLEW TOO CLOSE TO THE SUN",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-04T15:59:11+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x87d1fde1461486ee44d2b6435ff51b1b9cc35867",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreidp3smn252ei3ddhp3oxebwc6dhdygymmwgygamwdwyrfekd423tm",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/9d5376ef-8ef0-4a4e-9703-18ebbe21774e",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzlkNTM3NmVmLThlZjAtNGE0ZS05NzAzLTE4ZWJiZTIxNzc0ZQ==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzlkNTM3NmVmLThlZjAtNGE0ZS05NzAzLTE4ZWJiZTIxNzc0ZQ==",
-                  "blurhash": "eJGIAR02MyRiIW-oR*azS2M|EMMxo#tQxaT0smRjjEtR%0kCR*slM|"
-                }
-              },
-              "uniqueHolders": 2,
+              "uniqueHolders": 5,
               "uniswapV4PoolKey": {
                 "token0Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "token1Address": "0x87d1fde1461486ee44d2b6435ff51b1b9cc35867",
-                "fee": 8388608,
+                "token1Address": "0x9f1b79157df7aa2755be07570548e36b259a265e",
+                "fee": 10000,
                 "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
+                "hookAddress": "0xc8d077444625eb300a427a6dfb2b1dbf9b159040"
               }
             }
           },
           {
             "node": {
               "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4YmY2OTQ1N2NjZjQ4MjE2Zjc4NjZlODZjMGExYjk0YzBmOTQ4MDBlNQ==",
+              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4MjEyNzAwN2YyYmE0MWNhZmJjMjBmNjdjYmQ5ZDE5ODBlN2FlM2QwMA==",
               "platformBlocked": false,
-              "name": "SISYPHUS PUSHES THE BOULDER UPHI",
-              "description": "Sisyphus pushes the boulder uphill.\nEvery day it rolls back down.\n\nThat’s fiat.\nYou save. They print. You start over.\n\nEndless labor. No escape.\n\nBut ",
-              "address": "0xbf69457ccf48216f7866e86c0a1b94c0f94800e5",
+              "name": "TRENCHLAW",
+              "description": "Trench Law ",
+              "address": "0x2127007f2ba41cafbc20f67cbd9d1980e7ae3d00",
               "coinType": "CONTENT",
-              "symbol": "SISYPHUS PUSHES THE BOULDER UPHI",
+              "symbol": "TRENCHLAW",
               "totalSupply": "1000000000",
-              "totalVolume": "0.0",
+              "totalVolume": "0.127659",
               "volume24h": "0.0",
-              "createdAt": "2026-04-04T15:57:43+00:00",
+              "createdAt": "2025-12-19T19:45:55+00:00",
               "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
               "poolCurrencyToken": {
                 "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
@@ -743,14 +281,14 @@
                 "decimals": 6
               },
               "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0xbf69457ccf48216f7866e86c0a1b94c0f94800e5",
-                "priceInPoolToken": "0"
+                "priceInUsdc": "0.00000010972976600000000205365635217932829271",
+                "currencyAddress": "0x2127007f2ba41cafbc20f67cbd9d1980e7ae3d00",
+                "priceInPoolToken": "0.0000001097297660000000020536563521793282927063728493521921336650848388671875"
               },
-              "marketCap": "0",
+              "marketCap": "109.73",
               "marketCapDelta24h": "0.0",
               "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreibcqoa37zyxfa7q3p3kxvszghlf5doohqdgpdohehi25ukpgqnfxy",
+              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreidh7jaf4gwinci7qbpsgalxgrhv42jzp7xfmn3uojebyvi3mnzcrm",
               "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
               "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
               "creatorProfile": {
@@ -782,797 +320,27 @@
               },
               "mediaContent": {
                 "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/3c966f7d-9d75-49f4-8c10-c713f6af6578",
+                "originalUri": "https://res.cloudinary.com/base-app/image/upload/ff031dbe-8f8a-40bc-8c76-79dd7dcce3b8",
                 "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzNjOTY2ZjdkLTlkNzUtNDlmNC04YzEwLWM3MTNmNmFmNjU3OA==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzNjOTY2ZjdkLTlkNzUtNDlmNC04YzEwLWM3MTNmNmFmNjU3OA==",
-                  "blurhash": "e6Ac^}~qD*I;%0.9N1IU%1%L4o4:Mwt7%L?GxtShtRaf%1og-:azIU"
+                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2ZmMDMxZGJlLThmOGEtNDBiYy04Yzc2LTc5ZGQ3ZGNjZTNiOA==",
+                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2ZmMDMxZGJlLThmOGEtNDBiYy04Yzc2LTc5ZGQ3ZGNjZTNiOA==",
+                  "blurhash": "eID+f4pIVXDj9Z^ktRIoROS20KM{WVtRoz0eR5xax]xaI:n%kCtR-V"
                 }
               },
-              "uniqueHolders": 2,
+              "uniqueHolders": 5,
               "uniswapV4PoolKey": {
-                "token0Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "token1Address": "0xbf69457ccf48216f7866e86c0a1b94c0f94800e5",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4Mjg5OTE5OTQzMzhkNTQ4NTE1YmIxYTAzNWY5MDU2MjZlN2U0MjZjOQ==",
-              "platformBlocked": false,
-              "name": "THEY THREW DANIEL INTO THE LION’",
-              "description": "They threw Daniel into the lion’s den.\nThe system expected silence.\n\nBut truth doesn’t bow to pressure.\n\nThe lions of regulation still roar—\nKYC, gate",
-              "address": "0x28991994338d548515bb1a035f905626e7e426c9",
-              "coinType": "CONTENT",
-              "symbol": "THEY THREW DANIEL INTO THE LION’",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-04T15:52:35+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x28991994338d548515bb1a035f905626e7e426c9",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreie55edwbospy5eunn4kiuv7xnxjl44ip2bs4n3kbujthsmoym3cmy",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/628958df-ed91-4db8-910e-9fd5e0875768",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzYyODk1OGRmLWVkOTEtNGRiOC05MTBlLTlmZDVlMDg3NTc2OA==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzYyODk1OGRmLWVkOTEtNGRiOC05MTBlLTlmZDVlMDg3NTc2OA==",
-                  "blurhash": "ePGR0H025l.6VtWGxCS1NdxZ9zW,-nM|j?j?j?a#o0f6M|t6W=Rjt6"
-                }
-              },
-              "uniqueHolders": 2,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x28991994338d548515bb1a035f905626e7e426c9",
+                "token0Address": "0x2127007f2ba41cafbc20f67cbd9d1980e7ae3d00",
                 "token1Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "fee": 8388608,
+                "fee": 10000,
                 "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4NTNmNzM3N2JiNmQ1ZGRjNDcyYjkzODNhMzAyMzFmZmZlNTg4Y2IwYQ==",
-              "platformBlocked": false,
-              "name": "HOW LONG WILL YOU REMAIN SLAVES ",
-              "description": "How long will you remain slaves in Egypt?\nPharaoh prints endless bricks and debt.\nBut the blockchain parts the Red Sea of middlemen.\n\nLet my people ve",
-              "address": "0x53f7377bb6d5ddc472b9383a30231fffe588cb0a",
-              "coinType": "CONTENT",
-              "symbol": "HOW LONG WILL YOU REMAIN SLAVES",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-04T15:49:33+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x53f7377bb6d5ddc472b9383a30231fffe588cb0a",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreicczw735huojvoixknfzakzknxhouzjh2nlb35s725hzvy4n74rvq",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/e9f83c29-15b4-43e5-80c8-3bac290caeab",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2U5ZjgzYzI5LTE1YjQtNDNlNS04MGM4LTNiYWMyOTBjYWVhYg==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2U5ZjgzYzI5LTE1YjQtNDNlNS04MGM4LTNiYWMyOTBjYWVhYg==",
-                  "blurhash": "eESPX{IUxuog%M%Lt7ocj=WA~qa$IUa#Rjt6xuxuaxWAD%Rjoga#t7"
-                }
-              },
-              "uniqueHolders": 2,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x53f7377bb6d5ddc472b9383a30231fffe588cb0a",
-                "token1Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4NThjYmVkOTM3N2UzNjVkMDlkNjlkZTQyMWRlMGQ5MzYwYjgxMTEwOA==",
-              "platformBlocked": false,
-              "name": "NO TRIGGER.  NO REACTION.  NO DE",
-              "description": "\nNo trigger.  \nNo reaction.  \nNo deviation.\n\nThat’s the real signal.\n\nEveryone chases breakthroughs.  \nI track stability.\n\nIf the system holds under n",
-              "address": "0x58cbed9377e365d09d69de421de0d9360b811108",
-              "coinType": "CONTENT",
-              "symbol": "NO TRIGGER.  NO REACTION.  NO DE",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-04T15:11:59+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x58cbed9377e365d09d69de421de0d9360b811108",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreicpe7vzldhrkmu7obtfh3p2x6nv2ghilyb4cxvctoxetfromzsmia",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/6b69157d-259d-41a5-94e5-8a21232270a2",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzZiNjkxNTdkLTI1OWQtNDFhNS05NGU1LThhMjEyMzIyNzBhMg==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzZiNjkxNTdkLTI1OWQtNDFhNS05NGU1LThhMjEyMzIyNzBhMg==",
-                  "blurhash": "eD8hwZoaDNM|H?O[WBVrjZtSD5aitSt3xtQlogtSWqM{nzbvR-WBj]"
-                }
-              },
-              "uniqueHolders": 2,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x58cbed9377e365d09d69de421de0d9360b811108",
-                "token1Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4MmZmMTc3ZWE2MGJhY2I5NjM5ZmIzOTg1ODRhZGIyNWU0NmU0YzI0OA==",
-              "platformBlocked": false,
-              "name": "BODHI TREE.  CHRISTMAS TREE.  ME",
-              "description": "\nBodhi tree.  \nChristmas tree.  \nMerkle tree.\n\nDifferent worlds. Same structure.\n\nBranch → signal → verification.\n\nPeople chase meaning in symbols.  \n",
-              "address": "0x2ff177ea60bacb9639fb398584adb25e46e4c248",
-              "coinType": "CONTENT",
-              "symbol": "BODHI TREE.  CHRISTMAS TREE.  ME",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-04T15:04:31+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x2ff177ea60bacb9639fb398584adb25e46e4c248",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreicxo3zt2a2irid4syluhtmwhjdvngm5bs56ajkom3b2igqnqhdi7u",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/dc2b32d6-77ad-4dca-811a-f0338dea8ce3",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2RjMmIzMmQ2LTc3YWQtNGRjYS04MTFhLWYwMzM4ZGVhOGNlMw==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2RjMmIzMmQ2LTc3YWQtNGRjYS04MTFhLWYwMzM4ZGVhOGNlMw==",
-                  "blurhash": "eDC6u:Ef0#$gI9S5kDxZbHNH57-pZ~NHt7M{t7Xnae%1MwIn%2s;SP"
-                }
-              },
-              "uniqueHolders": 0,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x2ff177ea60bacb9639fb398584adb25e46e4c248",
-                "token1Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4NzRmM2JiOTFjMWVlYmFmNzhjZTUwNWNjY2ZjMWI3YmU5YmUxMGI2Ng==",
-              "platformBlocked": false,
-              "name": "EU AI ACT BRAGS WORLD-LEADING RE",
-              "description": "EU AI Act brags world-leading regulation to protect citizens.\n\nReality: military AI fully exempt, providers self-certify high-risk status, grandfather",
-              "address": "0x74f3bb91c1eebaf78ce505cccfc1b7be9be10b66",
-              "coinType": "CONTENT",
-              "symbol": "EU AI ACT BRAGS WORLD-LEADING RE",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-04T10:30:43+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x74f3bb91c1eebaf78ce505cccfc1b7be9be10b66",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreihvbk3xlvmv2cl6es2rdj6sjmsdonghfxha7q6hjcsrsw7hidkuoy",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/a4df3e95-a0c7-4a36-b78d-293ea3d1d8a5",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2E0ZGYzZTk1LWEwYzctNGEzNi1iNzhkLTI5M2VhM2QxZDhhNQ==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2E0ZGYzZTk1LWEwYzctNGEzNi1iNzhkLTI5M2VhM2QxZDhhNQ==",
-                  "blurhash": "edG*~IayRja~nirVazS5ays;~AazRkjZNLvyf6xaj[RnxtayX8a}V@"
-                }
-              },
-              "uniqueHolders": 0,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x74f3bb91c1eebaf78ce505cccfc1b7be9be10b66",
-                "token1Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4ODQxMzgwZGQ4ODFhMmMwZmEyNmM0YjZkYmE5ZDhjZGYzMGI3YzA3Yg==",
-              "platformBlocked": false,
-              "name": "FUNNY NEWS 🌍UK: “RESPONSIBLE AI",
-              "description": "FUNNY NEWS 🌍\n\nUK: “Responsible AI, transparency, safety…”\nUS: “Build faster, export harder, dominate.”\n\nOne writes white papers\nthe other wires the k",
-              "address": "0x841380dd881a2c0fa26c4b6dba9d8cdf30b7c07b",
-              "coinType": "CONTENT",
-              "symbol": "FUNNY NEWS 🌍UK: “RESPONSIBLE AI",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-04T10:14:29+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0x841380dd881a2c0fa26c4b6dba9d8cdf30b7c07b",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreidimibhamq57qol2pt3mq4nbtx7cqbbxiq3oiryczzuytrk3zffnm",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/70b9b7e8-f42d-4777-b863-1ae392418309",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzcwYjliN2U4LWY0MmQtNDc3Ny1iODYzLTFhZTM5MjQxODMwOQ==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzcwYjliN2U4LWY0MmQtNDc3Ny1iODYzLTFhZTM5MjQxODMwOQ==",
-                  "blurhash": "eNHT:RXl9daKNs}?xtWFWDR$I.$$xaI?nhi^$jRlI=xWoLs.R.X5t6"
-                }
-              },
-              "uniqueHolders": 2,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "token1Address": "0x841380dd881a2c0fa26c4b6dba9d8cdf30b7c07b",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4YjBiZGNjMWNkMzVkNTVjODFlMGY3ODI4NDkyMzI1ZjhlNzQ2YjA4Ng==",
-              "platformBlocked": false,
-              "name": "FUNNY NEWS 🇬🇧“EXPLAINABLE AI,”",
-              "description": "FUNNY NEWS 🇬🇧\n\n“Explainable AI,” they shout…\nwhile redacting the inputs, outputs, and the bloody keys\n\nThey don’t want the system transparent\nthey w",
-              "address": "0xb0bdcc1cd35d55c81e0f7828492325f8e746b086",
-              "coinType": "CONTENT",
-              "symbol": "FUNNY NEWS 🇬🇧“EXPLAINABLE AI,”",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-04T10:11:21+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0xb0bdcc1cd35d55c81e0f7828492325f8e746b086",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreic3p5ephvg2ebqqwxy6jdiufzdafjobh5ocrmoh4gzdotdakz46by",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/0785f57e-453b-4062-b2c6-3ae5bab98d26",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzA3ODVmNTdlLTQ1M2ItNDA2Mi1iMmM2LTNhZTViYWI5OGQyNg==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzA3ODVmNTdlLTQ1M2ItNDA2Mi1iMmM2LTNhZTViYWI5OGQyNg==",
-                  "blurhash": "eQHKOrTI58skNt}?tQWGjHNFNZ$zxbNHWAV?$jR-NbxWNGxDWFSLxt"
-                }
-              },
-              "uniqueHolders": 0,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "token1Address": "0xb0bdcc1cd35d55c81e0f7828492325f8e746b086",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4YmExYTQxM2JkZjZkM2NkYzZlMTA5YWEyZDRiZWQwMTMwOTE2MDVkNw==",
-              "platformBlocked": false,
-              "name": "ZERO TRUST PROOF:MIT WARNS: CHAT",
-              "description": "Zero Trust Proof:\n\nMIT warns: chatbots reinforce your beliefs\nElon posts it\nEveryone nods like it’s truth\n\nYou didn’t verify shit—you just agreed fast",
-              "address": "0xba1a413bdf6d3cdc6e109aa2d4bed013091605d7",
-              "coinType": "CONTENT",
-              "symbol": "ZERO TRUST PROOF:MIT WARNS: CHAT",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.0",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-02T12:04:37+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": null,
-                "currencyAddress": "0xba1a413bdf6d3cdc6e109aa2d4bed013091605d7",
-                "priceInPoolToken": "0"
-              },
-              "marketCap": "0",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreiamr6ukdinajfwhyyqixavorbp6wzaguqqzz4zckflzrhfpmovqwm",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/d2bc7c66-7e6b-41e3-996a-e7381f302136",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2QyYmM3YzY2LTdlNmItNDFlMy05OTZhLWU3MzgxZjMwMjEzNg==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2QyYmM3YzY2LTdlNmItNDFlMy05OTZhLWU3MzgxZjMwMjEzNg==",
-                  "blurhash": "eAH^teR7{LKh-6.3#UnnFxWEzXO=0%#mI[rZJ*$g-Ajr:l#-KNIpW:"
-                }
-              },
-              "uniqueHolders": 0,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "token1Address": "0xba1a413bdf6d3cdc6e109aa2d4bed013091605d7",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4NzRmYzE4MDFhZTI0YWUyZjk0N2VhMzEyZmNlMmRiNzQ1ZWJhYjBmMQ==",
-              "platformBlocked": false,
-              "name": "CLOWN COURT 🤡⚖️PRECEDENT GETS J",
-              "description": "Clown Court 🤡⚖️\nPrecedent gets juggled, the Constitution gets remixed, and somehow it’s still called “law.”\n\nMeme justice. Meme proof.\n\nIf rules chan",
-              "address": "0x74fc1801ae24ae2f947ea312fce2db745ebab0f1",
-              "coinType": "CONTENT",
-              "symbol": "CLOWN COURT 🤡⚖️PRECEDENT GETS J",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.01",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-02T07:28:01+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": "0.000000051494083000000001045108518607160141833",
-                "currencyAddress": "0x74fc1801ae24ae2f947ea312fce2db745ebab0f1",
-                "priceInPoolToken": "0.00000005149408300000000104510851860716014183338984366855584084987640380859375"
-              },
-              "marketCap": "51.49",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreihsv22sevccvo6bdsc6i7u3sivjfri6tkkhkxow75wtvoaxdhqi3m",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/f94cb202-2052-4168-bf40-ad8b39046102",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2Y5NGNiMjAyLTIwNTItNDE2OC1iZjQwLWFkOGIzOTA0NjEwMg==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkL2Y5NGNiMjAyLTIwNTItNDE2OC1iZjQwLWFkOGIzOTA0NjEwMg==",
-                  "blurhash": "eFDb$kayM{t6WA_NazRPaxNF^*azM{j?IVOtf8n}jYjExaoLIpNIae"
-                }
-              },
-              "uniqueHolders": 2,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x74fc1801ae24ae2f947ea312fce2db745ebab0f1",
-                "token1Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
-              }
-            }
-          },
-          {
-            "node": {
-              "__typename": "GraphQLZora20V4Token",
-              "id": "R3JhcGhRTFpvcmEyMFY0VG9rZW46QkFTRS1NQUlOTkVULjB4Y2ZkYTBhZWM4ZjJiZjI4MmNlNmRhMzVhNTU2MWEyNGI5NDlhMTFmMQ==",
-              "platformBlocked": false,
-              "name": "I DEPLOYED A PUBLIC ENS/BASE IDE",
-              "description": "\nI deployed a public ENS/Base identity classifier.\n\nIt reads owner + resolver + resolved address and returns:\n\n• UNIFIED_CONTROL\n• SPLIT_RESOLUTION\n• ",
-              "address": "0xcfda0aec8f2bf282ce6da35a5561a24b949a11f1",
-              "coinType": "CONTENT",
-              "symbol": "I DEPLOYED A PUBLIC ENS/BASE IDE",
-              "totalSupply": "1000000000",
-              "totalVolume": "0.01",
-              "volume24h": "0.0",
-              "createdAt": "2026-04-02T05:47:05+00:00",
-              "creatorAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "poolCurrencyToken": {
-                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "name": "USDC",
-                "decimals": 6
-              },
-              "tokenPrice": {
-                "priceInUsdc": "0.000000051493649000000001664717935766571454970",
-                "currencyAddress": "0xcfda0aec8f2bf282ce6da35a5561a24b949a11f1",
-                "priceInPoolToken": "0.00000005149364900000000166471793576657145496966450082254596054553985595703125"
-              },
-              "marketCap": "51.49",
-              "marketCapDelta24h": "0.0",
-              "chainId": 8453,
-              "tokenUri": "https://tba-social.mypinata.cloud/ipfs/bafkreidf56poaqifpkfocqpnsbg4n7qfi7ysj6bue3qaapsstjrsntmymq",
-              "platformReferrerAddress": "0x55c88bb05602da94fce8feadc1cbebf5b72c2453",
-              "payoutRecipientAddress": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
-              "creatorProfile": {
-                "__typename": "GraphQLAccountProfile",
-                "id": "R3JhcGhRTEFjY291bnRQcm9maWxlOjY5NzIxMzBmMmI3MzJiY2Q5ZWE2Nzg3Ng==",
-                "handle": "node8",
-                "platformBlocked": false,
-                "avatar": {
-                  "previewImage": {
-                    "blurhash": null,
-                    "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU=",
-                    "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9tYWdpYy5kZWNlbnRyYWxpemVkLWNvbnRlbnQuY29tL2lwZnMvYmFmeWJlaWV0b29kbGdkZHI0eTU0eHFhd2oyMmc0cTU2amJ6c25iemllNXRlbnZtZmNzMnQ1Y3BoenU="
-                  }
-                },
-                "socialAccounts": {
-                  "instagram": null,
-                  "tiktok": {
-                    "username": "jaywisdom.base",
-                    "displayName": "jaywisdom.base",
-                    "followerCount": 86,
-                    "id": null
-                  },
-                  "twitter": null,
-                  "farcaster": null
-                },
-                "creatorCoin": {
-                  "address": "0x4c461cffb0600e3f4c9756907caae9c525fa3399"
-                }
-              },
-              "mediaContent": {
-                "mimeType": "image/jpeg",
-                "originalUri": "https://res.cloudinary.com/base-app/image/upload/60b42814-0192-4aa2-abfe-4449697f0a43",
-                "previewImage": {
-                  "small": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:600:600/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzYwYjQyODE0LTAxOTItNGFhMi1hYmZlLTQ0NDk2OTdmMGE0Mw==",
-                  "medium": "https://scontent-iad4-1.choicecdn.com/-/rs:fit:1200:1200/f:best/aHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vYmFzZS1hcHAvaW1hZ2UvdXBsb2FkLzYwYjQyODE0LTAxOTItNGFhMi1hYmZlLTQ0NDk2OTdmMGE0Mw==",
-                  "blurhash": "e98Xqdte9EkDIV-:n*MxWFV@DNj0eRV]xtN#oztSbXo#DhkA%hkAWY"
-                }
-              },
-              "uniqueHolders": 3,
-              "uniswapV4PoolKey": {
-                "token0Address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
-                "token1Address": "0xcfda0aec8f2bf282ce6da35a5561a24b949a11f1",
-                "fee": 8388608,
-                "tickSpacing": 200,
-                "hookAddress": "0x0469a4bd3724dc86c9542f4694c976da13c450c0"
+                "hookAddress": "0xc8d077444625eb300a427a6dfb2b1dbf9b159040"
               }
             }
           }
         ],
         "pageInfo": {
-          "hasNextPage": true,
-          "endCursor": "eyJibG9ja19jb250ZXh0LmJsb2NrX3RpbWVzdGFtcCI6IHsiJGRhdGUiOiAiMjAyNi0wNC0wMlQwNTo0NzowNVoifSwgIl9pZCI6IHsiJG9pZCI6ICI2OWNlMDJkYWEyNjY1OTgyOTgzYTJhOTcifSwgInBlcl9jb2xsZWN0aW9uIjogeyJFbnRDb2luQ3JlYXRlZFY0IjogeyJfaWQiOiB7IiRvaWQiOiAiNjljZTAyZGFhMjY2NTk4Mjk4M2EyYTk3In19fX0="
+          "hasNextPage": false,
+          "endCursor": "eyJibG9ja19jb250ZXh0LmJsb2NrX3RpbWVzdGFtcCI6IHsiJGRhdGUiOiAiMjAyNS0xMi0xOVQxOTo0NTo1NVoifSwgIl9pZCI6IHsiJG9pZCI6ICI2OTQ1YWI3NDdkMWU2MGI5M2FmYTIyMGYifSwgInBlcl9jb2xsZWN0aW9uIjogeyJFbnRDb2luQ3JlYXRlZFY0IjogeyJfaWQiOiB7IiRvaWQiOiAiNjk0NWFiNzQ3ZDFlNjBiOTNhZmEyMjBmIn19fX0="
         }
       }
     }
