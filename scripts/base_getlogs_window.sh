@@ -16,7 +16,6 @@ START_HEX=$(printf '0x%x' "$START_DEC")
 END_HEX=$(printf '0x%x' "$END_DEC")
 
 mkdir -p data/base_raw
-
 OUT="data/base_raw/logs_${START_DEC}_${END_DEC}_${TOPIC0:0:10}.json"
 
 curl -s "$RPC_URL" \
@@ -30,7 +29,13 @@ curl -s "$RPC_URL" \
       \"toBlock\":\"$END_HEX\",
       \"topics\":[\"$TOPIC0\"]
     }]
-  }" | tee "$OUT"
+  }" > "$OUT"
 
-echo
-echo "Saved: $OUT"
+python3 - <<PY
+import json
+p="$OUT"
+j=json.load(open(p))
+print("Saved:", p)
+print("count:", len(j.get("result", [])))
+print("error:", j.get("error", ""))
+PY
