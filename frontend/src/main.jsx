@@ -121,13 +121,11 @@ function App() {
               </div>
 
               <div className="actions">
-                <a
-                  href={`https://zora.co/search?q=${encodeURIComponent(art.contract || art.title || "jaywisdom")}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Search on Zora
-                </a>
+                {art.zora_url && (
+                  <a href={art.zora_url} target="_blank" rel="noreferrer">
+                    View on Zora
+                  </a>
+                )}
                 {art.tx_hash && art.tx_hash !== "0xseed" && (
                   <a href={`https://basescan.org/tx/${art.tx_hash}`} target="_blank" rel="noreferrer">Receipt</a>
                 )}
