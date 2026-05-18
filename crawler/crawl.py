@@ -86,10 +86,17 @@ Index Jay Wisdom Zora artwork. Include visual concepts, colors, symbols, mood, v
         return description or "", sorted(aliases), sorted(themes)
 
 def fetch_items():
+    live = "/app/data/live_zora_items.json"
     manual = "/app/data/manual_artworks.json"
-    if os.path.exists(manual):
-        with open(manual, "r") as f:
-            return json.load(f)
+
+    for path in [live, manual]:
+        if os.path.exists(path):
+            print(f"loading items from {path}")
+            with open(path, "r") as f:
+                data = json.load(f)
+            if isinstance(data, dict):
+                data = data.get("items") or data.get("results") or data.get("data") or []
+            return data
 
     return [{
         "title": "Jay Wisdom Portal Test Relic",
