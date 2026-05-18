@@ -34,3 +34,13 @@ Rules:
 
 Next valid transition:
 MAPPED_CLUSTER_SUMMARY_CONFIRMED -> AA_LINKAGE_CHECK
+
+AA linkage check:
+- Window: 46141641-46151641
+- UserOperationEvent topic: 0x49628dd123b3da59ec474c0921bb1feab9cd036d649d2112e4df6373b9e83ea8
+- Result count: 0
+- Interpretation: AA linkage not observed in same window.
+- Behavioral claims remain blocked.
+
+Next valid transition:
+AA_LINKAGE_CHECK_WINDOW_COMPLETE -> TX_RECEIPT_TRACE_CHECK
