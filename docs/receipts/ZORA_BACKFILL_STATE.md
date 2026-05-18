@@ -1,29 +1,26 @@
 # Zora Micropool Backfill State
 
-State: STRUCTURAL_CLUSTER_SUMMARY_READY
+State: ABI_FIELD_MAPPING_SCRIPT_COMMITTED
 
 Artifacts:
 - scripts/base_rpc_probe.sh
 - scripts/base_getlogs_window.sh
 - scripts/parse_base_logs_summary.py
 - scripts/decode_coincreated_v4_logs.py
+- scripts/decode_coincreated_v4_mapped.py
 
 Live window:
 - Blocks: 46141641-46151641
-- Topic0: 0x2de436107c2096e039c98bbcc3c5a2560583738ce15c234557eecb4d3221aa81
 - Factory: 0x777777751622c0d3258f214f9df38e35bf45baf3
-- Decoded logs: 429
+- Topic0: 0x2de436107c2096e039c98bbcc3c5a2560583738ce15c234557eecb4d3221aa81
+- Mapped rows: 429
 
-Structural findings:
-- factory_address unique: 1
-- version_topic unique: 1
-- topic1_addr unique: 321
-- topic2_addr unique: 321
-- topic1/topic2 counts match
-- topic3_addr unique: 39
-- data_word0 unique: 311
-- data_word1 constant: 0x180
-- data_word2 dominant: 0x200
+Field mapping:
+- topic1_addr and topic2_addr match by observed counts.
+- topic3_addr varies.
+- asset_addr = data word 0 address.
+- pool_key_hash = trailing 12 bytes of data word 9 + full data word 10.
+- prior 0x0469a4bd... value is encoded pool-key prefix, not pool_key_hash.
 
 Rules:
 - No synthetic telemetry.
@@ -33,4 +30,4 @@ Rules:
 - No rug claims.
 
 Next valid transition:
-STRUCTURAL_CLUSTER_SUMMARY_READY -> ABI_FIELD_MAPPING
+ABI_FIELD_MAPPING_SCRIPT_COMMITTED -> MAPPED_CLUSTER_SUMMARY
