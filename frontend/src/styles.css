@@ -130,3 +130,17 @@ button, .actions a {
   padding: 5px 8px;
   color: #a7f3d0;
 }
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 12px 0 24px;
+  color: #cbd5e1;
+}
+
+.pager button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

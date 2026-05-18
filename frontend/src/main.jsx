@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./styles.css";
 
 const API_BASE = "";
+const PAGE_SIZE = 20;
 
 function short(v) {
   if (!v) return "missing";
@@ -13,21 +14,45 @@ function App() {
   const [q, setQ] = useState("");
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState("ready");
+  const [page, setPage] = useState({
+    total: 0,
+    count: 0,
+    limit: PAGE_SIZE,
+    offset: 0,
+    next_offset: null,
+    prev_offset: null,
+  });
 
-  async function search(value = q) {
+  async function search(value = q, offset = 0) {
     setStatus("searching");
     try {
-      const res = await fetch(`${API_BASE}/search?q=${encodeURIComponent(value)}`);
+      const params = new URLSearchParams({
+        q: value,
+        limit: String(PAGE_SIZE),
+        offset: String(offset),
+      });
+
+      const res = await fetch(`${API_BASE}/search?${params.toString()}`);
       const data = await res.json();
+
       setItems(data.results || []);
-      setStatus(`${data.count || 0} relics found`);
+      setPage({
+        total: data.total || 0,
+        count: data.count || 0,
+        limit: data.limit || PAGE_SIZE,
+        offset: data.offset || 0,
+        next_offset: data.next_offset,
+        prev_offset: data.prev_offset,
+      });
+
+      setStatus(`${data.count || 0} shown of ${data.total || 0} relics`);
     } catch (err) {
       setStatus(`error: ${err.message}`);
     }
   }
 
   useEffect(() => {
-    search("");
+    search("", 0);
   }, []);
 
   return (
@@ -42,13 +67,27 @@ function App() {
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && search()}
+          onKeyDown={(e) => e.key === "Enter" && search(q, 0)}
           placeholder="Search goblin court, receipt machine, Base meme fox..."
         />
-        <button onClick={() => search()}>Search</button>
+        <button onClick={() => search(q, 0)}>Search</button>
       </section>
 
-      <div className="status">{status}</div>
+      <div className="status">
+        {status} · offset {page.offset}
+      </div>
+
+      <section className="pager">
+        <button disabled={page.prev_offset === null} onClick={() => search(q, page.prev_offset)}>
+          Previous
+        </button>
+        <span>
+          Page {Math.floor(page.offset / page.limit) + 1} / {Math.max(1, Math.ceil(page.total / page.limit))}
+        </span>
+        <button disabled={page.next_offset === null} onClick={() => search(q, page.next_offset)}>
+          Next
+        </button>
+      </section>
 
       <section className="grid">
         {items.map((art, i) => (
@@ -66,7 +105,7 @@ function App() {
 
               <div className="meta">
                 <code>{short(art.contract)}</code>
-                <code>#{art.token_id}</code>
+                <code>#{short(String(art.token_id || ""))}</code>
               </div>
 
               <div className="actions">
