@@ -7,13 +7,15 @@ const PAGE_SIZE = 20;
 
 function short(v) {
   if (!v) return "missing";
-  return v.length > 14 ? `${v.slice(0, 8)}…${v.slice(-6)}` : v;
+  const s = String(v);
+  return s.length > 14 ? `${s.slice(0, 8)}…${s.slice(-6)}` : s;
 }
 
 function App() {
   const [q, setQ] = useState("");
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState("ready");
+  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState({
     total: 0,
     count: 0,
@@ -24,16 +26,24 @@ function App() {
   });
 
   async function search(value = q, offset = 0) {
-    setStatus("searching");
+    setLoading(true);
+    setStatus("searching…");
+
     try {
       const params = new URLSearchParams({
-        q: value,
+        q: value || "",
         limit: String(PAGE_SIZE),
-        offset: String(offset),
+        offset: String(offset || 0),
       });
 
       const res = await fetch(`${API_BASE}/search?${params.toString()}`);
-      const data = await res.json();
+      const text = await res.text();
+
+      if (!res.ok) {
+        throw new Error(`API ${res.status}: ${text.slice(0, 120)}`);
+      }
+
+      const data = JSON.parse(text);
 
       setItems(data.results || []);
       setPage({
@@ -41,13 +51,15 @@ function App() {
         count: data.count || 0,
         limit: data.limit || PAGE_SIZE,
         offset: data.offset || 0,
-        next_offset: data.next_offset,
-        prev_offset: data.prev_offset,
+        next_offset: data.next_offset ?? null,
+        prev_offset: data.prev_offset ?? null,
       });
 
       setStatus(`${data.count || 0} shown of ${data.total || 0} relics`);
     } catch (err) {
       setStatus(`error: ${err.message}`);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -70,21 +82,21 @@ function App() {
           onKeyDown={(e) => e.key === "Enter" && search(q, 0)}
           placeholder="Search goblin court, receipt machine, Base meme fox..."
         />
-        <button onClick={() => search(q, 0)}>Search</button>
+        <button disabled={loading} onClick={() => search(q, 0)}>
+          {loading ? "Loading…" : "Search"}
+        </button>
       </section>
 
-      <div className="status">
-        {status} · offset {page.offset}
-      </div>
+      <div className="status">{status} · offset {page.offset}</div>
 
       <section className="pager">
-        <button disabled={page.prev_offset === null} onClick={() => search(q, page.prev_offset)}>
+        <button disabled={loading || page.prev_offset === null} onClick={() => search(q, page.prev_offset)}>
           Previous
         </button>
         <span>
           Page {Math.floor(page.offset / page.limit) + 1} / {Math.max(1, Math.ceil(page.total / page.limit))}
         </span>
-        <button disabled={page.next_offset === null} onClick={() => search(q, page.next_offset)}>
+        <button disabled={loading || page.next_offset === null} onClick={() => search(q, page.next_offset)}>
           Next
         </button>
       </section>
@@ -105,11 +117,17 @@ function App() {
 
               <div className="meta">
                 <code>{short(art.contract)}</code>
-                <code>#{short(String(art.token_id || ""))}</code>
+                <code>#{short(art.token_id)}</code>
               </div>
 
               <div className="actions">
-                {art.zora_url && <a href={art.zora_url} target="_blank" rel="noreferrer">View on Zora</a>}
+                <a
+                  href={`https://zora.co/search?q=${encodeURIComponent(art.contract || art.title || "jaywisdom")}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Search on Zora
+                </a>
                 {art.tx_hash && art.tx_hash !== "0xseed" && (
                   <a href={`https://basescan.org/tx/${art.tx_hash}`} target="_blank" rel="noreferrer">Receipt</a>
                 )}
