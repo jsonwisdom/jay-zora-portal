@@ -1,6 +1,8 @@
 -- BACKFILL_QUERY_SPEC_V1 - EXECUTABLE
 -- Target: bigquery-public-data.crypto_base.logs
 -- Strict structural grouping, no price/social/intent
+-- Output schema:
+-- result_type | pool_key_hash | factory_address | version_topic | distinct_creators | coins_deployed | first_block | last_block
 
 DECLARE PAYMASTER_CLUSTER ARRAY<STRING> DEFAULT [
   '0x829adf1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f'
@@ -18,13 +20,13 @@ WITH user_ops AS (
   SELECT
     l.block_number,
     l.block_timestamp,
-    CONCAT('0x', SUBSTR(l.topics[SAFE_OFFSET(2)], 27, 40)) AS sender_address,
-    CONCAT('0x', SUBSTR(l.topics[SAFE_OFFSET(3)], 27, 40)) AS paymaster,
-    CAST(CONCAT('0x', SUBSTR(l.data, 1, 64)) AS INT64) AS nonce
+    LOWER(CONCAT('0x', SUBSTR(l.topics[SAFE_OFFSET(2)], 27, 40))) AS sender_address,
+    LOWER(CONCAT('0x', SUBSTR(l.topics[SAFE_OFFSET(3)], 27, 40))) AS paymaster,
+    SAFE_CAST(CONCAT('0x', SUBSTR(l.data, 1, 64)) AS INT64) AS nonce
   FROM `bigquery-public-data.crypto_base.logs` l
-  WHERE l.address = ENTRYPOINT_060
-    AND l.topics[SAFE_OFFSET(0)] = USER_OP_TOPIC
-    AND CONCAT('0x', SUBSTR(l.topics[SAFE_OFFSET(3)], 27, 40)) IN UNNEST(PAYMASTER_CLUSTER)
+  WHERE LOWER(l.address) = LOWER(ENTRYPOINT_060)
+    AND LOWER(l.topics[SAFE_OFFSET(0)]) = LOWER(USER_OP_TOPIC)
+    AND LOWER(CONCAT('0x', SUBSTR(l.topics[SAFE_OFFSET(3)], 27, 40))) IN UNNEST(PAYMASTER_CLUSTER)
 ),
 
 creators AS (
@@ -33,24 +35,40 @@ creators AS (
 
 coin_created AS (
   SELECT
-    l.address AS factory_address,
+    LOWER(l.address) AS factory_address,
     l.block_number,
-    CONCAT('0x', SUBSTR(l.topics[SAFE_OFFSET(1)], 27, 40)) AS creator,
-    CONCAT('0x', SUBSTR(l.data, 1, 64)) AS pool_key_hash,
-    l.topics[SAFE_OFFSET(0)] AS topic0
+    LOWER(CONCAT('0x', SUBSTR(l.topics[SAFE_OFFSET(1)], 27, 40))) AS creator,
+    LOWER(CONCAT('0x', SUBSTR(l.data, 1, 64))) AS pool_key_hash,
+    LOWER(l.topics[SAFE_OFFSET(0)]) AS version_topic
   FROM `bigquery-public-data.crypto_base.logs` l
-  WHERE l.topics[SAFE_OFFSET(0)] IN UNNEST(COIN_CREATED_V4_TOPICS)
-    AND CONCAT('0x', SUBSTR(l.topics[SAFE_OFFSET(1)], 27, 40)) IN (SELECT creator FROM creators)
-    AND CAST(CONCAT('0x', SUBSTR(l.data, 65, 64)) AS NUMERIC) = 1000000000
-    AND CAST(CONCAT('0x', SUBSTR(l.data, 129, 64)) AS NUMERIC) = 10000000
+  WHERE LOWER(l.topics[SAFE_OFFSET(0)]) IN UNNEST(COIN_CREATED_V4_TOPICS)
+    AND LOWER(CONCAT('0x', SUBSTR(l.topics[SAFE_OFFSET(1)], 27, 40))) IN (SELECT creator FROM creators)
+    AND SAFE_CAST(CONCAT('0x', SUBSTR(l.data, 65, 64)) AS NUMERIC) = 1000000000
+    AND SAFE_CAST(CONCAT('0x', SUBSTR(l.data, 129, 64)) AS NUMERIC) = 10000000
 )
 
-SELECT 'POOL_KEY_AGG' AS row_type, pool_key_hash, COUNT(DISTINCT creator) AS distinct_creators, COUNT(*) AS coins_deployed
+SELECT
+  'POOL_KEY_AGG' AS result_type,
+  pool_key_hash,
+  factory_address,
+  version_topic,
+  COUNT(DISTINCT creator) AS distinct_creators,
+  COUNT(*) AS coins_deployed,
+  MIN(block_number) AS first_block,
+  MAX(block_number) AS last_block
 FROM coin_created
-GROUP BY pool_key_hash
+GROUP BY pool_key_hash, factory_address, version_topic
 
 UNION ALL
 
-SELECT 'NONCE_CADENCE' AS row_type, sender_address, COUNT(*) AS operation_count, CAST(TIMESTAMP_DIFF(MAX(block_timestamp), MIN(block_timestamp), SECOND) AS INT64) AS temporal_range_sec
+SELECT
+  'NONCE_CADENCE' AS result_type,
+  sender_address AS pool_key_hash,
+  '' AS factory_address,
+  '' AS version_topic,
+  0 AS distinct_creators,
+  COUNT(*) AS coins_deployed,
+  MIN(block_number) AS first_block,
+  MAX(block_number) AS last_block
 FROM user_ops
 GROUP BY sender_address;
