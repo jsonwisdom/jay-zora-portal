@@ -110,3 +110,20 @@ CoinCreate to EntryPoint tx join:
 
 Next valid transition:
 COINCREATE_TO_ENTRYPOINT_TX_JOIN_CONFIRMED -> STRUCTURAL_BACKFILL_V1_READY
+
+Final V1 lock:
+- State: STRUCTURAL_BACKFILL_V1_READY
+- Proof surface includes:
+  - Base RPC source selected after BigQuery Base dataset was unavailable.
+  - CoinCreatedV4 logs captured and mapped.
+  - 429 CoinCreatedV4 logs / 427 unique txs.
+  - 429 unique mapped pool_key_hash values.
+  - EntryPoint receipt target linkage confirmed.
+  - Correct observed EntryPoint topic mapped.
+  - EntryPoint high-volume windows safely bounded to 1k blocks.
+  - CoinCreatedV4 to EntryPoint tx overlap: 127 txs.
+- Behavioral claims remain blocked.
+- No price logic, no social data, no intent labels, no rug claims.
+
+State locked:
+STRUCTURAL_BACKFILL_V1_READY
