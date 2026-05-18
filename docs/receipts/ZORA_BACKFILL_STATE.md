@@ -68,3 +68,17 @@ EntryPoint event topic mapping:
 
 Next valid transition:
 ENTRYPOINT_EVENT_TOPIC_MAPPING -> REQUERY_ENTRYPOINT_OBSERVED_TOPIC
+
+Observed EntryPoint topic requery:
+- Topic: 0x49628fd1471006c1482da88028e9ce4dbb080b815c9b0344d39e5a8e6ec1419f
+- Large 10k JSON file was corrupted/truncated during terminal flood.
+- RPC puller patched to suppress raw JSON terminal output.
+- Valid 1k windows:
+  - 46141641-46142641: 7206 logs
+  - 46142641-46143641: 6793 logs
+  - 46143641-46144641: 8857 logs
+- Rule: use 1k or smaller windows for high-volume EntryPoint topics.
+- Behavioral claims remain blocked.
+
+Next valid transition:
+ENTRYPOINT_OBSERVED_TOPIC_SMALL_WINDOWS_VALID -> ENTRYPOINT_EVENT_DECODER
