@@ -21,8 +21,10 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-COPY api/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY api/requirements.txt ./api-requirements.txt
+COPY crawler/requirements.txt ./crawler-requirements.txt
+
+RUN pip install --no-cache-dir     -r api-requirements.txt     -r crawler-requirements.txt
 
 COPY package*.json ./
 RUN npm install
