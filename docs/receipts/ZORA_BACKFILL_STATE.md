@@ -1,6 +1,6 @@
 # Zora Micropool Backfill State
 
-State: ABI_FIELD_MAPPING_SCRIPT_COMMITTED
+State: MAPPED_CLUSTER_SUMMARY_CONFIRMED
 
 Artifacts:
 - scripts/base_rpc_probe.sh
@@ -15,12 +15,15 @@ Live window:
 - Topic0: 0x2de436107c2096e039c98bbcc3c5a2560583738ce15c234557eecb4d3221aa81
 - Mapped rows: 429
 
-Field mapping:
-- topic1_addr and topic2_addr match by observed counts.
-- topic3_addr varies.
-- asset_addr = data word 0 address.
-- pool_key_hash = trailing 12 bytes of data word 9 + full data word 10.
-- prior 0x0469a4bd... value is encoded pool-key prefix, not pool_key_hash.
+Mapped summary:
+- factory unique: 1
+- version_topic unique: 1
+- topic1_addr unique: 321
+- topic2_addr unique: 321
+- topic3_addr unique: 39
+- asset_addr unique: 311
+- pool_key_hash unique: 429
+- word_count dominant: 22 words, 375 rows
 
 Rules:
 - No synthetic telemetry.
@@ -30,4 +33,4 @@ Rules:
 - No rug claims.
 
 Next valid transition:
-ABI_FIELD_MAPPING_SCRIPT_COMMITTED -> MAPPED_CLUSTER_SUMMARY
+MAPPED_CLUSTER_SUMMARY_CONFIRMED -> AA_LINKAGE_CHECK
