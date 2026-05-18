@@ -10,7 +10,10 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 WALLET = os.getenv("WALLET", "0x829adfedbe565f9885a7ea6bc78912acaef055e2")
 HANDLE = os.getenv("HANDLE", "jaywisdom.base.eth")
 
-client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
+def valid_openai_key(value):
+    return bool(value) and value.startswith("sk-") and "PASTE" not in value
+
+client = OpenAI(api_key=OPENAI_API_KEY) if valid_openai_key(OPENAI_API_KEY) else None
 
 CREATE_TABLE_SQL = """
 CREATE TABLE IF NOT EXISTS artworks (
