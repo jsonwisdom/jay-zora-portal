@@ -82,3 +82,20 @@ Observed EntryPoint topic requery:
 
 Next valid transition:
 ENTRYPOINT_OBSERVED_TOPIC_SMALL_WINDOWS_VALID -> ENTRYPOINT_EVENT_DECODER
+
+EntryPoint event decoder:
+- Script: scripts/summarize_entrypoint_logs.py
+- Files summarized: 3
+- Total observed logs: 22856
+- Block range: 46141641-46144641
+- Topic0: 0x49628fd1471006c1482da88028e9ce4dbb080b815c9b0344d39e5a8e6ec1419f
+- Topic count distribution: 4 topics on all 22856 logs
+- Top emitting addresses:
+  - 0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789: 16236
+  - 0x0000000071727de22e5e9d8baf0edac6f37da032: 5840
+  - 0x4337084d9e255ff0702461cf8895ce9e3b5ff108: 779
+  - 0x433709009b8330fda32311df1c2afa402ed8d009: 1
+- Behavioral claims remain blocked.
+
+Next valid transition:
+ENTRYPOINT_EVENT_DECODER_CONFIRMED -> COINCREATE_TO_ENTRYPOINT_TX_JOIN
