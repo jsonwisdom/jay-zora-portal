@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  metadata-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: zora_index
+      POSTGRES_USER: fox
+      POSTGRES_PASSWORD: receipts
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  crawler:
+    build: ./crawler
+    environment:
+      DATABASE_URL: postgresql://fox:receipts@metadata-db:5432/zora_index
+      ZORA_API_KEY: ${ZORA_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      WALLET: 0x829adfedbe565f9885a7ea6bc78912acaef055e2
+      HANDLE: jaywisdom.base.eth
+    depends_on:
+      - metadata-db
+    command: python crawl.py
+  search-api:
+    build: ./api
+    environment:
+      DATABASE_URL: postgresql://fox:receipts@metadata-db:5432/zora_index
+    depends_on:
+      - metadata-db
+    ports:
+      - "8000:8000"
+  frontend:
+    build: ./frontend
+    environment:
+      VITE_API_BASE: http://localhost:8000
+    ports:
+      - "3000:5173"
+    depends_on:
+      - search-api
+volumes:
+  pgdata:
