@@ -99,3 +99,14 @@ EntryPoint event decoder:
 
 Next valid transition:
 ENTRYPOINT_EVENT_DECODER_CONFIRMED -> COINCREATE_TO_ENTRYPOINT_TX_JOIN
+
+CoinCreate to EntryPoint tx join:
+- CoinCreatedV4 logs: 429
+- CoinCreatedV4 unique txs: 427
+- EntryPoint observed-topic unique txs: 18413
+- Overlap txs: 127
+- AA linkage confirmed by transaction hash overlap.
+- Behavioral claims remain blocked.
+
+Next valid transition:
+COINCREATE_TO_ENTRYPOINT_TX_JOIN_CONFIRMED -> STRUCTURAL_BACKFILL_V1_READY
