@@ -41,9 +41,9 @@ def ensure_table(conn):
         cur.execute(CREATE_TABLE_SQL)
     conn.commit()
 
-def build_zora_url(contract, token_id):
-    if contract and token_id:
-        return f"https://zora.co/collect/base:{contract}/{token_id}"
+def fallback_zora_url(contract):
+    if contract:
+        return f"https://zora.co/coin/base:{contract}"
     return "https://zora.co/@jaywisdom"
 
 def enrich(title, description, image_uri):
@@ -55,44 +55,12 @@ def enrich(title, description, image_uri):
                 aliases.add(clean)
 
     themes = {"zora", "base", "jay wisdom", "l2 creator index", "receipts"}
-
-    if not client or not image_uri:
-        return description or "", sorted(aliases), sorted(themes)
-
-    try:
-        prompt = """
-Return strict JSON only:
-{
-  "ai_description": "one concise visual description",
-  "query_aliases": ["search phrases people might use"],
-  "themes": ["short tags"]
-}
-Index Jay Wisdom Zora artwork. Include visual concepts, colors, symbols, mood, visible text, receipts, Base, Zora, goblin court, family OS, verification, and memory equity when relevant.
-"""
-        result = client.responses.create(
-            model="gpt-4.1-mini",
-            input=[{
-                "role": "user",
-                "content": [
-                    {"type": "input_text", "text": prompt},
-                    {"type": "input_text", "text": f"Title: {title}\nDescription: {description}"},
-                    {"type": "input_image", "image_url": image_uri}
-                ]
-            }]
-        )
-        data = json.loads(result.output_text)
-        aliases.update(data.get("query_aliases") or [])
-        themes.update(data.get("themes") or [])
-        return data.get("ai_description") or description or "", sorted(aliases), sorted(themes)
-    except Exception as e:
-        print(f"vision enrichment skipped: {e}")
-        return description or "", sorted(aliases), sorted(themes)
+    return description or "", sorted(aliases), sorted(themes)
 
 def fetch_items():
-    live = "/app/data/live_zora_items.json"
-    manual = "/app/data/manual_artworks.json"
+    paths = ["/app/data/live_zora_items.json", "/app/data/manual_artworks.json", "data/live_zora_items.json", "data/manual_artworks.json"]
 
-    for path in [live, manual]:
+    for path in paths:
         if os.path.exists(path):
             print(f"loading items from {path}")
             with open(path, "r") as f:
@@ -105,6 +73,7 @@ def fetch_items():
         "title": "Jay Wisdom Portal Test Relic",
         "description": "Seed artifact for receipt machine, goblin court, Base meme fox, and family OS search testing.",
         "image_uri": "",
+        "zora_url": "https://zora.co/@jaywisdom",
         "contract": WALLET,
         "token_id": "seed-001",
         "chain": "base",
@@ -130,11 +99,12 @@ def main():
         chain = item.get("chain") or "base"
         tx_hash = item.get("tx_hash") or ""
         created_at = item.get("created_at")
+        zora_url = item.get("zora_url") or fallback_zora_url(contract)
 
         ai_description, query_aliases, themes = enrich(title, description, image_uri)
 
         rows.append((
-            title, ai_description, image_uri, build_zora_url(contract, token_id),
+            title, ai_description, image_uri, zora_url,
             contract, token_id, chain, tx_hash, created_at, themes, query_aliases
         ))
 
