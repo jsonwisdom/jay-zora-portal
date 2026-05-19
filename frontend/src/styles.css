@@ -27,7 +27,10 @@ button, a { font: inherit; }
   touch-action: none;
 }
 
-.space-layer { position: fixed; inset: 0; pointer-events: none; }
+.presence-awake .stars { opacity: .18; }
+.presence-awake .nebula { opacity: .98; }
+
+.space-layer { position: fixed; inset: 0; pointer-events: none; transform: translateZ(.1px); will-change: transform, opacity; contain: layout paint style; }
 .stars {
   background-image:
     radial-gradient(circle, rgba(255,255,255,.65) 1px, transparent 1px),
@@ -35,6 +38,7 @@ button, a { font: inherit; }
   background-size: 62px 62px, 137px 137px;
   opacity: .30;
   animation: driftStars 96s linear infinite;
+  transition: opacity .55s ease;
 }
 .nebula {
   background:
@@ -43,6 +47,7 @@ button, a { font: inherit; }
     radial-gradient(circle at 50% 50%, rgba(168, 85, 247, .18), transparent 28rem);
   filter: blur(8px);
   animation: breathe 15s ease-in-out infinite alternate, driftNebula 180s linear infinite;
+  transition: opacity .55s ease;
 }
 .dust {
   background-image:
@@ -57,14 +62,13 @@ button, a { font: inherit; }
   mix-blend-mode: multiply;
 }
 
-@keyframes driftStars { from { transform: translate3d(0,0,0); } to { transform: translate3d(-80px, 46px,0); } }
-@keyframes driftDust { from { transform: translate3d(0,0,0); } to { transform: translate3d(-180px, 120px,0); } }
-@keyframes driftNebula { from { transform: translate3d(0,0,0); } to { transform: translate3d(32px, -24px,0); } }
+@keyframes driftStars { from { transform: translate3d(0,0,.1px); } to { transform: translate3d(-80px, 46px,.1px); } }
+@keyframes driftDust { from { transform: translate3d(0,0,.2px); } to { transform: translate3d(-180px, 120px,.2px); } }
+@keyframes driftNebula { from { transform: translate3d(0,0,.3px); } to { transform: translate3d(32px, -24px,.3px); } }
 @keyframes breathe { from { opacity: .50; scale: 1; } to { opacity: .86; scale: 1.04; } }
 @keyframes pulse { 0%,100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 34px rgba(34,197,94,.65); } 50% { transform: translateX(-50%) scale(1.07); box-shadow: 0 0 78px rgba(34,197,94,.95); } }
 @keyframes climb { from { transform: translate(-50%, 150px); opacity: .1; } 40% { opacity: 1; } to { transform: translate(-50%, -260px); opacity: .15; } }
 @keyframes rotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-@keyframes driftFloat { 0%,100% { translate: -50% -50%; } 50% { translate: -50% calc(-50% - 7px); } }
 @keyframes flowDash { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -24; } }
 
 .hud {
@@ -114,19 +118,30 @@ button, a { font: inherit; }
   height: min(70svh, 720px);
   transform-origin: center 58%;
   translate: -50% -50%;
-  transition: transform .24s ease;
+  transition: transform .24s cubic-bezier(.2,.8,.2,1);
   filter: saturate(1.08) contrast(1.05);
+  will-change: transform;
 }
-.flow-svg { position: absolute; inset: 0; z-index: 2; overflow: visible; }
-.flow-path {
+.flow-svg { position: absolute; inset: 0; z-index: 2; overflow: visible; isolation: isolate; transform: translateZ(.4px); pointer-events: none; }
+.flow-path, .ghost-path, .observer-path {
   fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.flow-path {
   stroke: rgba(56, 189, 248, .84);
   stroke-width: .42;
-  stroke-linecap: round;
   stroke-dasharray: 1.2 14;
   filter: drop-shadow(0 0 5px rgba(56,189,248,.92));
   animation: flowDash 3.8s linear infinite;
 }
+.observer-path.cyan { stroke: rgba(34, 211, 238, .65); }
+.observer-path.amber { stroke: rgba(251, 191, 36, .62); }
+.observer-path.blue { stroke: rgba(147, 197, 253, .42); }
+.observer-path.fork { stroke: rgba(251, 191, 36, .72); stroke-dasharray: 1 3; }
+.observer-path.disputed { stroke: rgba(248, 113, 113, .78); stroke-width: .68; stroke-dasharray: 1.3 2.2; }
+.observer-path.reconciled { stroke: rgba(255,255,255,.56); stroke-width: .5; }
+.ghost-path { stroke: rgba(125, 211, 252, .18); stroke-width: .34; stroke-dasharray: 1.2 3; }
 
 .trunk {
   position: absolute;
@@ -203,16 +218,16 @@ button, a { font: inherit; }
   z-index: 4;
   width: 165px;
   min-height: 112px;
-  transform: translate(0, 0);
+  transform: translate(var(--sway-x, 0px), var(--sway-y, 0px));
   border: 1px solid rgba(56,189,248,.42);
   border-radius: 26px;
   padding: 15px;
   color: white;
   background: radial-gradient(circle at top, rgba(59,130,246,.32), rgba(15,23,42,.78));
-  box-shadow: 0 0 34px rgba(59,130,246,.22);
+  box-shadow: 0 0 calc(30px + (var(--presence-pull, 0) * 34px)) rgba(59,130,246,calc(.18 + (var(--alive-glow, .7) * .22)));
   cursor: pointer;
   backdrop-filter: blur(10px);
-  animation: driftFloat 6.8s ease-in-out infinite;
+  will-change: transform, box-shadow;
 }
 .grove-node span {
   display: inline-grid;
@@ -228,7 +243,7 @@ button, a { font: inherit; }
 .grove-node small { color: #93c5fd; font-size: .68rem; word-break: break-all; }
 .grove-node.selected, .grove-node:hover {
   border-color: rgba(251,146,60,.9);
-  box-shadow: 0 0 60px rgba(251,146,60,.55);
+  box-shadow: 0 0 68px rgba(251,146,60,.62);
   background: radial-gradient(circle at top, rgba(251,146,60,.42), rgba(15,23,42,.88));
 }
 
@@ -267,16 +282,24 @@ button, a { font: inherit; }
   gap: 8px;
   margin: 14px 0;
 }
-.inspector-grid div, .leaf-list a {
+.inspector-grid div, .leaf-list a, .time-archaeology, .observer-legend {
   display: grid;
-  gap: 3px;
+  gap: 6px;
   padding: 10px;
   border-radius: 16px;
   background: rgba(15,23,42,.72);
   border: 1px solid rgba(255,255,255,.1);
 }
 .inspector-grid strong { font-size: 1.35rem; }
-.inspector-grid span, .leaf-list span { color: #94a3b8; font-size: .78rem; }
+.inspector-grid span, .leaf-list span, .time-archaeology span { color: #94a3b8; font-size: .78rem; }
+.observer-legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+.observer-pill { border-radius: 999px; padding: 7px 9px; font-size: .72rem; font-weight: 900; }
+.observer-pill.cyan { background: rgba(34,211,238,.18); color: #67e8f9; }
+.observer-pill.amber { background: rgba(251,191,36,.18); color: #fde68a; }
+.observer-pill.blue { background: rgba(147,197,253,.18); color: #bfdbfe; }
+.time-archaeology { margin: 10px 0; }
+.time-archaeology label { color: #fed7aa; font-weight: 950; text-transform: uppercase; font-size: .75rem; }
+.time-archaeology input { width: 100%; accent-color: #f97316; }
 .leaf-list { display: grid; gap: 8px; }
 .leaf-list a { color: white; text-decoration: none; }
 .actions-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
