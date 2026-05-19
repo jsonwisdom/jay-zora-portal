@@ -33,8 +33,8 @@ button, a { font: inherit; }
     radial-gradient(circle, rgba(255,255,255,.65) 1px, transparent 1px),
     radial-gradient(circle, rgba(255,255,255,.25) 1px, transparent 1px);
   background-size: 62px 62px, 137px 137px;
-  opacity: .32;
-  animation: drift 38s linear infinite;
+  opacity: .30;
+  animation: driftStars 96s linear infinite;
 }
 .nebula {
   background:
@@ -42,7 +42,7 @@ button, a { font: inherit; }
     radial-gradient(circle at 82% 30%, rgba(37, 99, 235, .28), transparent 22rem),
     radial-gradient(circle at 50% 50%, rgba(168, 85, 247, .18), transparent 28rem);
   filter: blur(8px);
-  animation: breathe 7s ease-in-out infinite alternate;
+  animation: breathe 15s ease-in-out infinite alternate, driftNebula 180s linear infinite;
 }
 .dust {
   background-image:
@@ -50,14 +50,22 @@ button, a { font: inherit; }
     linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(circle at center, black, transparent 78%);
+  animation: driftDust 42s linear infinite;
+}
+.vignette {
+  background: radial-gradient(circle at center, transparent 34%, rgba(0,0,0,.26) 68%, rgba(0,0,0,.58));
+  mix-blend-mode: multiply;
 }
 
-@keyframes drift { from { transform: translate3d(0,0,0); } to { transform: translate3d(-140px, 80px,0); } }
-@keyframes breathe { from { opacity: .55; transform: scale(1); } to { opacity: .9; transform: scale(1.05); } }
+@keyframes driftStars { from { transform: translate3d(0,0,0); } to { transform: translate3d(-80px, 46px,0); } }
+@keyframes driftDust { from { transform: translate3d(0,0,0); } to { transform: translate3d(-180px, 120px,0); } }
+@keyframes driftNebula { from { transform: translate3d(0,0,0); } to { transform: translate3d(32px, -24px,0); } }
+@keyframes breathe { from { opacity: .50; scale: 1; } to { opacity: .86; scale: 1.04; } }
 @keyframes pulse { 0%,100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 34px rgba(34,197,94,.65); } 50% { transform: translateX(-50%) scale(1.07); box-shadow: 0 0 78px rgba(34,197,94,.95); } }
 @keyframes climb { from { transform: translate(-50%, 150px); opacity: .1; } 40% { opacity: 1; } to { transform: translate(-50%, -260px); opacity: .15; } }
 @keyframes rotate { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-@keyframes flicker { 0%,100% { opacity: .82; } 50% { opacity: 1; } 66% { opacity: .55; } }
+@keyframes driftFloat { 0%,100% { translate: -50% -50%; } 50% { translate: -50% calc(-50% - 7px); } }
+@keyframes flowDash { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -24; } }
 
 .hud {
   position: fixed;
@@ -107,6 +115,17 @@ button, a { font: inherit; }
   transform-origin: center 58%;
   translate: -50% -50%;
   transition: transform .24s ease;
+  filter: saturate(1.08) contrast(1.05);
+}
+.flow-svg { position: absolute; inset: 0; z-index: 2; overflow: visible; }
+.flow-path {
+  fill: none;
+  stroke: rgba(56, 189, 248, .84);
+  stroke-width: .42;
+  stroke-linecap: round;
+  stroke-dasharray: 1.2 14;
+  filter: drop-shadow(0 0 5px rgba(56,189,248,.92));
+  animation: flowDash 3.8s linear infinite;
 }
 
 .trunk {
@@ -135,7 +154,7 @@ button, a { font: inherit; }
 .root-node {
   position: absolute;
   left: 50%;
-  bottom: 7%;
+  bottom: 16%;
   transform: translateX(-50%);
   z-index: 3;
   display: grid;
@@ -156,7 +175,7 @@ button, a { font: inherit; }
 .replay-dot {
   position: absolute;
   left: 50%;
-  bottom: 20%;
+  bottom: 27%;
   width: 13px;
   height: 13px;
   border-radius: 999px;
@@ -171,27 +190,29 @@ button, a { font: inherit; }
   width: 440px;
   height: 440px;
   border-radius: 999px;
-  border: 1px dashed rgba(250,204,21,.45);
+  border: 1px dashed rgba(250,204,21,.38);
+  opacity: .68;
   box-shadow: inset 0 0 60px rgba(250,204,21,.08), 0 0 80px rgba(250,204,21,.08);
-  animation: rotate 26s linear infinite;
+  animation: rotate 72s linear infinite;
 }
-.witness-ring.warn { border-style: dashed; border-color: rgba(250,204,21,.55); }
-.witness-ring.valid { border-style: solid; border-color: rgba(250,204,21,.95); box-shadow: 0 0 70px rgba(250,204,21,.4); }
+.witness-ring.warn { border-style: dashed; border-color: rgba(250,204,21,.52); }
+.witness-ring.valid { border-style: solid; border-color: rgba(250,204,21,.88); box-shadow: 0 0 70px rgba(250,204,21,.34); }
 
 .grove-node {
   position: absolute;
   z-index: 4;
   width: 165px;
   min-height: 112px;
-  transform: translate(-50%, -50%);
+  transform: translate(0, 0);
   border: 1px solid rgba(56,189,248,.42);
   border-radius: 26px;
   padding: 15px;
   color: white;
-  background: radial-gradient(circle at top, rgba(59,130,246,.32), rgba(15,23,42,.9));
+  background: radial-gradient(circle at top, rgba(59,130,246,.32), rgba(15,23,42,.78));
   box-shadow: 0 0 34px rgba(59,130,246,.22);
   cursor: pointer;
-  animation: flicker 5s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+  animation: driftFloat 6.8s ease-in-out infinite;
 }
 .grove-node span {
   display: inline-grid;
@@ -208,7 +229,7 @@ button, a { font: inherit; }
 .grove-node.selected, .grove-node:hover {
   border-color: rgba(251,146,60,.9);
   box-shadow: 0 0 60px rgba(251,146,60,.55);
-  background: radial-gradient(circle at top, rgba(251,146,60,.42), rgba(15,23,42,.94));
+  background: radial-gradient(circle at top, rgba(251,146,60,.42), rgba(15,23,42,.88));
 }
 
 .leaf-inspector {
@@ -323,10 +344,10 @@ button, a { font: inherit; }
   }
   .trunk { width: 15px; height: 42%; bottom: 22%; }
   .trunk::before, .trunk::after { width: 145px; }
-  .root-node { width: 108px; height: 108px; bottom: 11%; }
+  .root-node { width: 108px; height: 108px; bottom: 16%; }
   .root-node span { font-size: .54rem; }
   .root-node strong { font-size: .72rem; }
-  .replay-dot { width: 10px; height: 10px; bottom: 25%; }
+  .replay-dot { width: 10px; height: 10px; bottom: 29%; }
   .witness-ring { width: 260px; height: 260px; top: 52%; }
   .grove-node {
     width: 118px;
