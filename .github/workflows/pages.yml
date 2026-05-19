@@ -5,9 +5,11 @@ on:
     branches:
       - live-zora-ingestion
   workflow_dispatch:
+  schedule:
+    - cron: "17 11 * * *"
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -32,13 +34,24 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
-      - name: Install
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Install frontend
         working-directory: frontend
         run: npm ci
 
-      - name: Sync real Zora dataset into public index
+      - name: Refresh public Zora inventory
+        run: |
+          node tools/refresh-zora-from-public.mjs
+
+      - name: Verify live inventory
         run: |
           test -f data/live_zora_items.json
+          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('data/live_zora_items.json','utf8')); if(!Array.isArray(rows)) throw new Error('live_zora_items is not an array'); if(rows.length < 2) throw new Error('live inventory unexpectedly small'); console.log('LIVE_ZORA_COUNT=' + rows.length);"
+
+      - name: Sync real Zora dataset into public index
+        run: |
           mkdir -p frontend/public
           cp data/live_zora_items.json frontend/public/zora-index.json
           node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/public/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('zora-index is not an array'); if(rows.length < 2) throw new Error('zora-index did not sync real dataset'); console.log('ZORA_INDEX_COUNT=' + rows.length);"
@@ -53,6 +66,14 @@ jobs:
           test -f frontend/dist/zora-index.json
           node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/dist/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('dist zora-index is not an array'); if(rows.length < 2) throw new Error('dist zora-index has seed-only count'); console.log('DIST_ZORA_INDEX_COUNT=' + rows.length);"
           find frontend/dist -maxdepth 2 -type f | sort
+
+      - name: Commit refreshed inventory
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/live_zora_items.json frontend/public/zora-index.json
+          git diff --cached --quiet || git commit -m "Daily Zora inventory refresh"
+          git push
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
