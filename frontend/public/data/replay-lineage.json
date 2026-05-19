@@ -1,0 +1,29 @@
+{
+  "schema": "JAYSPACE_REPLAY_LINEAGE_V0",
+  "title": "Replay Lineage Rail",
+  "status_mapping": {
+    "queued": "PENDING REPLAY",
+    "in_progress": "ADVANCING WATERMARK",
+    "success": "LIVE REPLAY HEAD",
+    "cancelled": "SUPERSEDED BY FRESHER REPLAY HEAD",
+    "failure": "REPLAY TRANSITION FAILURE"
+  },
+  "tooltip": "A pending deploy was replaced by a newer valid state. History preserved.",
+  "runs": [
+    {
+      "run": 54,
+      "status": "LIVE REPLAY HEAD",
+      "commit": "c4c258e",
+      "message": "Add live replay runtime visual command card",
+      "tone": "live"
+    },
+    {
+      "run": 53,
+      "status": "SUPERSEDED BY FRESHER REPLAY HEAD",
+      "commit": "76bef36",
+      "message": "Add live replay runtime command card",
+      "superseded_by": "c4c258e",
+      "tone": "superseded"
+    }
+  ]
+}
