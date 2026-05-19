@@ -144,12 +144,12 @@ function App() {
         onDoubleClick={() => setZoom((z) => Math.min(2.4, z + 0.35))}
       >
         <div className="forest-camera" style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}>
-          <svg className="flow-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <svg className="flow-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" fill="none">
             {visibleGhosts.map((event, i) => (
-              <path key={event.id} className={`ghost-path ${event.type}`} style={{ animationDelay: `${i * .24}s` }} d={ghostPath(event)} />
+              <path key={event.id} className={`ghost-path ${event.type}`} style={{ animationDelay: `${i * .24}s` }} d={ghostPath(event)} fill="none" vectorEffect="non-scaling-stroke" />
             ))}
             {positions.map((grove, i) => (
-              <path key={grove.id} className="flow-path" style={{ animationDelay: `${i * 1.4}s` }} d={`M 50 88 C 50 58, ${grove.x - 8} 62, ${grove.x} ${grove.y}`} />
+              <path key={grove.id} className="flow-path" style={{ animationDelay: `${i * 1.4}s` }} d={`M 50 88 C 50 58, ${grove.x - 8} 62, ${grove.x} ${grove.y}`} fill="none" vectorEffect="non-scaling-stroke" />
             ))}
           </svg>
           <div className="root-node" onClick={() => setSelected(null)}>
