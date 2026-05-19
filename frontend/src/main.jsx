@@ -10,6 +10,7 @@ const ACTIVITY_URL = `${BASE}data/activity.json`;
 const REPLAY_URL = `${BASE}data/replay-events.json`;
 const OBSERVERS_URL = `${BASE}data/observers.json`;
 const HEATMAP_URL = `${BASE}data/heatmap.json`;
+const LINEAGE_URL = `${BASE}data/replay-lineage.json`;
 const ZORA_INDEX_URL = `${BASE}zora-index.json`;
 const FLYWHEEL_URL = "https://zora.co/coin/base:0x5e35e630356a1b24d1b45078918ea60ef98e915a?referrer=0x829adfedbe565f9885a7ea6bc78912acaef055e2";
 const GITHUB_URL = "https://github.com/jsonwisdom/jay-zora-portal";
@@ -37,6 +38,31 @@ function eventState(event) {
   return "canonical";
 }
 
+function ReplayLineageRail({ lineage }) {
+  const runs = lineage?.runs || [];
+  if (!runs.length) return null;
+
+  return (
+    <section className="replay-lineage-rail" aria-label="Replay Lineage Rail">
+      <div className="lineage-kicker">Constitutional Archaeology</div>
+      <h2>{lineage.title || "Replay Lineage Rail"}</h2>
+      <p>{lineage.tooltip || "History preserved. Present advanced. Nothing erased."}</p>
+      <div className="rail-track">
+        {runs.map((run) => (
+          <article key={`${run.run}-${run.commit}`} className={`rail-node node-${run.tone || "prior"}`}>
+            <div className="node-pulse" />
+            <span>RUN #{run.run}</span>
+            <strong>{run.status}</strong>
+            <code>{run.commit}</code>
+            <small>{run.message}</small>
+            {run.superseded_by && <em>superseded by {run.superseded_by}</em>}
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const [forest, setForest] = useState(null);
   const [history, setHistory] = useState(null);
@@ -45,6 +71,7 @@ function App() {
   const [replay, setReplay] = useState([]);
   const [observers, setObservers] = useState([]);
   const [heatmap, setHeatmap] = useState([]);
+  const [lineage, setLineage] = useState(null);
   const [timeIndex, setTimeIndex] = useState(999);
   const [zoraCount, setZoraCount] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -54,7 +81,7 @@ function App() {
 
   useEffect(() => {
     async function load() {
-      const [forestRes, historyRes, permissionsRes, activityRes, replayRes, observersRes, heatmapRes, zoraRes] = await Promise.allSettled([
+      const [forestRes, historyRes, permissionsRes, activityRes, replayRes, observersRes, heatmapRes, lineageRes, zoraRes] = await Promise.allSettled([
         fetch(FOREST_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(HISTORY_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(PERMISSIONS_URL, { cache: "no-store" }).then((r) => r.json()),
@@ -62,6 +89,7 @@ function App() {
         fetch(REPLAY_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(OBSERVERS_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(HEATMAP_URL, { cache: "no-store" }).then((r) => r.json()),
+        fetch(LINEAGE_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(ZORA_INDEX_URL, { cache: "no-store" }).then((r) => r.json()),
       ]);
       if (forestRes.status === "fulfilled") setForest(forestRes.value);
@@ -75,6 +103,7 @@ function App() {
       }
       if (observersRes.status === "fulfilled") setObservers(observersRes.value.observers || []);
       if (heatmapRes.status === "fulfilled") setHeatmap(heatmapRes.value.edges || []);
+      if (lineageRes.status === "fulfilled") setLineage(lineageRes.value);
       if (zoraRes.status === "fulfilled") setZoraCount(Array.isArray(zoraRes.value) ? zoraRes.value.length : zoraRes.value.results?.length || 0);
     }
     load();
@@ -96,7 +125,6 @@ function App() {
   const groves = forest?.groves || [];
   const leaves = forest?.leaves || [];
   const selectedLeaves = selected ? leaves.filter((leaf) => leaf.grove === selected.id) : [];
-  const subjects = permissions?.subjects ? Object.keys(permissions.subjects).length : 0;
   const visibleGhosts = replay.slice(0, Math.min(timeIndex + 1, replay.length));
   const currentEvent = replay[Math.min(timeIndex, Math.max(replay.length - 1, 0))];
 
@@ -155,25 +183,11 @@ function App() {
         <span>PRESSURE EDGES: {heatmap.length}</span>
       </section>
 
-      <section
-        className="forest-stage"
-        onWheel={wheel}
-        onPointerDown={pointerDown}
-        onPointerMove={pointerMove}
-        onPointerUp={() => setDrag(null)}
-        onDoubleClick={() => setZoom((z) => Math.min(2.4, z + 0.35))}
-      >
+      <section className="forest-stage" onWheel={wheel} onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={() => setDrag(null)} onDoubleClick={() => setZoom((z) => Math.min(2.4, z + 0.35))}>
         <div className="forest-camera" style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}>
           <svg className="flow-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" fill="none">
             {observers.map((observer, oi) => observerEvents(observer).map((event, ei) => (
-              <path
-                key={`${observer.id}-${event.id}`}
-                className={`observer-path ${observer.color} ${eventState(event)}`}
-                style={{ animationDelay: `${(oi * .8) + (ei * .18)}s`, opacity: observer.detail === "low" ? .12 : .24 }}
-                d={ghostPath(event)}
-                fill="none"
-                vectorEffect="non-scaling-stroke"
-              />
+              <path key={`${observer.id}-${event.id}`} className={`observer-path ${observer.color} ${eventState(event)}`} style={{ animationDelay: `${(oi * .8) + (ei * .18)}s`, opacity: observer.detail === "low" ? .12 : .24 }} d={ghostPath(event)} fill="none" vectorEffect="non-scaling-stroke" />
             )))}
             {visibleGhosts.map((event, i) => (
               <path key={event.id} className={`ghost-path ${event.type}`} style={{ animationDelay: `${i * .24}s` }} d={ghostPath(event)} fill="none" vectorEffect="non-scaling-stroke" />
@@ -182,23 +196,13 @@ function App() {
               <path key={grove.id} className="flow-path" style={{ animationDelay: `${i * 1.4}s` }} d={`M 50 88 C 50 58, ${grove.x - 8} 62, ${grove.x} ${grove.y}`} fill="none" vectorEffect="non-scaling-stroke" />
             ))}
           </svg>
-          <div className="root-node" onClick={() => setSelected(null)}>
-            <span>CHECKPOINT 0</span>
-            <strong>{state.tone === "valid" ? "ANCHORED" : "LOCAL VALID"}</strong>
-          </div>
+          <div className="root-node" onClick={() => setSelected(null)}><span>CHECKPOINT 0</span><strong>{state.tone === "valid" ? "ANCHORED" : "LOCAL VALID"}</strong></div>
           <div className="trunk" />
           <div className="replay-dot" />
           <div className={`witness-ring ${state.tone}`} />
-          {visibleGhosts.filter((event) => event.type === "checkpoint").map((event, i) => (
-            <div key={`${event.id}-ring`} className="ghost-ring" style={{ animationDelay: `${i * .5}s` }} />
-          ))}
+          {visibleGhosts.filter((event) => event.type === "checkpoint").map((event, i) => (<div key={`${event.id}-ring`} className="ghost-ring" style={{ animationDelay: `${i * .5}s` }} />))}
           {positions.map((grove) => (
-            <button
-              key={grove.id}
-              className={`grove-node ${selected?.id === grove.id ? "selected" : ""}`}
-              style={{ left: `${grove.x}%`, top: `${grove.y}%`, animationDelay: grove.delay }}
-              onClick={(e) => { e.stopPropagation(); setSelected(grove); setZoom(1.45); }}
-            >
+            <button key={grove.id} className={`grove-node ${selected?.id === grove.id ? "selected" : ""}`} style={{ left: `${grove.x}%`, top: `${grove.y}%`, animationDelay: grove.delay }} onClick={(e) => { e.stopPropagation(); setSelected(grove); setZoom(1.45); }}>
               <span>{grove.leaf_count || grove.leaves?.length || 0}</span>
               <strong>{grove.title}</strong>
               <small>{short(grove.grove_hash)}</small>
@@ -216,36 +220,10 @@ function App() {
           <div><strong>{observers.length}</strong><span>observers</span></div>
           <div><strong>{heatmap.filter((e) => e.status === "disputed").length}</strong><span>hot zones</span></div>
         </div>
-        {observers.length > 0 && (
-          <div className="observer-legend">
-            {observers.map((observer) => (
-              <span key={observer.id} className={`observer-pill ${observer.color}`}>{observer.label}</span>
-            ))}
-          </div>
-        )}
-        {replay.length > 0 && (
-          <div className="time-archaeology">
-            <label>Time Archaeology</label>
-            <input type="range" min="0" max={replay.length - 1} value={timeIndex} onChange={(e) => setTimeIndex(Number(e.target.value))} />
-            <strong>{currentEvent?.label || "Live forest"}</strong>
-            <span>{currentEvent?.timestamp || "present"}</span>
-          </div>
-        )}
-        {selected && (
-          <div className="leaf-list">
-            {selectedLeaves.map((leaf) => (
-              <a key={leaf.id} href={`${BASE}${leaf.leaf_path}`} target="_blank" rel="noreferrer">
-                <strong>{leaf.title}</strong>
-                <span>{leaf.status} · {short(leaf.leaf_hash)}</span>
-              </a>
-            ))}
-          </div>
-        )}
-        <div className="actions-row">
-          <a href={FLYWHEEL_URL} target="_blank" rel="noreferrer">Zora</a>
-          <a href={GITHUB_URL} target="_blank" rel="noreferrer">GitHub</a>
-          <a href={`${BASE}forest.json`} target="_blank" rel="noreferrer">forest.json</a>
-        </div>
+        {observers.length > 0 && <div className="observer-legend">{observers.map((observer) => (<span key={observer.id} className={`observer-pill ${observer.color}`}>{observer.label}</span>))}</div>}
+        {replay.length > 0 && <div className="time-archaeology"><label>Time Archaeology</label><input type="range" min="0" max={replay.length - 1} value={timeIndex} onChange={(e) => setTimeIndex(Number(e.target.value))} /><strong>{currentEvent?.label || "Live forest"}</strong><span>{currentEvent?.timestamp || "present"}</span></div>}
+        {selected && <div className="leaf-list">{selectedLeaves.map((leaf) => (<a key={leaf.id} href={`${BASE}${leaf.leaf_path}`} target="_blank" rel="noreferrer"><strong>{leaf.title}</strong><span>{leaf.status} · {short(leaf.leaf_hash)}</span></a>))}</div>}
+        <div className="actions-row"><a href={FLYWHEEL_URL} target="_blank" rel="noreferrer">Zora</a><a href={GITHUB_URL} target="_blank" rel="noreferrer">GitHub</a><a href={`${BASE}forest.json`} target="_blank" rel="noreferrer">forest.json</a></div>
       </aside>
 
       <section className="runtime-card" aria-label="Live Replay Runtime">
@@ -256,23 +234,13 @@ function App() {
         <h2>JAYSPACE — <em>LIVE_REPLAY_RUNTIME</em></h2>
         <p className="runtime-subtitle">FULL_SEND acknowledged. JSONL is now constitutional replay transport, not documentation.</p>
         <div className="runtime-pipeline">stdin/jsonl → validator → quarantine → replay → watermark → observers → grove mutation → pulse → feed</div>
-        <div className="runtime-guarantees">
-          <span>full_archive_required: false</span>
-          <span>line_level_state_motion: true</span>
-          <span>idempotent_replay: true</span>
-          <span>quarantine_without_halt: true</span>
-          <span>observer_projection_isolated: true</span>
-          <span>semantic_capture_forbidden: true</span>
-        </div>
+        <div className="runtime-guarantees"><span>full_archive_required: false</span><span>line_level_state_motion: true</span><span>idempotent_replay: true</span><span>quarantine_without_halt: true</span><span>observer_projection_isolated: true</span><span>semantic_capture_forbidden: true</span></div>
         <blockquote>The substrate remembers exactly. Humans remember approximately. Civilization survives because both remain interoperable.</blockquote>
       </section>
 
-      <footer className="hud bottom-line">
-        <span>cyan canonical</span>
-        <span>amber auditor</span>
-        <span>red disputed</span>
-        <span>white reconciled</span>
-      </footer>
+      <ReplayLineageRail lineage={lineage} />
+
+      <footer className="hud bottom-line"><span>cyan canonical</span><span>amber auditor</span><span>red disputed</span><span>white reconciled</span></footer>
     </main>
   );
 }
