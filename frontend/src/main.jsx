@@ -7,23 +7,29 @@ const INDEX_URL = `${import.meta.env.BASE_URL}zora-index.json`;
 const IDENTITY_URL = `${import.meta.env.BASE_URL}identity-index.json`;
 
 const FLYWHEEL_COIN_URL =
-  "https://zora.co/coin/base:0x236a0c4ebfc18a1a7dd24fd7c11c288db2ecdd55?referrer=0x829adfedbe565f9885a7ea6bc78912acaef055e2";
+  "https://zora.co/coin/base:0x5e35e630356a1b24d1b45078918ea60ef98e915a?referrer=0x829adfedbe565f9885a7ea6bc78912acaef055e2";
+
+const GITHUB_DIRECT_URL = "https://github.com/jsonwisdom/jay-zora-portal";
+const SOLUTION_ROOT_URL =
+  "https://github.com/jsonwisdom/jay-zora-portal/blob/live-zora-ingestion/SOLUTION_ROOT_ENS_SCHEMA_ATTEST_VERIFIER.md";
+const MERKLE_REBOOT_URL =
+  "https://github.com/jsonwisdom/jay-zora-portal/blob/live-zora-ingestion/MERKLE_REBOOT_RECEIPT.md";
 
 const PROOF_REPOS = [
   {
-    name: "AL",
-    role: "Constitutional receipt machine",
-    url: "https://github.com/jsonwisdom/AL",
+    name: "jay-zora-portal",
+    role: "JaySpace public proof wall and GitHub Direct mirror",
+    url: "https://github.com/jsonwisdom/jay-zora-portal",
   },
   {
     name: "COMPUTERWISDOM",
-    role: "Machine-speed execution and replay layer",
+    role: "Machine-speed execution, replay, and verifier memory",
     url: "https://github.com/jsonwisdom/COMPUTERWISDOM",
   },
   {
-    name: "jay-zora-portal",
-    role: "Culture index and public mirror",
-    url: "https://github.com/jsonwisdom/jay-zora-portal",
+    name: "AL",
+    role: "Constitutional runtime, receipts, schemas, and attestations",
+    url: "https://github.com/jsonwisdom/AL",
   },
   {
     name: "receipts-engine-v1",
@@ -35,6 +41,16 @@ const PROOF_REPOS = [
     role: "Public verification doorway",
     url: "https://github.com/jsonwisdom/verifygate",
   },
+];
+
+const MECHANICS = [
+  ["ENS", "Public identity and pointer layer"],
+  ["Schema", "Machine-readable claim shape"],
+  ["Attestation", "Signed claim event"],
+  ["Verifier", "Replay and check engine"],
+  ["GitHub Direct", "Public observation surface"],
+  ["Public Site", "Readable proof membrane"],
+  ["Reputation", "Replayable social memory"],
 ];
 
 function short(v) {
@@ -116,35 +132,36 @@ function App() {
   return (
     <main>
       <header className="hero">
-        <div className="brand">🦊⚙️🧾 Wisdom R&amp;D</div>
-        <h1>Zora Dual Anchored Flywheel</h1>
+        <div className="brand">🦊⚙️🧾 JaySpace by JayWisdom</div>
+        <h1>JaySpace: Themed Public Proof Wall</h1>
         <p className="lead">
-          This is not a token. This is a receipt machine. The legacy system is a black box. Mint → Mirror → Index → Verify → Reputation is the key.
+          Not social media. Social evidence. A personal web shrine wired like a verification machine: ENS identity, Zora culture, Base anchors, GitHub receipts, verifier services, and machine-speed memory.
         </p>
 
         <div className="hero-actions">
           <a className="primary-link" href={FLYWHEEL_COIN_URL} target="_blank" rel="noreferrer">
-            Mint $FLYWHEEL on Zora
+            Mint / View Live Zora Surface
           </a>
-          <a className="secondary-link" href="https://github.com/jsonwisdom" target="_blank" rel="noreferrer">
-            Open GitHub Mirror
+          <a className="secondary-link" href={GITHUB_DIRECT_URL} target="_blank" rel="noreferrer">
+            Open Live GitHub Direct Mirror
           </a>
         </div>
 
-        <section className="proof-banner" aria-label="Receipt machine canon">
+        <section className="proof-banner" aria-label="JaySpace canon">
           <div>
-            <span className="eyebrow">Receipt Machine Canon</span>
+            <span className="eyebrow">ZipZapSnap Canon</span>
             <h2>Mint truth. Mirror receipts. Verify everything.</h2>
             <p>
-              Every $FLYWHEEL mint is treated as a public proof event: culture enters through Zora, anchors on Base, mirrors to GitHub, and becomes searchable reputation.
+              JaySpace is the public proof profile: art wall, link hub, witness layer, receipt archive, and verification membrane in one observable GitHub Direct surface.
             </p>
           </div>
           <ol className="flow-list" aria-label="Proof flow">
-            <li>Mint</li>
-            <li>Mirror</li>
-            <li>Index</li>
-            <li>Verify</li>
-            <li>Reputation</li>
+            <li>Zora</li>
+            <li>Witness</li>
+            <li>GitHub</li>
+            <li>Merkle</li>
+            <li>Base</li>
+            <li>Replay</li>
           </ol>
         </section>
 
@@ -163,12 +180,38 @@ function App() {
         </section>
       </header>
 
-      <section className="machine-panel" aria-label="Verification layer for culture">
+      <section className="machine-panel" aria-label="Simple mechanics and maintenance">
         <div className="machine-copy">
-          <span className="eyebrow">Verification Layer for Culture</span>
-          <h2>Public claims meet public receipts.</h2>
+          <span className="eyebrow">Simple Mechanics &amp; Maintenance</span>
+          <h2>ENS → Schema → Attestation → Verifier → GitHub Direct → Public Site → Replayable Reputation</h2>
           <p>
-            This portal connects Jay Wisdom’s Zora creator surface to ENS identity, Base verification, GitHub mirrors, replay receipts, and machine-speed audit paths.
+            ENS tells people where to look. Schema tells machines what a claim means. Attestation signs the claim. Verifier checks the claim. GitHub Direct lets the public observe it. The public site makes it readable.
+          </p>
+          <div className="hero-actions compact-actions">
+            <a className="secondary-link" href={SOLUTION_ROOT_URL} target="_blank" rel="noreferrer">
+              Solution Root
+            </a>
+            <a className="secondary-link" href={MERKLE_REBOOT_URL} target="_blank" rel="noreferrer">
+              Merkle Reboot Receipt
+            </a>
+          </div>
+        </div>
+        <div className="repo-grid">
+          {MECHANICS.map(([name, role]) => (
+            <div key={name} className="repo-card">
+              <strong>{name}</strong>
+              <span>{role}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="machine-panel" aria-label="Repo placement map">
+        <div className="machine-copy">
+          <span className="eyebrow">Everything In Between</span>
+          <h2>GitHub Direct placement map.</h2>
+          <p>
+            The public site is the front door. COMPUTERWISDOM is the machine-speed layer. AL is the constitutional runtime. The remaining repos are receipt and verification support surfaces.
           </p>
         </div>
         <div className="repo-grid">
@@ -186,7 +229,7 @@ function App() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && runSearch()}
-          placeholder="Search receipt machine, Base, Zora, goblin court, replay..."
+          placeholder="Search JaySpace, receipt machine, Base, Zora, ENS, verifier, replay..."
         />
         <button disabled={loading} onClick={runSearch}>
           {loading ? "Loading…" : "Search"}
