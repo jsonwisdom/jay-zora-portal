@@ -6,6 +6,37 @@ const PAGE_SIZE = 20;
 const INDEX_URL = `${import.meta.env.BASE_URL}zora-index.json`;
 const IDENTITY_URL = `${import.meta.env.BASE_URL}identity-index.json`;
 
+const FLYWHEEL_COIN_URL =
+  "https://zora.co/coin/base:0x236a0c4ebfc18a1a7dd24fd7c11c288db2ecdd55?referrer=0x829adfedbe565f9885a7ea6bc78912acaef055e2";
+
+const PROOF_REPOS = [
+  {
+    name: "AL",
+    role: "Constitutional receipt machine",
+    url: "https://github.com/jsonwisdom/AL",
+  },
+  {
+    name: "COMPUTERWISDOM",
+    role: "Machine-speed execution and replay layer",
+    url: "https://github.com/jsonwisdom/COMPUTERWISDOM",
+  },
+  {
+    name: "jay-zora-portal",
+    role: "Culture index and public mirror",
+    url: "https://github.com/jsonwisdom/jay-zora-portal",
+  },
+  {
+    name: "receipts-engine-v1",
+    role: "Receipt kernel candidate",
+    url: "https://github.com/jsonwisdom/receipts-engine-v1",
+  },
+  {
+    name: "verifygate",
+    role: "Public verification doorway",
+    url: "https://github.com/jsonwisdom/verifygate",
+  },
+];
+
 function short(v) {
   if (!v) return "missing";
   const s = String(v);
@@ -86,8 +117,36 @@ function App() {
     <main>
       <header className="hero">
         <div className="brand">🦊⚙️🧾 Wisdom R&amp;D</div>
-        <h1>Jay Wisdom Portal — L2 Creator Index</h1>
-        <p>GitHub-only portal. Search Jay’s Zora drops by title, description, themes, aliases, contract, token ID, and receipt metadata.</p>
+        <h1>Zora Dual Anchored Flywheel</h1>
+        <p className="lead">
+          This is not a token. This is a receipt machine. The legacy system is a black box. Mint → Mirror → Index → Verify → Reputation is the key.
+        </p>
+
+        <div className="hero-actions">
+          <a className="primary-link" href={FLYWHEEL_COIN_URL} target="_blank" rel="noreferrer">
+            Mint $FLYWHEEL on Zora
+          </a>
+          <a className="secondary-link" href="https://github.com/jsonwisdom" target="_blank" rel="noreferrer">
+            Open GitHub Mirror
+          </a>
+        </div>
+
+        <section className="proof-banner" aria-label="Receipt machine canon">
+          <div>
+            <span className="eyebrow">Receipt Machine Canon</span>
+            <h2>Mint truth. Mirror receipts. Verify everything.</h2>
+            <p>
+              Every $FLYWHEEL mint is treated as a public proof event: culture enters through Zora, anchors on Base, mirrors to GitHub, and becomes searchable reputation.
+            </p>
+          </div>
+          <ol className="flow-list" aria-label="Proof flow">
+            <li>Mint</li>
+            <li>Mirror</li>
+            <li>Index</li>
+            <li>Verify</li>
+            <li>Reputation</li>
+          </ol>
+        </section>
 
         <section className="identity-grid" aria-label="Public identity anchors">
           {identities.map((id) => (
@@ -104,12 +163,30 @@ function App() {
         </section>
       </header>
 
+      <section className="machine-panel" aria-label="Verification layer for culture">
+        <div className="machine-copy">
+          <span className="eyebrow">Verification Layer for Culture</span>
+          <h2>Public claims meet public receipts.</h2>
+          <p>
+            This portal connects Jay Wisdom’s Zora creator surface to ENS identity, Base verification, GitHub mirrors, replay receipts, and machine-speed audit paths.
+          </p>
+        </div>
+        <div className="repo-grid">
+          {PROOF_REPOS.map((repo) => (
+            <a key={repo.name} href={repo.url} target="_blank" rel="noreferrer" className="repo-card">
+              <strong>{repo.name}</strong>
+              <span>{repo.role}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section className="search">
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && runSearch()}
-          placeholder="Search goblin court, receipt machine, Base meme fox..."
+          placeholder="Search receipt machine, Base, Zora, goblin court, replay..."
         />
         <button disabled={loading} onClick={runSearch}>
           {loading ? "Loading…" : "Search"}
