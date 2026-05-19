@@ -22,6 +22,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -36,6 +39,12 @@ jobs:
       - name: Build
         working-directory: frontend
         run: npm run build
+
+      - name: Verify artifact
+        run: |
+          test -f frontend/dist/index.html
+          test -f frontend/dist/zora-index.json
+          find frontend/dist -maxdepth 2 -type f | sort
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
