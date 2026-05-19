@@ -4,17 +4,19 @@
   background: #02040d;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 * { box-sizing: border-box; }
 html, body, #root { margin: 0; width: 100%; min-height: 100%; background: #02040d; overflow-x: hidden; }
-body { min-height: 100dvh; }
+body { min-height: 100svh; }
 button, a { font: inherit; }
 
 .observatory {
   position: relative;
   width: 100%;
-  min-height: 100dvh;
+  min-height: 100svh;
   overflow: hidden;
   background:
     radial-gradient(circle at 50% 78%, rgba(16, 185, 129, .18), transparent 18rem),
@@ -75,11 +77,11 @@ button, a { font: inherit; }
 }
 .hud strong { color: #fff; }
 .hud span { color: #bfdbfe; font-size: .78rem; }
-.top-left { top: 18px; left: 18px; max-width: 430px; }
-.top-right { top: 18px; right: 18px; text-align: right; max-width: 320px; }
+.top-left { top: calc(18px + var(--safe-top)); left: 18px; max-width: 430px; }
+.top-right { top: calc(18px + var(--safe-top)); right: 18px; text-align: right; max-width: 320px; }
 .bottom-line {
   left: 50%;
-  bottom: 16px;
+  bottom: calc(16px + var(--safe-bottom));
   transform: translateX(-50%);
   width: min(860px, calc(100% - 28px));
   display: flex;
@@ -99,10 +101,10 @@ button, a { font: inherit; }
 .forest-camera {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 54%;
   width: min(82vw, 900px);
-  height: min(70vh, 720px);
-  transform-origin: center center;
+  height: min(70svh, 720px);
+  transform-origin: center 58%;
   translate: -50% -50%;
   transition: transform .24s ease;
 }
@@ -213,9 +215,9 @@ button, a { font: inherit; }
   position: fixed;
   z-index: 22;
   right: 18px;
-  bottom: 92px;
+  bottom: calc(92px + var(--safe-bottom));
   width: min(410px, calc(100vw - 36px));
-  max-height: 52dvh;
+  max-height: 52svh;
   overflow: auto;
   padding: 18px;
   border-radius: 24px;
@@ -268,41 +270,106 @@ button, a { font: inherit; }
 .actions-row a:nth-child(3) { background: #93c5fd; }
 
 @media (max-width: 760px) {
+  html, body, #root { height: auto; min-height: 100svh; overflow-x: hidden; }
+  .observatory {
+    min-height: 100svh;
+    overflow-y: auto;
+    padding: calc(8px + var(--safe-top)) 8px calc(72px + var(--safe-bottom));
+    touch-action: pan-y;
+  }
   .hud {
     position: relative;
     top: auto;
     right: auto;
     left: auto;
     bottom: auto;
-    margin: 10px;
+    margin: 8px 0;
+    width: 100%;
     max-width: none;
     text-align: left;
-    font-size: .8rem;
+    font-size: clamp(.56rem, 2.55vw, .74rem);
+    line-height: 1.18;
+    gap: 3px;
+    padding: 9px 10px;
+    border-radius: 14px;
+    overflow-wrap: anywhere;
   }
-  .top-left { margin-top: 14px; }
-  .top-right { display: grid; grid-template-columns: 1fr 1fr; }
+  .hud strong { font-size: clamp(.7rem, 3vw, .9rem); line-height: 1.12; }
+  .hud span { font-size: clamp(.55rem, 2.45vw, .72rem); line-height: 1.12; }
+  .top-left { margin-top: 0; }
+  .top-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 10px;
+    text-align: left;
+  }
   .forest-stage {
     position: relative;
-    height: 62dvh;
-    min-height: 510px;
+    height: min(64svh, 560px);
+    min-height: 430px;
     margin-top: 6px;
+    overflow: hidden;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(2,6,23,.16);
+    touch-action: none;
   }
-  .forest-camera { width: 100vw; height: 520px; }
-  .root-node { width: 132px; height: 132px; bottom: 6%; }
-  .witness-ring { width: 320px; height: 320px; }
-  .grove-node { width: 142px; min-height: 96px; padding: 12px; font-size: .82rem; }
+  .forest-camera {
+    width: 118vw;
+    height: 520px;
+    left: 50%;
+    top: 58%;
+    scale: .78;
+  }
+  .trunk { width: 15px; height: 42%; bottom: 22%; }
+  .trunk::before, .trunk::after { width: 145px; }
+  .root-node { width: 108px; height: 108px; bottom: 11%; }
+  .root-node span { font-size: .54rem; }
+  .root-node strong { font-size: .72rem; }
+  .replay-dot { width: 10px; height: 10px; bottom: 25%; }
+  .witness-ring { width: 260px; height: 260px; top: 52%; }
+  .grove-node {
+    width: 118px;
+    min-height: 82px;
+    padding: 9px;
+    border-radius: 18px;
+    font-size: .7rem;
+  }
+  .grove-node span { width: 22px; height: 22px; font-size: .72rem; }
+  .grove-node strong { margin: 5px 0 3px; line-height: 1.02; }
+  .grove-node small { display: none; }
   .leaf-inspector {
     position: relative;
     right: auto;
     bottom: auto;
     width: auto;
     max-height: none;
-    margin: 12px 10px 86px;
+    margin: 10px 0 18px;
+    padding: 13px;
+    border-radius: 18px;
   }
+  .leaf-inspector h1 {
+    font-size: clamp(2rem, 13vw, 3.35rem);
+    line-height: .88;
+  }
+  .leaf-inspector p { font-size: .93rem; }
+  .inspector-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .inspector-grid div { padding: 8px 6px; }
+  .inspector-grid strong { font-size: 1rem; }
+  .inspector-grid span { font-size: .66rem; }
+  .actions-row a { padding: 8px 11px; font-size: .82rem; }
   .bottom-line {
     position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: calc(8px + var(--safe-bottom));
+    transform: none;
+    width: auto;
     display: flex;
-    font-size: .72rem;
-    padding: 10px;
+    gap: 5px 10px;
+    font-size: .58rem;
+    line-height: 1.1;
+    padding: 8px;
+    border-radius: 12px;
   }
 }
