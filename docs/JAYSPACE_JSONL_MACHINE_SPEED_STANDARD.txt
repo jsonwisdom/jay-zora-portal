@@ -1,0 +1,82 @@
+JAYSPACE JSONL MACHINE SPEED STANDARD V0
+
+Purpose:
+JSONL is the machine-speed skating rail for civic memory.
+One event per line.
+One receipt per line.
+One observable transition per line.
+No arrays required for streaming.
+No full-file rewrite required for append.
+
+Doctrine:
+If JSON Feed is public syndication, JSONL is replay fuel.
+JSON Feed tells humans and clients what changed.
+JSONL lets machines replay how it changed.
+
+Core Rules:
+1. Each line MUST be valid JSON.
+2. Each line MUST represent one complete event.
+3. Lines MUST be append-only.
+4. Existing lines MUST NOT be mutated.
+5. Empty lines SHOULD be ignored.
+6. Event order MUST be file order unless an explicit sequence field is present.
+7. Every event SHOULD include timestamp, event_type, event_id, source, and hash fields.
+8. Payloads SHOULD remain small and pointer-based when artifacts are large.
+9. No trailing commas.
+10. No comments inside JSONL.
+
+Minimum Event Shape:
+{"event_id":"evt_000001","event_type":"observer_hover","timestamp":"2026-05-19T17:04:11Z","source":"jayspace","payload":{},"sha256":"pending"}
+
+Recommended Receipt Shape:
+{"event_id":"rcpt_000001","event_type":"receipt_appended","timestamp":"2026-05-19T17:05:00Z","source":"github_direct","artifact_path":"docs/Launch_Layer_Felt_Governance.txt","artifact_sha256":"...","previous_event_id":"evt_000001","status":"observed"}
+
+Quiet Telemetry Event:
+{"event_id":"telemetry_000001","event_type":"observer_hover","timestamp":"2026-05-19T17:04:11Z","observer_id":"anon_daily_hash","grove_id":"amber_spire_04","duration_ms":8421,"entry_vector":[0.22,-0.14],"camera_vector":[0.22,-0.14,0.81]}
+
+Vernacular Emergence Event:
+{"event_id":"vernacular_000001","event_type":"vernacular_emergence","timestamp":"2026-05-19T17:22:10Z","raw_phrase":"warmgrov??","mutation_policy":"NONE","normalization":false,"context":"return_navigation","prompted":false,"official_definition":null,"authority_intervention":"silent"}
+
+Machine-Speed Properties:
+- streamable by tail -f
+- parseable line by line
+- safe for large logs
+- compatible with append-only Git diffs
+- usable by crawlers, agents, observers, replay engines
+- supports partial recovery after file corruption
+
+JSON Feed vs JSONL:
+JSON Feed:
+- human/public syndication
+- feed readers
+- latest artifacts
+- overview layer
+
+JSONL:
+- raw replay stream
+- machine observers
+- telemetry capture
+- receipt append events
+- forensic reconstruction
+
+Skating Rule:
+Machines should never wait for a full archive when a line can move the state forward.
+
+Canonical Pipeline:
+receipt/event occurs
+→ write one JSONL line
+→ hash line or batch
+→ update Merkle root
+→ publish JSON Feed pointer
+→ render JaySpace state
+
+Non-Goals:
+No dashboards.
+No visible counters.
+No engagement ranking.
+No semantic normalization.
+No product analytics framing.
+
+Status:
+SPEC_ONLY
+LOGGER_NOT_YET_DEPLOYED
