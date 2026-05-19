@@ -36,6 +36,13 @@ jobs:
         working-directory: frontend
         run: npm ci
 
+      - name: Sync real Zora dataset into public index
+        run: |
+          test -f data/live_zora_items.json
+          mkdir -p frontend/public
+          cp data/live_zora_items.json frontend/public/zora-index.json
+          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/public/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('zora-index is not an array'); if(rows.length < 2) throw new Error('zora-index did not sync real dataset'); console.log('ZORA_INDEX_COUNT=' + rows.length);"
+
       - name: Build
         working-directory: frontend
         run: npm run build
@@ -44,6 +51,7 @@ jobs:
         run: |
           test -f frontend/dist/index.html
           test -f frontend/dist/zora-index.json
+          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/dist/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('dist zora-index is not an array'); if(rows.length < 2) throw new Error('dist zora-index has seed-only count'); console.log('DIST_ZORA_INDEX_COUNT=' + rows.length);"
           find frontend/dist -maxdepth 2 -type f | sort
 
       - name: Upload artifact
