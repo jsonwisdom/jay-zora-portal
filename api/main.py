@@ -5,7 +5,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(title="Jay Wisdom Zora Search API")
@@ -27,9 +27,10 @@ if static_dir.exists():
     if assets_dir.exists():
         app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
 
-    @app.get("/")
+    @app.get("/", response_class=HTMLResponse)
     async def serve_frontend():
-        return FileResponse(static_dir / "index.html")
+        index_path = static_dir / "index.html"
+        return HTMLResponse(index_path.read_text(encoding="utf-8"))
 
 CREATE_TABLE_SQL = """
 CREATE TABLE IF NOT EXISTS artworks (
