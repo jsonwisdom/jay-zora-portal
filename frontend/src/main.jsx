@@ -8,6 +8,8 @@ const HISTORY_URL = `${BASE}data/history.json`;
 const PERMISSIONS_URL = `${BASE}data/permissions.json`;
 const ACTIVITY_URL = `${BASE}data/activity.json`;
 const REPLAY_URL = `${BASE}data/replay-events.json`;
+const OBSERVERS_URL = `${BASE}data/observers.json`;
+const HEATMAP_URL = `${BASE}data/heatmap.json`;
 const ZORA_INDEX_URL = `${BASE}zora-index.json`;
 const FLYWHEEL_URL = "https://zora.co/coin/base:0x5e35e630356a1b24d1b45078918ea60ef98e915a?referrer=0x829adfedbe565f9885a7ea6bc78912acaef055e2";
 const GITHUB_URL = "https://github.com/jsonwisdom/jay-zora-portal";
@@ -28,12 +30,21 @@ function verifierState({ forest, history }) {
     : { label: "VALID / WITNESS UNANCHORED", tone: "warn", ring: "BROKEN GOLD" };
 }
 
+function eventState(event) {
+  if (event.type === "checkpoint") return "reconciled";
+  if (event.to?.includes("zora")) return "canonical";
+  if (event.to?.includes("computerwisdom")) return "fork";
+  return "canonical";
+}
+
 function App() {
   const [forest, setForest] = useState(null);
   const [history, setHistory] = useState(null);
   const [permissions, setPermissions] = useState(null);
   const [activity, setActivity] = useState(null);
   const [replay, setReplay] = useState([]);
+  const [observers, setObservers] = useState([]);
+  const [heatmap, setHeatmap] = useState([]);
   const [timeIndex, setTimeIndex] = useState(999);
   const [zoraCount, setZoraCount] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -43,12 +54,14 @@ function App() {
 
   useEffect(() => {
     async function load() {
-      const [forestRes, historyRes, permissionsRes, activityRes, replayRes, zoraRes] = await Promise.allSettled([
+      const [forestRes, historyRes, permissionsRes, activityRes, replayRes, observersRes, heatmapRes, zoraRes] = await Promise.allSettled([
         fetch(FOREST_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(HISTORY_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(PERMISSIONS_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(ACTIVITY_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(REPLAY_URL, { cache: "no-store" }).then((r) => r.json()),
+        fetch(OBSERVERS_URL, { cache: "no-store" }).then((r) => r.json()),
+        fetch(HEATMAP_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(ZORA_INDEX_URL, { cache: "no-store" }).then((r) => r.json()),
       ]);
       if (forestRes.status === "fulfilled") setForest(forestRes.value);
@@ -60,6 +73,8 @@ function App() {
         setReplay(events);
         setTimeIndex(events.length ? events.length - 1 : 0);
       }
+      if (observersRes.status === "fulfilled") setObservers(observersRes.value.observers || []);
+      if (heatmapRes.status === "fulfilled") setHeatmap(heatmapRes.value.edges || []);
       if (zoraRes.status === "fulfilled") setZoraCount(Array.isArray(zoraRes.value) ? zoraRes.value.length : zoraRes.value.results?.length || 0);
     }
     load();
@@ -114,6 +129,11 @@ function App() {
     return `M 50 88 C 50 58, ${x - 8} 62, ${x} ${y}`;
   }
 
+  function observerEvents(observer) {
+    const visible = observer.visible_states || ["canonical", "reconciled"];
+    return visibleGhosts.filter((event) => visible.includes(eventState(event)));
+  }
+
   return (
     <main className={`observatory ${state.tone}`}>
       <div className="space-layer stars" />
@@ -131,8 +151,8 @@ function App() {
         <span>FOREST ROOT</span>
         <strong>{short(forest?.forest_root_sha256)}</strong>
         <span>LEAVES: {forest?.leaf_count || leaves.length}</span>
-        <span>GROVES: {forest?.grove_count || groves.length}</span>
-        <span>ZORA RELICS: {zoraCount}</span>
+        <span>OBSERVERS: {observers.length}</span>
+        <span>PRESSURE EDGES: {heatmap.length}</span>
       </section>
 
       <section
@@ -145,6 +165,16 @@ function App() {
       >
         <div className="forest-camera" style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}>
           <svg className="flow-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" fill="none">
+            {observers.map((observer, oi) => observerEvents(observer).map((event, ei) => (
+              <path
+                key={`${observer.id}-${event.id}`}
+                className={`observer-path ${observer.color} ${eventState(event)}`}
+                style={{ animationDelay: `${(oi * .8) + (ei * .18)}s`, opacity: observer.detail === "low" ? .12 : .24 }}
+                d={ghostPath(event)}
+                fill="none"
+                vectorEffect="non-scaling-stroke"
+              />
+            )))}
             {visibleGhosts.map((event, i) => (
               <path key={event.id} className={`ghost-path ${event.type}`} style={{ animationDelay: `${i * .24}s` }} d={ghostPath(event)} fill="none" vectorEffect="non-scaling-stroke" />
             ))}
@@ -178,14 +208,21 @@ function App() {
       </section>
 
       <aside className="leaf-inspector">
-        <div className="eyebrow">{selected ? "Grove Inspection" : "Spatial Verifier"}</div>
-        <h1>{selected?.title || "Merkle Forest"}</h1>
-        <p>{selected?.description || "Wheel to zoom. Drag to pan. Click a grove. ESC returns to root. The topology is the interface."}</p>
+        <div className="eyebrow">{selected ? "Grove Inspection" : "Multi-Observer Replay"}</div>
+        <h1>{selected?.title || "Consensus Field"}</h1>
+        <p>{selected?.description || "One receipt stream. Multiple observer lenses. Disagreement becomes visible geometry."}</p>
         <div className="inspector-grid">
           <div><strong>{forest?.leaf_count || 0}</strong><span>proof leaves</span></div>
-          <div><strong>{subjects}</strong><span>subjects</span></div>
-          <div><strong>{activity?.new_leaves || 0}</strong><span>new pulses</span></div>
+          <div><strong>{observers.length}</strong><span>observers</span></div>
+          <div><strong>{heatmap.filter((e) => e.status === "disputed").length}</strong><span>hot zones</span></div>
         </div>
+        {observers.length > 0 && (
+          <div className="observer-legend">
+            {observers.map((observer) => (
+              <span key={observer.id} className={`observer-pill ${observer.color}`}>{observer.label}</span>
+            ))}
+          </div>
+        )}
         {replay.length > 0 && (
           <div className="time-archaeology">
             <label>Time Archaeology</label>
@@ -212,9 +249,10 @@ function App() {
       </aside>
 
       <footer className="hud bottom-line">
-        <span>bytes → hash → manifest → local truth</span>
-        <span>Base → witness</span>
-        <span>No gold ring without receipt</span>
+        <span>cyan canonical</span>
+        <span>amber auditor</span>
+        <span>red disputed</span>
+        <span>white reconciled</span>
       </footer>
     </main>
   );
