@@ -1,0 +1,27 @@
+{
+  "id": "leaf-flywheel-001",
+  "title": "FLYWHEEL Ignition Surface",
+  "grove": "receipt-machine",
+  "status": "canon",
+  "claim": "The Zora flywheel became a public replay surface through GitHub Direct.",
+  "summary": "First public witness cycle: mint → mirror → index → verify → reputation.",
+  "proof_links": [
+    {
+      "label": "Live Zora Coin",
+      "url": "https://zora.co/coin/base:0x5e35e630356a1b24d1b45078918ea60ef98e915a?referrer=0x829adfedbe565f9885a7ea6bc78912acaef055e2",
+      "kind": "zora"
+    },
+    {
+      "label": "JaySpace Root",
+      "url": "https://jsonwisdom.github.io/jay-zora-portal/",
+      "kind": "pages"
+    },
+    {
+      "label": "GitHub Direct Mirror",
+      "url": "https://github.com/jsonwisdom/jay-zora-portal",
+      "kind": "github"
+    }
+  ],
+  "tags": ["flywheel", "receipt-machine", "zora", "base", "github-direct"],
+  "updated_at": "2026-05-19T00:00:00Z"
+}
