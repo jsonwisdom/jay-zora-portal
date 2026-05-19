@@ -1,0 +1,17 @@
+{
+  "id": "leaf-cw-001",
+  "title": "COMPUTERWISDOM Replay Layer",
+  "grove": "computerwisdom",
+  "status": "candidate",
+  "claim": "Machine-speed verification compresses institutional ambiguity.",
+  "summary": "Replay systems reduce narrative authority by elevating deterministic reproducibility.",
+  "proof_links": [
+    {
+      "label": "COMPUTERWISDOM Repository",
+      "url": "https://github.com/jsonwisdom/COMPUTERWISDOM",
+      "kind": "github"
+    }
+  ],
+  "tags": ["computerwisdom", "replay", "verification", "institutional-memory"],
+  "updated_at": "2026-05-19T00:00:00Z"
+}
