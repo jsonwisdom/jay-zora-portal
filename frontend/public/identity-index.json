@@ -1,0 +1,31 @@
+[
+  {
+    "name": "jaywisdom.eth",
+    "type": "public_wallet_identity",
+    "network": "Ethereum / ENS",
+    "url": "https://app.ens.domains/jaywisdom.eth",
+    "mirror_url": "https://etherscan.io/enslookup-search?search=jaywisdom.eth",
+    "description": "Jay Wisdom primary public ENS identity anchor.",
+    "tags": ["ens", "identity", "wallet", "jay wisdom", "public anchor"]
+  },
+  {
+    "name": "jaywisdom.base.eth",
+    "type": "public_anchor_identity",
+    "network": "Base / Basename",
+    "url": "https://www.base.org/names/jaywisdom",
+    "mirror_url": "https://basescan.org/address/0xA380552a27b0a5a2874Ea7AA52CAC09f542002E8",
+    "address": "0xA380552a27b0a5a2874Ea7AA52CAC09f542002E8",
+    "description": "Jay Wisdom Base public anchor and verification surface.",
+    "tags": ["base", "basename", "ens", "identity", "wallet", "receipt anchor", "jay wisdom"]
+  },
+  {
+    "name": "Zora @jaywisdom",
+    "type": "creator_distribution_surface",
+    "network": "Base / Zora",
+    "url": "https://zora.co/@jaywisdom",
+    "mirror_url": "https://zora.co/@jaywisdom",
+    "address": "0x829adfedbe565f9885a7ea6bc78912acaef055e2",
+    "description": "Jay Wisdom public Zora creator surface mirrored into the portal inventory.",
+    "tags": ["zora", "creator", "artwork", "base", "public inventory"]
+  }
+]
