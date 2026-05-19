@@ -4,6 +4,7 @@ import "./styles.css";
 
 const PAGE_SIZE = 20;
 const INDEX_URL = `${import.meta.env.BASE_URL}zora-index.json`;
+const IDENTITY_URL = `${import.meta.env.BASE_URL}identity-index.json`;
 
 function short(v) {
   if (!v) return "missing";
@@ -30,6 +31,7 @@ function textFor(art) {
 function App() {
   const [q, setQ] = useState("");
   const [allItems, setAllItems] = useState([]);
+  const [identities, setIdentities] = useState([]);
   const [status, setStatus] = useState("loading static index…");
   const [loading, setLoading] = useState(true);
   const [offset, setOffset] = useState(0);
@@ -37,12 +39,24 @@ function App() {
   useEffect(() => {
     async function loadIndex() {
       try {
-        const res = await fetch(INDEX_URL, { cache: "no-store" });
-        const text = await res.text();
-        if (!res.ok) throw new Error(`index ${res.status}: ${text.slice(0, 120)}`);
-        const data = JSON.parse(text);
+        const [indexRes, identityRes] = await Promise.all([
+          fetch(INDEX_URL, { cache: "no-store" }),
+          fetch(IDENTITY_URL, { cache: "no-store" }),
+        ]);
+
+        const indexText = await indexRes.text();
+        if (!indexRes.ok) throw new Error(`index ${indexRes.status}: ${indexText.slice(0, 120)}`);
+
+        const data = JSON.parse(indexText);
         const rows = Array.isArray(data) ? data : data.results || [];
         setAllItems(rows);
+
+        if (identityRes.ok) {
+          const identityText = await identityRes.text();
+          const ids = JSON.parse(identityText);
+          setIdentities(Array.isArray(ids) ? ids : []);
+        }
+
         setStatus(`${rows.length} relics loaded from GitHub Pages static index`);
       } catch (err) {
         setStatus(`error loading static index: ${err.message}`);
@@ -74,6 +88,20 @@ function App() {
         <div className="brand">🦊⚙️🧾 Wisdom R&amp;D</div>
         <h1>Jay Wisdom Portal — L2 Creator Index</h1>
         <p>GitHub-only portal. Search Jay’s Zora drops by title, description, themes, aliases, contract, token ID, and receipt metadata.</p>
+
+        <section className="identity-grid" aria-label="Public identity anchors">
+          {identities.map((id) => (
+            <a className="identity-card" key={id.name} href={id.url} target="_blank" rel="noreferrer">
+              <div className="identity-type">{id.type}</div>
+              <h3>{id.name}</h3>
+              <p>{id.description}</p>
+              <div className="identity-meta">
+                <span>{id.network}</span>
+                {id.address && <code>{short(id.address)}</code>}
+              </div>
+            </a>
+          ))}
+        </section>
       </header>
 
       <section className="search">
