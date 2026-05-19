@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
-const API_BASE = "";
 const PAGE_SIZE = 20;
+const INDEX_URL = `${import.meta.env.BASE_URL}zora-index.json`;
 
 function short(v) {
   if (!v) return "missing";
@@ -11,98 +11,99 @@ function short(v) {
   return s.length > 14 ? `${s.slice(0, 8)}…${s.slice(-6)}` : s;
 }
 
+function textFor(art) {
+  return [
+    art.title,
+    art.description,
+    art.contract,
+    art.token_id,
+    art.tx_hash,
+    art.chain,
+    ...(art.themes || []),
+    ...(art.query_aliases || []),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
+
 function App() {
   const [q, setQ] = useState("");
-  const [items, setItems] = useState([]);
-  const [status, setStatus] = useState("ready");
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState({
-    total: 0,
-    count: 0,
-    limit: PAGE_SIZE,
-    offset: 0,
-    next_offset: null,
-    prev_offset: null,
-  });
-
-  async function search(value = q, offset = 0) {
-    setLoading(true);
-    setStatus("searching…");
-
-    try {
-      const params = new URLSearchParams({
-        q: value || "",
-        limit: String(PAGE_SIZE),
-        offset: String(offset || 0),
-      });
-
-      const res = await fetch(`${API_BASE}/search?${params.toString()}`);
-      const text = await res.text();
-
-      if (!res.ok) {
-        throw new Error(`API ${res.status}: ${text.slice(0, 120)}`);
-      }
-
-      const data = JSON.parse(text);
-
-      setItems(data.results || []);
-      setPage({
-        total: data.total || 0,
-        count: data.count || 0,
-        limit: data.limit || PAGE_SIZE,
-        offset: data.offset || 0,
-        next_offset: data.next_offset ?? null,
-        prev_offset: data.prev_offset ?? null,
-      });
-
-      setStatus(`${data.count || 0} shown of ${data.total || 0} relics`);
-    } catch (err) {
-      setStatus(`error: ${err.message}`);
-    } finally {
-      setLoading(false);
-    }
-  }
+  const [allItems, setAllItems] = useState([]);
+  const [status, setStatus] = useState("loading static index…");
+  const [loading, setLoading] = useState(true);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    search("", 0);
+    async function loadIndex() {
+      try {
+        const res = await fetch(INDEX_URL, { cache: "no-store" });
+        const text = await res.text();
+        if (!res.ok) throw new Error(`index ${res.status}: ${text.slice(0, 120)}`);
+        const data = JSON.parse(text);
+        const rows = Array.isArray(data) ? data : data.results || [];
+        setAllItems(rows);
+        setStatus(`${rows.length} relics loaded from GitHub Pages static index`);
+      } catch (err) {
+        setStatus(`error loading static index: ${err.message}`);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadIndex();
   }, []);
+
+  const filtered = useMemo(() => {
+    const needle = q.trim().toLowerCase();
+    if (!needle) return allItems;
+    return allItems.filter((art) => textFor(art).includes(needle));
+  }, [allItems, q]);
+
+  const pageItems = filtered.slice(offset, offset + PAGE_SIZE);
+  const nextOffset = offset + PAGE_SIZE < filtered.length ? offset + PAGE_SIZE : null;
+  const prevOffset = offset > 0 ? Math.max(offset - PAGE_SIZE, 0) : null;
+
+  function runSearch() {
+    setOffset(0);
+    setStatus(`${filtered.length} matching relics in static GitHub index`);
+  }
 
   return (
     <main>
       <header className="hero">
         <div className="brand">🦊⚙️🧾 Wisdom R&amp;D</div>
         <h1>Jay Wisdom Portal — L2 Creator Index</h1>
-        <p>Search Jay’s Zora drops by title, description, themes, aliases, contract, token ID, and receipt metadata.</p>
+        <p>GitHub-only portal. Search Jay’s Zora drops by title, description, themes, aliases, contract, token ID, and receipt metadata.</p>
       </header>
 
       <section className="search">
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && search(q, 0)}
+          onKeyDown={(e) => e.key === "Enter" && runSearch()}
           placeholder="Search goblin court, receipt machine, Base meme fox..."
         />
-        <button disabled={loading} onClick={() => search(q, 0)}>
+        <button disabled={loading} onClick={runSearch}>
           {loading ? "Loading…" : "Search"}
         </button>
       </section>
 
-      <div className="status">{status} · offset {page.offset}</div>
+      <div className="status">{status} · showing {pageItems.length} of {filtered.length} · offset {offset}</div>
 
       <section className="pager">
-        <button disabled={loading || page.prev_offset === null} onClick={() => search(q, page.prev_offset)}>
+        <button disabled={loading || prevOffset === null} onClick={() => setOffset(prevOffset)}>
           Previous
         </button>
         <span>
-          Page {Math.floor(page.offset / page.limit) + 1} / {Math.max(1, Math.ceil(page.total / page.limit))}
+          Page {Math.floor(offset / PAGE_SIZE) + 1} / {Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))}
         </span>
-        <button disabled={loading || page.next_offset === null} onClick={() => search(q, page.next_offset)}>
+        <button disabled={loading || nextOffset === null} onClick={() => setOffset(nextOffset)}>
           Next
         </button>
       </section>
 
       <section className="grid">
-        {items.map((art, i) => (
+        {pageItems.map((art, i) => (
           <article className="card" key={`${art.contract}-${art.token_id}-${i}`}>
             <div className="image">
               {art.image_uri ? <img src={art.image_uri} alt={art.title || "Artwork"} /> : <span>No image yet</span>}
