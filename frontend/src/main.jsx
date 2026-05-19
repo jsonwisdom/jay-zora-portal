@@ -78,8 +78,8 @@ function App() {
     const count = Math.max(groves.length, 1);
     return groves.map((grove, i) => {
       const angle = (-90 + (360 / count) * i) * (Math.PI / 180);
-      const radius = 34;
-      return { ...grove, x: 50 + Math.cos(angle) * radius, y: 50 + Math.sin(angle) * radius };
+      const radius = 38;
+      return { ...grove, x: 50 + Math.cos(angle) * radius, y: 50 + Math.sin(angle) * radius, delay: `${i * 1.15}s` };
     });
   }, [groves]);
 
@@ -102,6 +102,7 @@ function App() {
       <div className="space-layer stars" />
       <div className="space-layer nebula" />
       <div className="space-layer dust" />
+      <div className="space-layer vignette" />
 
       <header className="hud top-left">
         <strong>JAYSPACE // CHECKPOINT-000000</strong>
@@ -126,6 +127,11 @@ function App() {
         onDoubleClick={() => setZoom((z) => Math.min(2.4, z + 0.35))}
       >
         <div className="forest-camera" style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})` }}>
+          <svg className="flow-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            {positions.map((grove, i) => (
+              <path key={grove.id} className="flow-path" style={{ animationDelay: `${i * 1.4}s` }} d={`M 50 88 C 50 64, ${grove.x} 70, ${grove.x} ${grove.y}`} />
+            ))}
+          </svg>
           <div className="root-node" onClick={() => setSelected(null)}>
             <span>CHECKPOINT 0</span>
             <strong>{state.tone === "valid" ? "ANCHORED" : "LOCAL VALID"}</strong>
@@ -137,7 +143,7 @@ function App() {
             <button
               key={grove.id}
               className={`grove-node ${selected?.id === grove.id ? "selected" : ""}`}
-              style={{ left: `${grove.x}%`, top: `${grove.y}%` }}
+              style={{ left: `${grove.x}%`, top: `${grove.y}%`, animationDelay: grove.delay }}
               onClick={(e) => { e.stopPropagation(); setSelected(grove); setZoom(1.45); }}
             >
               <span>{grove.leaf_count || grove.leaves?.length || 0}</span>
