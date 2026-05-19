@@ -248,6 +248,25 @@ function App() {
         </div>
       </aside>
 
+      <section className="runtime-card" aria-label="Live Replay Runtime">
+        <div className="runtime-grid" />
+        <div className="runtime-orb" />
+        <div className="runtime-kicker"><span />JAYSPACE SPECIFICATION</div>
+        <div className="runtime-badge">LIVE • v1.0.3</div>
+        <h2>JAYSPACE — <em>LIVE_REPLAY_RUNTIME</em></h2>
+        <p className="runtime-subtitle">FULL_SEND acknowledged. JSONL is now constitutional replay transport, not documentation.</p>
+        <div className="runtime-pipeline">stdin/jsonl → validator → quarantine → replay → watermark → observers → grove mutation → pulse → feed</div>
+        <div className="runtime-guarantees">
+          <span>full_archive_required: false</span>
+          <span>line_level_state_motion: true</span>
+          <span>idempotent_replay: true</span>
+          <span>quarantine_without_halt: true</span>
+          <span>observer_projection_isolated: true</span>
+          <span>semantic_capture_forbidden: true</span>
+        </div>
+        <blockquote>The substrate remembers exactly. Humans remember approximately. Civilization survives because both remain interoperable.</blockquote>
+      </section>
+
       <footer className="hud bottom-line">
         <span>cyan canonical</span>
         <span>amber auditor</span>
