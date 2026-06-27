@@ -15,13 +15,15 @@
   "coins": [
     {
       "id": "NODE_008",
-      "status": "SCHEMA_CREATED",
+      "status": "ATTESTED",
       "path": "public/coins/NODE_008.json",
       "contract": "0x812dc8649d7ced61278f5c052130f88cc9e374fe",
       "chain": "base",
       "platform": "zora",
       "scope": "zora_coin_existence_pointer_only",
-      "eas_schema_uid": "0x492a3ad3e1fa4313667f0f1260cb468e670b139652ff952d9eac6618df45096d"
+      "ipfs_cid": "bafkreiffaupjbqargat5vkmurycyd2y6j3s3x6mc2sjvzq46zsqz4b7s5y",
+      "eas_schema_uid": "0x492a3ad3e1fa4313667f0f1260cb468e670b139652ff952d9eac6618df45096d",
+      "eas_attestation_uid": "0x756191c639c050765b00bdac2500863789f07e9c495245a7de30c237ac859dca"
     }
   ]
 }
