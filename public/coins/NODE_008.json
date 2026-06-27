@@ -1,12 +1,12 @@
 {
   "id": "NODE_008",
-  "status": "READY_FOR_SCHEMA",
+  "status": "SCHEMA_CREATED",
   "authority": false,
   "scope": "zora_coin_existence_pointer_only",
   "timeline": {
     "observed": "2026-06-27T00:00:00Z",
-    "indexed": null,
-    "schema_created": null,
+    "indexed": "2026-06-27T00:15:00Z",
+    "schema_created": "2026-06-27T10:31:59Z",
     "attested": null,
     "mirrored": null
   },
@@ -20,13 +20,14 @@
   "eas": {
     "chain": "base",
     "revocable": true,
-    "schemaUid": null,
-    "schemaTx": null,
+    "schemaUid": "0x492a3ad3e1fa4313667f0f1260cb468e670b139652ff952d9eac6618df45096d",
+    "schemaTx": "0xe5a2bb2e5285a5dd675bef0a5d4c902cf08331027a9d98109cbfd90e6f7fc161",
     "attestationUid": null,
     "attestationTx": null,
     "attester": null
   },
   "schema": {
+    "id": 1629,
     "definition": "string nodeId,address contractAddress,string chain,string platform,string ipfsCid,bytes32 pointerHash,uint64 observedAt,bool authority,string scope"
   },
   "notes": "This record indexes the Zora coin pointer only. It does not verify training data, safety, legality, or real-world program operations."
