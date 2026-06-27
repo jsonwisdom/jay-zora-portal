@@ -11,5 +11,16 @@
       "eas_attestation_uid": "0x4c7877c14742d2e7613597250ce1289fecb83a4b20b28dede1ef636eb5f2aa42",
       "content_coin_address": "0x829adfedbe565f9885a7ea6bc78912acaef055e2"
     }
+  ],
+  "coins": [
+    {
+      "id": "NODE_008",
+      "status": "READY_FOR_SCHEMA",
+      "path": "public/coins/NODE_008.json",
+      "contract": "0x812dc8649d7ced61278f5c052130f88cc9e374fe",
+      "chain": "base",
+      "platform": "zora",
+      "scope": "zora_coin_existence_pointer_only"
+    }
   ]
 }
