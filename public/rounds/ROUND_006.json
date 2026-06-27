@@ -1,0 +1,22 @@
+{
+  "id": "ROUND_006",
+  "status": "ATTESTED",
+  "mirror_status": "PENDING_ZORA_TX",
+  "authority": false,
+  "scope": "existence_and_replay_pointer_only",
+  "git_commit": "7311b13ff83fe62164ff5e154566586a4706124a",
+  "latest_reported_head": "c44f478",
+  "state_root": "6f7bc60c2503c087e5d4f6ae6937edba531c9e328990ebafc6fa892fcbc675aa",
+  "ipfs_cid": "bafkreib6q6zlclekrqdgnxgwpqflkswfhxxhx4trjqpj7miyt4uzuggnyy",
+  "eas_schema_uid": "0x47c1c4b7f45e452747eb2cf55ae9942f4d7a5211d5b80bc4ae6a3d4b04e92769",
+  "eas_schema_tx": "0xe7bd4f6fcf2062d4253701f95af000087770883c4efe221131af380572ac8833",
+  "eas_attestation_uid": "0x4c7877c14742d2e7613597250ce1289fecb83a4b20b28dede1ef636eb5f2aa42",
+  "eas_attestation_tx": "0x1368eb143c917207ef87d9da4456379adb4dec3c2f56c3ec3bc197af222acd74",
+  "eas_block": 47891413,
+  "zora_profile": "https://zora.co/@jaywisdom",
+  "content_coin_address": "0x829adfedbe565f9885a7ea6bc78912acaef055e2",
+  "zora_tx": null,
+  "zora_url": null,
+  "replay_command": "git checkout 7311b13ff83fe62164ff5e154566586a4706124a && cat PACKET.md",
+  "rule": "No receipt = no authority. Replayable evidence is distinct from verification of underlying claims."
+}
