@@ -34,6 +34,7 @@ jobs:
           import csv
           import hashlib
           import json
+          import subprocess
           from datetime import datetime, timezone
           from pathlib import Path
 
@@ -46,8 +47,8 @@ jobs:
           rows = json.loads(source_bytes.decode("utf-8"))
           if not isinstance(rows, list):
               raise SystemExit("FAIL: source JSON is not an array")
-          if not rows:
-              raise SystemExit("FAIL: source inventory is empty")
+          if len(rows) < 800:
+              raise SystemExit(f"FAIL: current source unexpectedly contains only {len(rows)} rows")
 
           output_dir.mkdir(parents=True, exist_ok=True)
           fields = [
@@ -90,6 +91,9 @@ jobs:
           dates = [str(row.get("created_at", "")) for row in rows if row.get("created_at")]
           contracts = [str(row.get("contract", "")).lower() for row in rows if row.get("contract")]
           urls = [str(row.get("zora_url", "")) for row in rows if row.get("zora_url")]
+          titles = [str(row.get("title", "")) for row in rows if row.get("title")]
+          source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          source_blob = subprocess.check_output(["git", "hash-object", str(source)], text=True).strip()
 
           manifest = {
               "schema": "JAY_ZORA_INVENTORY_MANIFEST_V1",
@@ -97,7 +101,9 @@ jobs:
               "coverage": "COMPLETE_FOR_SOURCE_FILE",
               "source_repository": "jsonwisdom/jay-zora-portal",
               "source_ref": "live-zora-ingestion",
+              "source_commit_sha": source_commit,
               "source_path": str(source),
+              "source_git_blob_sha": source_blob,
               "source_sha256": hashlib.sha256(source_bytes).hexdigest(),
               "csv_path": str(csv_path),
               "csv_sha256": hashlib.sha256(csv_bytes).hexdigest(),
@@ -105,11 +111,12 @@ jobs:
               "unique_contract_count": len(set(contracts)),
               "nonempty_contract_count": len(contracts),
               "nonempty_zora_url_count": len(urls),
+              "nonempty_title_count": len(titles),
               "earliest_created_at": min(dates) if dates else None,
               "latest_created_at": max(dates) if dates else None,
               "line_endings": "LF",
               "final_newline": csv_bytes.endswith(b"\n"),
-              "boundary": "This is the complete row-level export represented by data/live_zora_items.json. It does not claim that the source file equals every historical Zora post or the dated 963-post profile counter."
+              "boundary": "This is the complete row-level export represented by data/live_zora_items.json at source_commit_sha. It does not claim that this source equals every historical Zora post or the dated 963-post profile counter."
           }
           manifest_path.write_text(
               json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
@@ -117,8 +124,9 @@ jobs:
               newline="\n",
           )
 
-          assert len(rows) == 324, f"Expected 324 source rows, got {len(rows)}"
           assert csv_bytes.endswith(b"\n")
+          assert len(contracts) == len(rows), "Every inventory row must have a contract"
+          assert len(urls) == len(rows), "Every inventory row must have a Zora URL"
           print(json.dumps(manifest, indent=2))
 
       - name: Commit generated inventory
@@ -130,5 +138,5 @@ jobs:
             echo "Inventory already current."
             exit 0
           fi
-          git commit -m "Export 324-row Jay Zora inventory [skip ci]"
+          git commit -m "Export complete Jay Zora inventory [skip ci]"
           git push origin HEAD:live-zora-ingestion
