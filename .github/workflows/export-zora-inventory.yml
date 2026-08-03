@@ -6,6 +6,9 @@ on:
       - live-zora-ingestion
     paths-ignore:
       - "exports/**"
+  pull_request:
+    branches:
+      - live-zora-ingestion
   workflow_dispatch:
 
 permissions:
