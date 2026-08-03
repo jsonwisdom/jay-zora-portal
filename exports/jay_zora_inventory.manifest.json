@@ -1,0 +1,23 @@
+{
+  "schema": "JAY_ZORA_INVENTORY_MANIFEST_V1",
+  "generated_at": "2026-08-03T19:24:27.957182+00:00",
+  "coverage": "COMPLETE_FOR_SOURCE_FILE",
+  "source_repository": "jsonwisdom/jay-zora-portal",
+  "source_ref": "live-zora-ingestion",
+  "source_commit_sha": "6a779378a86d9ab9a80d951bb49364e046a61eac",
+  "source_path": "data/live_zora_items.json",
+  "source_git_blob_sha": "ac448d71b0bb709aba1e7d190a037eeeb4dba413",
+  "source_sha256": "fa6fc9db57163912bd89c7b37e8b4428f79d9e1b251438e10eef03cf72ef1b0c",
+  "csv_path": "exports/jay_zora_inventory.csv",
+  "csv_sha256": "9a21b371c4fdf84a0589dff4fa9324bbd6246ee1d6293be92d7b0c46ea887fdf",
+  "row_count": 857,
+  "unique_contract_count": 857,
+  "nonempty_contract_count": 857,
+  "nonempty_zora_url_count": 857,
+  "nonempty_title_count": 857,
+  "earliest_created_at": "2025-03-31T16:32:11+00:00",
+  "latest_created_at": "2026-05-01T22:07:27+00:00",
+  "line_endings": "LF",
+  "final_newline": true,
+  "boundary": "This is the complete row-level export represented by data/live_zora_items.json at source_commit_sha. It does not claim that this source equals every historical Zora post or the dated 963-post profile counter."
+}
