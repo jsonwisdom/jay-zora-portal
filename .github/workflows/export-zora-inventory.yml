@@ -129,6 +129,16 @@ jobs:
           assert len(urls) == len(rows), "Every inventory row must have a Zora URL"
           print(json.dumps(manifest, indent=2))
 
+      - name: Upload downloadable inventory artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jay-zora-inventory-current
+          path: |
+            exports/jay_zora_inventory.csv
+            exports/jay_zora_inventory.manifest.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Commit generated inventory
         run: |
           git config user.name "github-actions[bot]"
