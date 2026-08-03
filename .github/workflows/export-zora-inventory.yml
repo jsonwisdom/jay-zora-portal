@@ -1,0 +1,131 @@
+name: Export Zora Inventory CSV
+
+on:
+  push:
+    branches:
+      - live-zora-ingestion
+    paths-ignore:
+      - "exports/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zora-inventory-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout canonical inventory branch
+        uses: actions/checkout@v4
+        with:
+          ref: live-zora-ingestion
+          fetch-depth: 0
+
+      - name: Build deterministic CSV and manifest
+        shell: python
+        run: |
+          import csv
+          import hashlib
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          source = Path("data/live_zora_items.json")
+          output_dir = Path("exports")
+          csv_path = output_dir / "jay_zora_inventory.csv"
+          manifest_path = output_dir / "jay_zora_inventory.manifest.json"
+
+          source_bytes = source.read_bytes()
+          rows = json.loads(source_bytes.decode("utf-8"))
+          if not isinstance(rows, list):
+              raise SystemExit("FAIL: source JSON is not an array")
+          if not rows:
+              raise SystemExit("FAIL: source inventory is empty")
+
+          output_dir.mkdir(parents=True, exist_ok=True)
+          fields = [
+              "inventory_index",
+              "title",
+              "description",
+              "image_uri",
+              "zora_url",
+              "contract",
+              "token_id",
+              "chain",
+              "tx_hash",
+              "created_at",
+              "source_repository",
+              "source_ref",
+              "source_path",
+          ]
+
+          with csv_path.open("w", encoding="utf-8", newline="") as handle:
+              writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
+              writer.writeheader()
+              for index, row in enumerate(rows, start=1):
+                  writer.writerow({
+                      "inventory_index": index,
+                      "title": row.get("title", ""),
+                      "description": row.get("description", ""),
+                      "image_uri": row.get("image_uri", ""),
+                      "zora_url": row.get("zora_url", ""),
+                      "contract": row.get("contract", ""),
+                      "token_id": row.get("token_id", ""),
+                      "chain": row.get("chain", ""),
+                      "tx_hash": row.get("tx_hash", ""),
+                      "created_at": row.get("created_at", ""),
+                      "source_repository": "jsonwisdom/jay-zora-portal",
+                      "source_ref": "live-zora-ingestion",
+                      "source_path": "data/live_zora_items.json",
+                  })
+
+          csv_bytes = csv_path.read_bytes()
+          dates = [str(row.get("created_at", "")) for row in rows if row.get("created_at")]
+          contracts = [str(row.get("contract", "")).lower() for row in rows if row.get("contract")]
+          urls = [str(row.get("zora_url", "")) for row in rows if row.get("zora_url")]
+
+          manifest = {
+              "schema": "JAY_ZORA_INVENTORY_MANIFEST_V1",
+              "generated_at": datetime.now(timezone.utc).isoformat(),
+              "coverage": "COMPLETE_FOR_SOURCE_FILE",
+              "source_repository": "jsonwisdom/jay-zora-portal",
+              "source_ref": "live-zora-ingestion",
+              "source_path": str(source),
+              "source_sha256": hashlib.sha256(source_bytes).hexdigest(),
+              "csv_path": str(csv_path),
+              "csv_sha256": hashlib.sha256(csv_bytes).hexdigest(),
+              "row_count": len(rows),
+              "unique_contract_count": len(set(contracts)),
+              "nonempty_contract_count": len(contracts),
+              "nonempty_zora_url_count": len(urls),
+              "earliest_created_at": min(dates) if dates else None,
+              "latest_created_at": max(dates) if dates else None,
+              "line_endings": "LF",
+              "final_newline": csv_bytes.endswith(b"\n"),
+              "boundary": "This is the complete row-level export represented by data/live_zora_items.json. It does not claim that the source file equals every historical Zora post or the dated 963-post profile counter."
+          }
+          manifest_path.write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+              newline="\n",
+          )
+
+          assert len(rows) == 324, f"Expected 324 source rows, got {len(rows)}"
+          assert csv_bytes.endswith(b"\n")
+          print(json.dumps(manifest, indent=2))
+
+      - name: Commit generated inventory
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add exports/jay_zora_inventory.csv exports/jay_zora_inventory.manifest.json
+          if git diff --cached --quiet; then
+            echo "Inventory already current."
+            exit 0
+          fi
+          git commit -m "Export 324-row Jay Zora inventory [skip ci]"
+          git push origin HEAD:live-zora-ingestion
