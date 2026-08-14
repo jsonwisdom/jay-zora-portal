@@ -59,6 +59,15 @@ Replayable Reputation
 - [`frontend/public/identity-index.json`](./frontend/public/identity-index.json)
 - [`frontend/public/zora-index.json`](./frontend/public/zora-index.json)
 
+## Zora Promotion Queue
+
+Promotion candidates live outside the canonical Zora inventory until a real public Zora object exists.
+
+- [`promotions/ziggy-v0.1/`](./promotions/ziggy-v0.1/) — Ziggy v0.1, `READY_FOR_ZORA_SIGNER`
+- [`docs/receipts/ZIGGY_ZORA_PROMOTION_V0_1.md`](./docs/receipts/ZIGGY_ZORA_PROMOTION_V0_1.md) — promotion receipt
+
+`PUBLISH_READY ≠ PUBLISHED`
+
 ## Canon
 
 **GitHub Direct, not GitHub Drift.**
@@ -74,6 +83,7 @@ If the public cannot observe it directly from GitHub, it is not part of the proo
 - `.github/workflows/` — GitHub Pages build and refresh triggers
 - `tools/` — inventory and proof tooling
 - `data/` — mirrored Zora inventory inputs
+- `promotions/` — publish-ready candidates waiting for real Zora publication evidence
 - `docs/receipts/` — receipt notes and supporting proof material
 
 ## Public Identity
