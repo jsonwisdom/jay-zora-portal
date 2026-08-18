@@ -6,11 +6,11 @@ on:
       - live-zora-ingestion
     paths-ignore:
       - "exports/**"
-  pull_request:
-    branches:
-      - live-zora-ingestion
   workflow_dispatch:
 
+# Governance boundary: this workflow may write generated inventory only after
+# canonical-branch activity or an explicit manual dispatch. Pull requests are
+# validated by validate-pr-governance.yml with read-only contents permission.
 permissions:
   contents: write
 
