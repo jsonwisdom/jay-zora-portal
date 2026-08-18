@@ -8,11 +8,10 @@ on:
       - "exports/**"
   workflow_dispatch:
 
-# Governance boundary: this workflow may write generated inventory only after
-# canonical-branch activity or an explicit manual dispatch. Pull requests are
-# validated by validate-pr-governance.yml with read-only contents permission.
+# Governance boundary: automation may observe, build, hash, and publish an
+# Actions artifact. It may not mutate the canonical evidence branch.
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: zora-inventory-export
@@ -116,7 +115,7 @@ jobs:
               "latest_created_at": max(dates) if dates else None,
               "line_endings": "LF",
               "final_newline": csv_bytes.endswith(b"\n"),
-              "boundary": "This is the complete row-level export represented by data/live_zora_items.json at source_commit_sha. It does not claim that this source equals every historical Zora post or the dated 963-post profile counter."
+              "boundary": "Complete for data/live_zora_items.json at source_commit_sha. Artifact-only output: publication by Actions does not mutate the canonical Git branch and does not claim complete historical Zora coverage."
           }
           manifest_path.write_text(
               json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
@@ -138,15 +137,3 @@ jobs:
             exports/jay_zora_inventory.manifest.json
           if-no-files-found: error
           retention-days: 30
-
-      - name: Commit generated inventory
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add exports/jay_zora_inventory.csv exports/jay_zora_inventory.manifest.json
-          if git diff --cached --quiet; then
-            echo "Inventory already current."
-            exit 0
-          fi
-          git commit -m "Export complete Jay Zora inventory [skip ci]"
-          git push origin HEAD:live-zora-ingestion
