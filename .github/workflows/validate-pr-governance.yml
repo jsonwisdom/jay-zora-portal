@@ -1,0 +1,58 @@
+name: Validate PR Governance
+
+on:
+  pull_request:
+    branches:
+      - live-zora-ingestion
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-governance-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact pull-request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Fetch canonical branch
+        run: git fetch --no-tags origin live-zora-ingestion
+
+      - name: Require canonical tip ancestry
+        run: |
+          if ! git merge-base --is-ancestor origin/live-zora-ingestion HEAD; then
+            echo "HOLD_BASE_NOT_ANCESTOR"
+            echo "PR head must first synchronize with live-zora-ingestion."
+            exit 1
+          fi
+          echo "BASE_ANCESTRY=PASS"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify repository governance
+        run: node tools/verify-governance.mjs
+
+      - name: Validate evidence JSON surfaces
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          checked = 0
+          for root in [Path("frontend/public/leaves"), Path("frontend/public/proofs")]:
+              if not root.exists():
+                  continue
+              for path in sorted(root.glob("*.json")):
+                  json.loads(path.read_text(encoding="utf-8"))
+                  checked += 1
+          print(f"JSON_SURFACES_PARSED={checked}")
