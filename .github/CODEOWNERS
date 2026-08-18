@@ -1,0 +1,19 @@
+# Jay Zora Portal governance ownership
+# CODEOWNERS documents ownership; enforcement still requires branch/ruleset review gates.
+
+# Repository governance and workflows
+/.github/ @jsonwisdom
+/GOVERNANCE.md @jsonwisdom
+/tools/verify-governance.mjs @jsonwisdom
+
+# Canonical evidence and proof surfaces
+/data/ @jsonwisdom
+/exports/ @jsonwisdom
+/frontend/public/leaves/ @jsonwisdom
+/frontend/public/proofs/ @jsonwisdom
+/frontend/public/zora-index.json @jsonwisdom
+
+# Canonical workflow doctrine
+/CANONICAL_WORKFLOW.md @jsonwisdom
+/MERKLE_REBOOT_RECEIPT.md @jsonwisdom
+/SOLUTION_ROOT_ENS_SCHEMA_ATTEST_VERIFIER.md @jsonwisdom
