@@ -1,0 +1,61 @@
+{
+  "schema_version": "zero-trust-zora.mildenhall-readback-receipt.v0.1",
+  "receipt_id": "MILDENHALL_READBACK_RECEIPT_PENDING",
+  "object_key": "eip155:8453/erc20:0x04ea9a5650470f06a6b09cb31ede50fbb0667f95",
+  "contract": "0x04ea9a5650470f06a6b09cb31ede50fbb0667f95",
+  "chain_id": 8453,
+  "source_candidate": {
+    "zora_url": "https://zora.co/coin/base:0x04ea9a5650470f06a6b09cb31ede50fbb0667f95?referrer=0x829adfedbe565f9885a7ea6bc78912acaef055e2",
+    "semantic_label": "MILDENHALL_HISTORY_DELTA_BOX",
+    "state": "CANDIDATE"
+  },
+  "zora_name": null,
+  "symbol": null,
+  "description": null,
+  "creator_address": null,
+  "creator_profile": null,
+  "created_at": null,
+  "token_uri": null,
+  "media_uri": null,
+  "market_observations": {
+    "state": "UNOBSERVED",
+    "market_cap": null,
+    "volume_24h": null,
+    "unique_holders": null,
+    "swap_count": null,
+    "comment_count": null
+  },
+  "raw_response_sha256": null,
+  "sdk_observed_at": null,
+  "rest_observed_at": null,
+  "html_witness_state": {
+    "state": "CACHE_MISS",
+    "observed_at": null,
+    "content_sha256": null
+  },
+  "git_binding": {
+    "state": "NOT_FOUND",
+    "repository": null,
+    "path": null,
+    "commit_sha": null
+  },
+  "drive_binding": {
+    "state": "CANDIDATE",
+    "file_id": "1rC1-FY9tljQsgQkW9vORRxf22BGKeQmj80jGTOvUw4g",
+    "title": "BoxDee Mildenhall — History / Future Proof — jaywisdom.base.eth v0.1"
+  },
+  "prior_snapshot_hash": null,
+  "delta": {
+    "state": "NOT_COMPUTED",
+    "changed_fields": []
+  },
+  "comparison_state": "NOT_RUN",
+  "gray_baby_gate": {
+    "missing_metadata": true,
+    "creator_conflict": false,
+    "contract_mismatch": false,
+    "fake_green_blocked": true
+  },
+  "disposition": "HOLD",
+  "authority_created": false
+}
