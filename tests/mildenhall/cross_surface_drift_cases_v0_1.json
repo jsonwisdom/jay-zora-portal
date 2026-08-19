@@ -1,0 +1,102 @@
+{
+  "schema": "MILDENHALL_CROSS_SURFACE_DRIFT_CASES_V0_1",
+  "object_key": "eip155:8453/erc20:0x04ea9a5650470f06a6b09cb31ede50fbb0667f95",
+  "expected": {
+    "contract": "0x04ea9a5650470f06a6b09cb31ede50fbb0667f95",
+    "chain_id": 8453
+  },
+  "cases": [
+    {
+      "id": "T01_PREOBSERVATION_HOLD",
+      "expected_disposition": "HOLD",
+      "expected_comparison": "MISSING",
+      "input": {
+        "surfaces": {
+          "sdk": {"state":"NOT_ATTEMPTED"},
+          "rest": {"state":"NOT_ATTEMPTED"},
+          "html": {"state":"CACHE_MISS"},
+          "git": {"state":"NOT_FOUND"},
+          "drive": {"state":"OBSERVED","data":{}},
+          "prior_snapshot": {"state":"NOT_ATTEMPTED"}
+        }
+      }
+    },
+    {
+      "id": "T02_STRUCTURED_MATCH_PASS",
+      "expected_disposition": "PASS",
+      "expected_comparison": "MATCH",
+      "input": {
+        "surfaces": {
+          "sdk": {"state":"OBSERVED","data":{"contract":"0x04ea9a5650470f06a6b09cb31ede50fbb0667f95","chain_id":8453,"zora_name":"Mildenhall BoxD","symbol":"MILD","creator_address":"0x1111111111111111111111111111111111111111","created_at":"2026-01-01T00:00:00Z"}},
+          "rest": {"state":"OBSERVED","data":{"contract":"0x04ea9a5650470f06a6b09cb31ede50fbb0667f95","chain_id":8453,"zora_name":"Mildenhall BoxD","symbol":"MILD","creator_address":"0x1111111111111111111111111111111111111111","created_at":"2026-01-01T00:00:00Z"}},
+          "html": {"state":"CACHE_MISS"},
+          "git": {"state":"OBSERVED","data":{}},
+          "drive": {"state":"OBSERVED","data":{}},
+          "prior_snapshot": {"state":"NOT_ATTEMPTED"}
+        }
+      }
+    },
+    {
+      "id": "T03_CREATOR_CONFLICT",
+      "expected_disposition": "CONFLICT",
+      "expected_comparison": "CONFLICT",
+      "input": {
+        "surfaces": {
+          "sdk": {"state":"OBSERVED","data":{"contract":"0x04ea9a5650470f06a6b09cb31ede50fbb0667f95","chain_id":8453,"zora_name":"Mildenhall BoxD","symbol":"MILD","creator_address":"0x1111111111111111111111111111111111111111","created_at":"2026-01-01T00:00:00Z"}},
+          "rest": {"state":"OBSERVED","data":{"contract":"0x04ea9a5650470f06a6b09cb31ede50fbb0667f95","chain_id":8453,"zora_name":"Mildenhall BoxD","symbol":"MILD","creator_address":"0x2222222222222222222222222222222222222222","created_at":"2026-01-01T00:00:00Z"}},
+          "html": {"state":"NOT_ATTEMPTED"},
+          "git": {"state":"NOT_ATTEMPTED"},
+          "drive": {"state":"OBSERVED","data":{}},
+          "prior_snapshot": {"state":"NOT_ATTEMPTED"}
+        }
+      }
+    },
+    {
+      "id": "T04_CONTRACT_MISMATCH_REJECT",
+      "expected_disposition": "REJECT",
+      "expected_comparison": "CONFLICT",
+      "input": {
+        "surfaces": {
+          "sdk": {"state":"OBSERVED","data":{"contract":"0x9999999999999999999999999999999999999999","chain_id":8453,"zora_name":"Mildenhall BoxD","symbol":"MILD","creator_address":"0x1111111111111111111111111111111111111111","created_at":"2026-01-01T00:00:00Z"}},
+          "rest": {"state":"OBSERVED","data":{"contract":"0x04ea9a5650470f06a6b09cb31ede50fbb0667f95","chain_id":8453,"zora_name":"Mildenhall BoxD","symbol":"MILD","creator_address":"0x1111111111111111111111111111111111111111","created_at":"2026-01-01T00:00:00Z"}},
+          "html": {"state":"NOT_ATTEMPTED"},
+          "git": {"state":"NOT_ATTEMPTED"},
+          "drive": {"state":"OBSERVED","data":{}},
+          "prior_snapshot": {"state":"NOT_ATTEMPTED"}
+        }
+      }
+    },
+    {
+      "id": "T05_HTML_CACHE_MISS_NOT_DELETION",
+      "expected_disposition": "PASS",
+      "expected_comparison": "MATCH",
+      "expected_deletion_claim_state": "NONE",
+      "input": {
+        "surfaces": {
+          "sdk": {"state":"OBSERVED","data":{"contract":"0x04ea9a5650470f06a6b09cb31ede50fbb0667f95","chain_id":8453,"zora_name":"Mildenhall BoxD","symbol":"MILD","creator_address":"0x1111111111111111111111111111111111111111","created_at":"2026-01-01T00:00:00Z"}},
+          "rest": {"state":"OBSERVED","data":{"contract":"0x04ea9a5650470f06a6b09cb31ede50fbb0667f95","chain_id":8453,"zora_name":"Mildenhall BoxD","symbol":"MILD","creator_address":"0x1111111111111111111111111111111111111111","created_at":"2026-01-01T00:00:00Z"}},
+          "html": {"state":"CACHE_MISS"},
+          "git": {"state":"NOT_ATTEMPTED"},
+          "drive": {"state":"OBSERVED","data":{}},
+          "prior_snapshot": {"state":"NOT_ATTEMPTED"}
+        }
+      }
+    },
+    {
+      "id": "T06_STRUCTURED_ABSENCE_HOLD",
+      "expected_disposition": "HOLD",
+      "expected_comparison": "MISSING",
+      "expected_deletion_claim_state": "CORROBORATED_STRUCTURED_ABSENCE",
+      "input": {
+        "surfaces": {
+          "sdk": {"state":"NOT_FOUND"},
+          "rest": {"state":"NOT_FOUND"},
+          "html": {"state":"CACHE_MISS"},
+          "git": {"state":"NOT_ATTEMPTED"},
+          "drive": {"state":"OBSERVED","data":{}},
+          "prior_snapshot": {"state":"OBSERVED","data":{"zora_name":"Mildenhall BoxD"}}
+        }
+      }
+    }
+  ]
+}
