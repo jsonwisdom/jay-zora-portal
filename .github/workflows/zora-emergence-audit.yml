@@ -9,6 +9,13 @@ on:
       - data/live_zora_items.json
       - tools/audit_zora_emergence.mjs
       - .github/workflows/zora-emergence-audit.yml
+  pull_request:
+    branches:
+      - agent/zero-trust-zora-v2-schemas
+    paths:
+      - data/live_zora_items.json
+      - tools/audit_zora_emergence.mjs
+      - .github/workflows/zora-emergence-audit.yml
 
 permissions:
   contents: read
