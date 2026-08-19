@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jsonwisdom.github.io/jay-zora-portal/schemas/zero-trust-zora/v0.2/cross_surface_drift_event.schema.json",
+  "title": "Zero Trust Zora CrossSurfaceDriftEvent v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "object_key",
+    "observed_at",
+    "surface_states",
+    "field_diffs",
+    "comparison_state",
+    "drift_severity",
+    "drift_disposition",
+    "deletion_claim_state",
+    "no_fault_inference",
+    "fraud_inference",
+    "authority_created"
+  ],
+  "properties": {
+    "schema_version": {"const": "zero-trust-zora.cross-surface-drift-event.v0.1"},
+    "event_id": {"type": "string", "minLength": 1},
+    "object_key": {"type": "string", "pattern": "^eip155:[0-9]+/erc20:0x[a-f0-9]{40}$"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "surface_states": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sdk", "rest", "html", "git", "drive", "prior_snapshot"],
+      "properties": {
+        "sdk": {"$ref": "#/$defs/surface"},
+        "rest": {"$ref": "#/$defs/surface"},
+        "html": {"$ref": "#/$defs/surface"},
+        "git": {"$ref": "#/$defs/surface"},
+        "drive": {"$ref": "#/$defs/surface"},
+        "prior_snapshot": {"$ref": "#/$defs/surface"}
+      }
+    },
+    "field_diffs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field_path", "drift_type", "severity", "observers", "values", "receipt_refs"],
+        "properties": {
+          "field_path": {"type": "string", "minLength": 1},
+          "drift_type": {
+            "enum": ["MISSING", "CHANGED", "CONFLICT", "DELETION", "MUTATION", "REWRITE", "REORDER", "INVERSION"]
+          },
+          "severity": {"enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+          "observers": {
+            "type": "array",
+            "items": {"enum": ["SDK", "REST", "HTML", "GIT", "DRIVE", "PRIOR_SNAPSHOT"]},
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "values": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "receipt_refs": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "uniqueItems": true
+          },
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "comparison_state": {"enum": ["MATCH", "MISSING", "CHANGED", "CONFLICT"]},
+    "drift_severity": {"enum": ["NONE", "LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+    "drift_disposition": {"enum": ["PASS", "HOLD", "CONFLICT", "REJECT"]},
+    "deletion_claim_state": {"enum": ["NONE", "CANDIDATE_ONLY", "CORROBORATED_STRUCTURED_ABSENCE"]},
+    "no_fault_inference": {"const": true},
+    "fraud_inference": {"const": false},
+    "authority_created": {"const": false}
+  },
+  "$defs": {
+    "surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "observed_at", "receipt_ref"],
+      "properties": {
+        "state": {
+          "enum": ["NOT_ATTEMPTED", "OBSERVED", "PARTIAL", "NOT_FOUND", "CACHE_MISS", "PARSE_ERROR", "CONFLICT", "UNAVAILABLE"]
+        },
+        "observed_at": {"type": ["string", "null"], "format": "date-time"},
+        "receipt_ref": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
