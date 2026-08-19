@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jsonwisdom.github.io/jay-zora-portal/schemas/zero-trust-zora/v0.2/mildenhall_readback_receipt.schema.json",
+  "title": "Mildenhall Zora Readback Receipt v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "object_key",
+    "contract",
+    "chain_id",
+    "source_candidate",
+    "zora_name",
+    "symbol",
+    "description",
+    "creator_address",
+    "creator_profile",
+    "created_at",
+    "token_uri",
+    "media_uri",
+    "market_observations",
+    "raw_response_sha256",
+    "sdk_observed_at",
+    "rest_observed_at",
+    "html_witness_state",
+    "git_binding",
+    "drive_binding",
+    "prior_snapshot_hash",
+    "delta",
+    "comparison_state",
+    "disposition",
+    "authority_created"
+  ],
+  "properties": {
+    "schema_version": {"const": "zero-trust-zora.mildenhall-readback-receipt.v0.1"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "object_key": {"const": "eip155:8453/erc20:0x04ea9a5650470f06a6b09cb31ede50fbb0667f95"},
+    "contract": {"const": "0x04ea9a5650470f06a6b09cb31ede50fbb0667f95"},
+    "chain_id": {"const": 8453},
+    "source_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["zora_url", "semantic_label", "state"],
+      "properties": {
+        "zora_url": {"type": "string", "format": "uri"},
+        "semantic_label": {"const": "MILDENHALL_HISTORY_DELTA_BOX"},
+        "state": {"enum": ["CANDIDATE", "OBSERVED", "BOUND"]}
+      }
+    },
+    "zora_name": {"type": ["string", "null"]},
+    "symbol": {"type": ["string", "null"]},
+    "description": {"type": ["string", "null"]},
+    "creator_address": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^0x[a-fA-F0-9]{40}$"}
+      ]
+    },
+    "creator_profile": {"type": ["object", "null"]},
+    "created_at": {"type": ["string", "null"], "format": "date-time"},
+    "token_uri": {"type": ["string", "null"]},
+    "media_uri": {"type": ["string", "null"]},
+    "market_observations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "market_cap", "volume_24h", "unique_holders", "swap_count", "comment_count"],
+      "properties": {
+        "state": {"enum": ["UNOBSERVED", "OBSERVED", "PARTIAL", "CONFLICT"]},
+        "market_cap": {"type": ["string", "number", "null"]},
+        "volume_24h": {"type": ["string", "number", "null"]},
+        "unique_holders": {"type": ["integer", "null"], "minimum": 0},
+        "swap_count": {"type": ["integer", "null"], "minimum": 0},
+        "comment_count": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "raw_response_sha256": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      ]
+    },
+    "sdk_observed_at": {"type": ["string", "null"], "format": "date-time"},
+    "rest_observed_at": {"type": ["string", "null"], "format": "date-time"},
+    "html_witness_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "observed_at", "content_sha256"],
+      "properties": {
+        "state": {"enum": ["NOT_ATTEMPTED", "CACHE_MISS", "OBSERVED", "PARSE_ERROR", "CONFLICT"]},
+        "observed_at": {"type": ["string", "null"], "format": "date-time"},
+        "content_sha256": {
+          "anyOf": [
+            {"type": "null"},
+            {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+          ]
+        }
+      }
+    },
+    "git_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "repository", "path", "commit_sha"],
+      "properties": {
+        "state": {"enum": ["NOT_SEARCHED", "NOT_FOUND", "CANDIDATE", "BOUND", "CONFLICT"]},
+        "repository": {"type": ["string", "null"]},
+        "path": {"type": ["string", "null"]},
+        "commit_sha": {
+          "anyOf": [
+            {"type": "null"},
+            {"type": "string", "pattern": "^[a-f0-9]{40}$"}
+          ]
+        }
+      }
+    },
+    "drive_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "file_id", "title"],
+      "properties": {
+        "state": {"enum": ["NOT_SEARCHED", "NOT_FOUND", "CANDIDATE", "BOUND", "CONFLICT"]},
+        "file_id": {"type": ["string", "null"]},
+        "title": {"type": ["string", "null"]}
+      }
+    },
+    "prior_snapshot_hash": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      ]
+    },
+    "delta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "changed_fields"],
+      "properties": {
+        "state": {"enum": ["NOT_COMPUTED", "UNCHANGED", "CHANGED", "CONFLICT"]},
+        "changed_fields": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "comparison_state": {"enum": ["MATCH", "MISSING", "CHANGED", "CONFLICT", "NOT_RUN"]},
+    "gray_baby_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["missing_metadata", "creator_conflict", "contract_mismatch", "fake_green_blocked"],
+      "properties": {
+        "missing_metadata": {"type": "boolean"},
+        "creator_conflict": {"type": "boolean"},
+        "contract_mismatch": {"type": "boolean"},
+        "fake_green_blocked": {"type": "boolean"}
+      }
+    },
+    "disposition": {"enum": ["PASS", "HOLD", "CONFLICT", "REJECT"]},
+    "authority_created": {"const": false}
+  }
+}
