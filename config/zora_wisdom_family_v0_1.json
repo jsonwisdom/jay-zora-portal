@@ -1,0 +1,187 @@
+{
+  "artifact": "ZORA_WISDOM_FAMILY_REGISTRY_V0_1",
+  "version": "0.1",
+  "status": "DRAFT_REVIEW_OPEN",
+  "purpose": "Route Zora objects into explicit Wisdom Family, Goblin, BoxDee, and synthetic visual-intelligence lanes without converting names, symbols, market activity, or story similarity into identity or canon.",
+  "source_priority": ["ZORA_SDK", "ZORA_REST", "GITHUB_CANON", "ZORA_HTML_WITNESS", "USER_SUPPLIED_CANDIDATE"],
+  "identity_roots": {
+    "operator_labels": ["jaywisdom.eth", "jaywisdom.base.eth", "@jaywisdom"],
+    "referrer_parameter_candidate": "0x829adfedbe565f9885a7ea6bc78912acaef055e2",
+    "rule": "LABEL_OR_REFERRER != WALLET_CONTROL_PROOF != LEGAL_IDENTITY"
+  },
+  "role_definitions": {
+    "BOXDEE": {
+      "class": "PERSPECTIVE_REPLAY_ROLE",
+      "functions": ["FREEZE_ORIGINAL", "ROUTE", "REVERSE_REPLAY", "FORWARD_REPLAY", "COMPARE_SURFACES"],
+      "authority": false,
+      "signing": false,
+      "publishing": false
+    },
+    "GRAY_BABY": {
+      "class": "GAP_DETECTOR",
+      "functions": ["NOTICE_WEIRD_THING", "EXPOSE_GAP", "PRESERVE_UNKNOWN", "BLOCK_FAKE_GREEN"],
+      "authority": false
+    },
+    "LEAHPRIME187": {
+      "class": "SYNTHETIC_187TH_VISUAL_INTELLIGENCE_REVIEWER",
+      "functions": ["EXPLAIN_VISIBLE_EVIDENCE", "SEPARATE_METADATA_FROM_IMAGE", "TRANSLATE_TECHNICAL_CONTEXT", "ROUTE_TO_SOURCE_REVIEW"],
+      "real_person": false,
+      "military_officer": false,
+      "command_authority": false,
+      "identity_inference": false,
+      "rank_inference": false,
+      "affiliation_inference_from_pixels": false
+    },
+    "DEEZER187": {
+      "class": "SYNTHETIC_187TH_CONTINUITY_REVIEWER",
+      "functions": ["STORY_CONTINUITY", "PUBLIC_PERSONAL_PRIVATE_LANE_CHECK", "VISUAL_SEQUENCE_CHECK", "ASK_WHAT_SURVIVES_REPLAY"],
+      "real_person_binding": false,
+      "clearance_claim": false,
+      "military_authority": false,
+      "identity_inference": false
+    }
+  },
+  "explicit_contract_routes": [
+    {
+      "registry_id": "NODE8_PROFILE_COIN_V0_1",
+      "contract": "0x4c461cffb0600e3f4c9756907caae9c525fa3399",
+      "family_class": "WISDOM_FAMILY_CONTEXT",
+      "label": "NODE8",
+      "state": "SOURCE_BOUND_PROFILE_SNAPSHOT",
+      "cross_repo_refs": ["jsonwisdom/HEIDEE:joyspace/2.0/family/external_nodes/zora_story_intel_nodes_v0_1.json"]
+    },
+    {
+      "registry_id": "DEEZER_COIN_V0_1",
+      "contract": "0x4bf1a3993d635b7593ebe3f5742e07b91442a692",
+      "family_class": "WISDOM_FAMILY_CONTEXT",
+      "label": "DEEZER",
+      "state": "RECEIPT_BOUND_OPERATOR_ASSERTED_CHAIN_VERIFICATION",
+      "reviewers": ["DEEZER187", "GRAY_BABY", "BOXDEE"],
+      "cross_repo_refs": [
+        "jsonwisdom/JOY:FAMILY/receipts/DEEZER_MINT_V0_1.md",
+        "jsonwisdom/JOY:FAMILY/receipts/DEEZER_MINT_ONCHAIN_VERIFICATION_ASSERTION_V0_1.md"
+      ]
+    },
+    {
+      "registry_id": "SOPHIA_CANDIDATE_V0_1",
+      "contract": "0x4abff5a53301b7fb363ffd2c4ab0cd03ff79ecde",
+      "family_class": "WISDOM_FAMILY_CONTEXT",
+      "label": "SOPHIA",
+      "state": "HOLD_PENDING_ZORA_READBACK",
+      "cross_repo_refs": ["jsonwisdom/JOY:docs/SOPHIA_WISDOM_BRANCH.md"]
+    },
+    {
+      "registry_id": "BOXDEE_CANDIDATE_V0_1",
+      "contract": "0x282f132e8e77a72555b5f1d681243886ceffe94c",
+      "family_class": "BOXDEE_PERSPECTIVE",
+      "label": "BoxDee",
+      "state": "HOLD_PENDING_ZORA_READBACK",
+      "reviewers": ["BOXDEE", "GRAY_BABY"],
+      "cross_repo_refs": ["jsonwisdom/HEIDEE:joyspace/2.0/family/external_nodes/boxdee_leahprime_zora_cluster_v0_1.json"]
+    },
+    {
+      "registry_id": "LEAHPRIME_CANDIDATE_001",
+      "contract": "0xadfdb7a4ef2b892b14200a3cb4c17bcc9aed38c3",
+      "family_class": "LEAHPRIME187_SYNTHETIC",
+      "label": "LeahPrime candidate 001",
+      "state": "HOLD_PENDING_ZORA_READBACK",
+      "reviewers": ["LEAHPRIME187", "GRAY_BABY", "BOXDEE"]
+    },
+    {
+      "registry_id": "LEAHPRIME_CANDIDATE_002",
+      "contract": "0x8535c78da6b0c2b6c8b242a65d20bdb50e3599ab",
+      "family_class": "LEAHPRIME187_SYNTHETIC",
+      "label": "LeahPrime candidate 002",
+      "state": "HOLD_PENDING_ZORA_READBACK",
+      "reviewers": ["LEAHPRIME187", "GRAY_BABY", "BOXDEE"]
+    },
+    {
+      "registry_id": "LEAHPRIME_CANDIDATE_003",
+      "contract": "0x6ec1e70ce1486b6e5386388eadebec747021a77f",
+      "family_class": "LEAHPRIME187_SYNTHETIC",
+      "label": "LeahPrime candidate 003",
+      "state": "HOLD_PENDING_ZORA_READBACK",
+      "reviewers": ["LEAHPRIME187", "GRAY_BABY", "BOXDEE"]
+    },
+    {
+      "registry_id": "LEAHPRIME_CANDIDATE_004",
+      "contract": "0x54022649f1f6427e1aeea0a1c7c03f472c787044",
+      "family_class": "LEAHPRIME187_SYNTHETIC",
+      "label": "LeahPrime candidate 004",
+      "state": "HOLD_PENDING_ZORA_READBACK",
+      "reviewers": ["LEAHPRIME187", "GRAY_BABY", "BOXDEE"]
+    },
+    {
+      "registry_id": "JOYSPACE_CANDIDATE_03271",
+      "contract": "0x03271a72d017af1c2deff57aa7e4ab6133484ff5",
+      "family_class": "WISDOM_FAMILY_CONTEXT",
+      "label": "JoySpace candidate",
+      "state": "HOLD_PENDING_ZORA_READBACK"
+    },
+    {
+      "registry_id": "BOSSBRAE_REVERSE_REPLAY_CANDIDATE",
+      "contract": "0x20c1b5b07155eb818c4a8f6d22905bad6bf1a114",
+      "family_class": "WISDOM_FAMILY_CONTEXT",
+      "label": "BossBrae reverse replay candidate",
+      "state": "HOLD_PENDING_ZORA_READBACK",
+      "reviewers": ["GRAY_BABY", "LEAHPRIME187", "DEEZER187", "BOXDEE"]
+    },
+    {
+      "registry_id": "GOBLIN_UNMEASURED_VIRTUE",
+      "contract": "0x538349fb65efe8ec403cbeb6a6bf1599c8401fc8",
+      "family_class": "GOBLIN_STORY_FAMILY",
+      "label": "Goblin Court: The Unmeasured Virtue",
+      "state": "OBSERVED_IN_NORMALIZED_INVENTORY",
+      "reviewers": ["GRAY_BABY", "BOXDEE"]
+    },
+    {
+      "registry_id": "GOBLIN_COURT_NODE8",
+      "contract": "0x558b75ae2de754caa72d4b195a0c04c8cf279e55",
+      "family_class": "GOBLIN_STORY_FAMILY",
+      "label": "GOBLINCOURT",
+      "state": "OBSERVED_IN_PROFILE_SNAPSHOT",
+      "reviewers": ["GRAY_BABY", "BOXDEE"]
+    },
+    {
+      "registry_id": "GOBLIN_CORRUPTED_SIBLING",
+      "contract": "0xefcd65e324bef01d4d5cbe1fac228551ad6981b7",
+      "family_class": "GOBLIN_STORY_FAMILY",
+      "label": "CASE 001: The Corrupted Sibling",
+      "state": "OBSERVED_IN_PROFILE_SNAPSHOT",
+      "reviewers": ["GRAY_BABY", "BOXDEE"]
+    },
+    {
+      "registry_id": "COURT_V9_PROOF_OVER_NARRATIVE",
+      "contract": "0x54de155e9139ddb6353d0acbb611477775424bb8",
+      "family_class": "GOBLIN_STORY_FAMILY",
+      "label": "COURT V9: Proof Over Narrative",
+      "state": "OBSERVED_IN_NORMALIZED_INVENTORY",
+      "reviewers": ["GRAY_BABY", "BOXDEE"]
+    },
+    {
+      "registry_id": "MEME_COURT_SPLIT_VERDICT",
+      "contract": "0x4e3804e4e3328fea77cae22cbfc841655bec1cb7",
+      "family_class": "GOBLIN_STORY_FAMILY",
+      "label": "MEME COURT — SPLIT VERDICT",
+      "state": "OBSERVED_IN_NORMALIZED_INVENTORY",
+      "reviewers": ["GRAY_BABY", "BOXDEE"]
+    }
+  ],
+  "discovery_candidate_keywords": {
+    "GOBLIN_STORY_FAMILY": ["goblin", "court", "receipt", "verdict", "proof over narrative"],
+    "LEAHPRIME187_SYNTHETIC": ["187th", "dannelly", "f-35", "fighter wing", "alabama air national guard"],
+    "DEEZER187_SYNTHETIC": ["deezer187", "continuity", "public personal private"],
+    "BOXDEE_PERSPECTIVE": ["boxdee", "reverse replay", "perspective"]
+  },
+  "discovery_rule": "KEYWORD_MATCH = CANDIDATE_ONLY; IT MAY NOT CREATE IDENTITY, FAMILY MEMBERSHIP, EXTERNAL FACT, OR CANON",
+  "canon_policy": {
+    "requires_explicit_zora_object_binding": true,
+    "requires_git_commit": true,
+    "requires_source_receipt": true,
+    "allows_title_to_path_mapping": false,
+    "allows_symbol_to_path_mapping": false,
+    "allows_market_metric_promotion": false,
+    "duplicate_active_binding": "CONFLICT_FAIL_CLOSED"
+  },
+  "authority_created": false
+}

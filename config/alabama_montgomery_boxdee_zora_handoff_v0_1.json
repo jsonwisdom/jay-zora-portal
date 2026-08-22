@@ -1,0 +1,107 @@
+{
+  "artifact": "ALABAMA_MONTGOMERY_BOXDEE_ZORA_HANDOFF_V0_1",
+  "version": "0.1",
+  "status": "DRAFT_REVIEW_OPEN",
+  "purpose": "Bind the Alabama Montgomery BoxDee visual-intelligence artifact into Zero Trust Zora as a human-approved publication candidate while preserving Mildenhall as a separate Zora object readback candidate.",
+  "source_priority": ["GITHUB_CANON_CANDIDATE", "DRIVE_VISUAL_RECEIPT", "ZORA_SDK", "ZORA_REST", "ZORA_HTML_WITNESS"],
+  "alabama_source": {
+    "repository": "jsonwisdom/AL",
+    "ref": "agent/alabama-boxdee-montgomery-visual-intel-v0-1",
+    "commit_sha": "e324f6d935889e15451a21ea7fba1e2b6e7d88c2",
+    "manifest_path": "ALMS/visual_intel/alabama_boxdee_montgomery_v0_1/manifest.json",
+    "replay_schema_path": "ALMS/visual_intel/alabama_boxdee_montgomery_v0_1/maxwell_dannelly_replay.schema.json"
+  },
+  "montgomery_publication_candidate": {
+    "candidate_id": "ALABAMA_MONTGOMERY_BOXDEE_VISUAL_V0_1",
+    "class": "VISUAL_INTELLIGENCE_PUBLICATION_CANDIDATE",
+    "drive_file_id": "1uQIpmhQWcPJMVOl2PbedPt6z1-ppFRpm",
+    "visual_sha256": "b0548ed2bb29d8fcc1915aaead844ae6c67815f36f129134022575462dd8207f",
+    "semantic_scope": ["ALABAMA", "MONTGOMERY", "MAXWELL", "AIR_UNIVERSITY", "DANNELLY", "187FW", "BOXDEE"],
+    "reviewers": ["BOXDEE", "LEAHPRIME187", "GRAY_BABY"],
+    "state": "RECEIPT_BOUND_VISUAL_AWAITING_HUMAN_ZORA_PUBLICATION",
+    "human_publication_required": true,
+    "agent_publish_authorized": false,
+    "agent_sign_authorized": false,
+    "agent_trade_authorized": false,
+    "contract_address": null,
+    "post_publication_state_transition": "PUBLISHED_UNBOUND -> SDK_READBACK_PENDING",
+    "promotion_gate": [
+      "ZORA_SDK_OR_REST_READBACK",
+      "CHAIN_ID_CAPTURE",
+      "CONTRACT_ADDRESS_CAPTURE",
+      "NAME_SYMBOL_DESCRIPTION_CAPTURE",
+      "CREATOR_ADDRESS_OBSERVATION",
+      "CREATOR_PROFILE_OBSERVATION_IF_AVAILABLE",
+      "TOKEN_URI_OR_MEDIA_CAPTURE_IF_AVAILABLE",
+      "RAW_RESPONSE_HASH_OR_EQUIVALENT_RECEIPT",
+      "EXPLICIT_ZORA_OBJECT_BINDING",
+      "DRIFT_CHECK"
+    ]
+  },
+  "mildenhall_readback_candidate": {
+    "candidate_id": "MILDENHALL_ART_BOX_D_V0_1",
+    "class": "EXISTING_ZORA_OBJECT_READBACK_CANDIDATE",
+    "network": "base",
+    "chain_id": 8453,
+    "contract_address": "0x04ea9a5650470f06a6b09cb31ede50fbb0667f95",
+    "supplied_url": "https://zora.co/coin/base:0x04ea9a5650470f06a6b09cb31ede50fbb0667f95?referrer=0x829adfedbe565f9885a7ea6bc78912acaef055e2",
+    "state": "HOLD_PENDING_STRUCTURED_ZORA_READBACK",
+    "semantic_label": "Mildenhall Art Box D",
+    "label_source": "USER_SUPPLIED",
+    "label_is_metadata_proof": false,
+    "reviewers": ["BOXDEE", "GRAY_BABY"]
+  },
+  "maxwell_dannelly_rule": {
+    "maxwell_lane": "EDUCATION_RESEARCH_DOCTRINE_DECISION_CONTEXT",
+    "dannelly_lane": "ALABAMA_ANG_OPERATIONAL_READINESS_CONTEXT",
+    "cross_lane_inference_allowed": false,
+    "relationship_claim_requires": ["EXPLICIT_CLAIM", "SOURCE", "RECEIPT", "JURISDICTION_OR_ORG_EDGE", "REPLAY"]
+  },
+  "synthetic_interfaces": {
+    "LEAHPRIME187": {
+      "real_person": false,
+      "military_officer": false,
+      "command_authority": false,
+      "role": "EXPLAIN_TRANSLATE_ROUTE_TO_SOURCE_REVIEW"
+    },
+    "LIVING_LEEANN_LEAHPRIME": {
+      "real_person_binding": false,
+      "rank_claim": false,
+      "authority": false
+    },
+    "GENERAL_LEEANN_SECONDARY": {
+      "real_person_binding": false,
+      "rank_claim": false,
+      "military_authority": false,
+      "authority": false
+    },
+    "GRAY_BABY": {
+      "role": "GAP_DETECTOR_NO_FAKE_GREEN",
+      "authority": false
+    }
+  },
+  "canon_policy": {
+    "visual_can_be_canon_for_its_own_bytes": true,
+    "visual_can_prove_external_military_fact": false,
+    "zora_publication_creates_external_truth": false,
+    "zora_publication_creates_canon_binding": false,
+    "requires_explicit_object_binding": true,
+    "requires_git_commit": true,
+    "requires_source_receipt": true,
+    "market_metrics_imply_quality": false
+  },
+  "invariants": [
+    "MILDENHALL = HISTORY_DELTA_BOX",
+    "MONTGOMERY = ALABAMA_INTELLIGENCE_BOX",
+    "ART != SOURCE",
+    "IMAGE != AUTHORITY",
+    "PUBLICATION != CANON",
+    "ZORA_OBJECT != EXTERNAL_FACT",
+    "BOXDEE != COMMAND",
+    "LEAHPRIME187 != REAL_PERSON",
+    "GENERAL_LEEANN_SECONDARY != MILITARY_RANK",
+    "MAXWELL_LANE != DANNELLY_LANE",
+    "AUTHORITY_CREATED = FALSE"
+  ],
+  "authority_created": false
+}

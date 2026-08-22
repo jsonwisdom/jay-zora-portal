@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jsonwisdom.github.io/jay-zora-portal/schemas/zero-trust-zora/v0.2/visual_intel_record.schema.json",
+  "title": "Zero Trust Zora VisualIntelRecord v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "object_key",
+    "observed_at",
+    "source",
+    "routing",
+    "visual_observation",
+    "role_outputs",
+    "canon_state",
+    "authority_created"
+  ],
+  "properties": {
+    "schema_version": { "const": "zero-trust-zora.visual-intel-record.v0.2" },
+    "record_id": { "type": "string", "minLength": 1 },
+    "object_key": { "type": "string", "pattern": "^eip155:[0-9]+/erc20:0x[a-f0-9]{40}$" },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chain_id", "contract_address", "zora_url", "source_type"],
+      "properties": {
+        "chain_id": { "type": "integer", "minimum": 1 },
+        "contract_address": { "type": "string", "pattern": "^0x[a-f0-9]{40}$" },
+        "zora_url": { "type": "string", "format": "uri" },
+        "source_type": { "type": "string", "enum": ["ZORA_SDK", "ZORA_REST", "ZORA_HTML_WITNESS", "USER_SUPPLIED_CANDIDATE"] },
+        "raw_response_sha256": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" },
+        "title": { "type": ["string", "null"] },
+        "symbol": { "type": ["string", "null"] },
+        "creator_address": { "type": ["string", "null"], "pattern": "^0x[a-f0-9]{40}$" },
+        "creator_profile_handle": { "type": ["string", "null"] },
+        "created_at": { "type": ["string", "null"], "format": "date-time" },
+        "image_uri": { "type": ["string", "null"] },
+        "image_sha256": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "routing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family_class", "route_basis", "route_state"],
+      "properties": {
+        "family_class": {
+          "type": "string",
+          "enum": [
+            "WISDOM_FAMILY_CONTEXT",
+            "GOBLIN_STORY_FAMILY",
+            "BOXDEE_PERSPECTIVE",
+            "LEAHPRIME187_SYNTHETIC",
+            "DEEZER187_SYNTHETIC",
+            "OTHER_DISCOVERY_CANDIDATE"
+          ]
+        },
+        "route_basis": { "type": "string", "enum": ["EXPLICIT_CONTRACT_REGISTRY", "DISCOVERY_KEYWORD_CANDIDATE", "USER_SUPPLIED_CANDIDATE", "UNROUTED"] },
+        "route_state": { "type": "string", "enum": ["BOUND", "CANDIDATE", "HOLD", "CONFLICT"] },
+        "registry_id": { "type": ["string", "null"] },
+        "cross_repo_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+      }
+    },
+    "visual_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "visible_text", "scene_elements", "layout_signals", "uncertainties", "identity_inference_performed"],
+      "properties": {
+        "status": { "type": "string", "enum": ["OBSERVED", "NO_IMAGE", "UNREADABLE", "MODEL_ERROR", "HOLD"] },
+        "visible_text": { "type": "array", "items": { "type": "string" } },
+        "scene_elements": { "type": "array", "items": { "type": "string" } },
+        "layout_signals": { "type": "array", "items": { "type": "string" } },
+        "style_signals": { "type": "array", "items": { "type": "string" } },
+        "uncertainties": { "type": "array", "items": { "type": "string" } },
+        "identity_inference_performed": { "const": false },
+        "affiliation_inference_performed": { "const": false },
+        "rank_inference_performed": { "const": false }
+      }
+    },
+    "role_outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gray_baby", "leahprime187", "deezer187", "boxdee"],
+      "properties": {
+        "gray_baby": { "$ref": "#/$defs/roleOutput" },
+        "leahprime187": { "$ref": "#/$defs/roleOutput" },
+        "deezer187": { "$ref": "#/$defs/roleOutput" },
+        "boxdee": { "$ref": "#/$defs/roleOutput" }
+      }
+    },
+    "canon_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "promotion_allowed", "reason"],
+      "properties": {
+        "state": { "type": "string", "enum": ["UNBOUND", "CANDIDATE", "HOLD", "CONFLICT", "CANON_BINDING_PRESENT"] },
+        "promotion_allowed": { "type": "boolean" },
+        "binding_id": { "type": ["string", "null"] },
+        "reason": { "type": "string" }
+      }
+    },
+    "market_metrics_imply_quality": { "const": false },
+    "story_implies_external_fact": { "const": false },
+    "authority_created": { "const": false }
+  },
+  "$defs": {
+    "roleOutput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "observations", "claims_promoted", "authority"],
+      "properties": {
+        "status": { "type": "string", "enum": ["PASS", "HOLD", "CONFLICT", "REJECT", "NOT_APPLICABLE"] },
+        "observations": { "type": "array", "items": { "type": "string" } },
+        "questions": { "type": "array", "items": { "type": "string" } },
+        "claims_promoted": { "const": 0 },
+        "authority": { "const": false }
+      }
+    }
+  }
+}

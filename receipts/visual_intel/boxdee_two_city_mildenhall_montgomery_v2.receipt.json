@@ -1,0 +1,29 @@
+{
+  "artifact": "BOXDEE_TWO_CITY_MILDENHALL_MONTGOMERY_V2",
+  "version": "2.0",
+  "semantic_class": "VISUAL_INTELLIGENCE_SCHEMATIC_NOT_SOURCE_PROOF",
+  "sha256": "b38cc3c2e7eb5623592c75499c0b4c39ce312f52ae85fc4b874500b5087bec3a",
+  "source_repo": "jsonwisdom/AL",
+  "source_branch": "agent/alabama-boxdee-montgomery-visual-intel-v0-1",
+  "source_receipt_path": "ALMS/visual_intel/alabama_boxdee_montgomery_v0_1/two_city_boxdee_render_v2.receipt.json",
+  "mildenhall_route": {
+    "mode": "EXISTING_ZORA_OBJECT_READBACK_CANDIDATE",
+    "contract": "0x04ea9a5650470f06a6b09cb31ede50fbb0667f95",
+    "next_gate": "ZORA_SCOUT_SDK_REST_READBACK"
+  },
+  "montgomery_route": {
+    "mode": "HUMAN_PUBLICATION_CANDIDATE",
+    "contract": null,
+    "next_gate": "HUMAN_ZORA_PUBLICATION_THEN_READBACK"
+  },
+  "canon_policy": {
+    "publication_equals_canon": false,
+    "requires_explicit_zora_object_binding": true,
+    "requires_receipt": true,
+    "requires_drift_check": true
+  },
+  "authority_created": false,
+  "signing_created": false,
+  "trading_created": false,
+  "publishing_created": false
+}

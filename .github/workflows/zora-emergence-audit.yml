@@ -1,0 +1,55 @@
+name: Zora Emergence Audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/zora-wisdom-family-factory-v0-1
+    paths:
+      - data/live_zora_items.json
+      - tools/audit_zora_emergence.mjs
+      - .github/workflows/zora-emergence-audit.yml
+  pull_request:
+    branches:
+      - agent/zero-trust-zora-v2-schemas
+    paths:
+      - data/live_zora_items.json
+      - tools/audit_zora_emergence.mjs
+      - .github/workflows/zora-emergence-audit.yml
+
+permissions:
+  contents: read
+
+jobs:
+  march-april-2025:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run chronology-first emergence audit
+        run: |
+          node tools/audit_zora_emergence.mjs \
+            --input=data/live_zora_items.json \
+            --start=2025-03-31T00:00:00Z \
+            --end=2025-05-01T00:00:00Z \
+            --out-dir=reports/zora-emergence/2025-03-31_2025-04-30
+
+      - name: Print audit summary
+        run: |
+          cat reports/zora-emergence/2025-03-31_2025-04-30/summary.md
+          echo '--- manifest ---'
+          cat reports/zora-emergence/2025-03-31_2025-04-30/manifest.json
+
+      - name: Upload replay artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: zora-emergence-2025-03-31_2025-04-30
+          path: reports/zora-emergence/2025-03-31_2025-04-30/
+          if-no-files-found: error
+          retention-days: 30
