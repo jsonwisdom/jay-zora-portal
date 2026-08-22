@@ -1,0 +1,124 @@
+{
+  "artifact": "ZORA_FLYWHEEL_CORRIDOR_V0_1",
+  "version": "0.1",
+  "status": "DRAFT_REVIEW_OPEN",
+  "purpose": "Create a receipt-bounded, bidirectional corridor between contemporaneous Zora publication chronology and later implementation/replay surfaces without projecting later ontology backward.",
+  "source_bundle": {
+    "repository": "jsonwisdom/jay-zora-portal",
+    "source_ref": "live-zora-ingestion",
+    "source_path": "data/live_zora_items.json",
+    "source_git_blob_sha": "ac448d71b0bb709aba1e7d190a037eeeb4dba413",
+    "source_sha256": "fa6fc9db57163912bd89c7b37e8b4428f79d9e1b251438e10eef03cf72ef1b0c",
+    "csv_path": "exports/jay_zora_inventory.csv",
+    "csv_sha256": "9a21b371c4fdf84a0589dff4fa9324bbd6246ee1d6293be92d7b0c46ea887fdf",
+    "inventory_rows": 857,
+    "unique_contracts": 857,
+    "audit_slice": {
+      "start_inclusive": "2025-03-31T00:00:00Z",
+      "end_exclusive": "2025-05-01T00:00:00Z",
+      "rows": 111,
+      "inventory_index_range": [747, 857]
+    },
+    "manifest_epochs": [
+      {
+        "class": "USER_PROVIDED_SNAPSHOT",
+        "generated_at": "2026-08-03T19:25:58.789208+00:00",
+        "source_commit_sha": "3f0b890db0c45bc5e2212d10cd929f4e9ca99dbc"
+      },
+      {
+        "class": "PR_BRANCH_SNAPSHOT",
+        "generated_at": "2026-08-18T01:37:44.123296+00:00",
+        "source_commit_sha": "c5f5074ed525e57c01f1703e076be18ecc6dd1a9"
+      },
+      {
+        "class": "LIVE_REF_SNAPSHOT",
+        "generated_at": "2026-08-19T02:15:18.375877+00:00",
+        "source_commit_sha": "bad3cc13182ff448d11a4fa792325ab4c1d0b8a8"
+      }
+    ],
+    "byte_continuity": {
+      "source_git_blob_sha_matches": true,
+      "source_sha256_matches": true,
+      "csv_sha256_matches": true,
+      "source_commit_sha_matches": false,
+      "interpretation": "Same observed source bytes survive across multiple manifest-generation epochs; commit pointers remain distinct provenance observations."
+    }
+  },
+  "witness_classes": {
+    "ZORA_PUBLICATION": {
+      "primary_fields": ["created_at", "title", "description", "contract", "zora_url"],
+      "role": "CONTEMPORANEOUS_PUBLIC_EXPRESSION",
+      "cannot_prove": ["LATER_ONTOLOGY_IDENTITY", "EXTERNAL_FACT", "CANON"]
+    },
+    "GIT_IMPLEMENTATION": {
+      "primary_fields": ["repository", "commit_sha", "path", "workflow_run"],
+      "role": "VERSIONED_IMPLEMENTATION_AND_REPLAY",
+      "cannot_prove": ["FIRST_IDEATION_DATE", "EVERY_PRIOR_PUBLIC_EXPRESSION"]
+    },
+    "DRIVE_CONTINUITY": {
+      "primary_fields": ["document_title", "revision", "review_state"],
+      "role": "HUMAN_CONTINUITY_AND_REVIEW_SURFACE",
+      "cannot_prove": ["ONCHAIN_EVENT_BY_ITSELF", "ABSENCE_FROM_SEARCH"]
+    }
+  },
+  "corridor": [
+    "IDEATION_MEMORY",
+    "ZORA_PUBLIC_EXPRESSION",
+    "REPEATED_MOTIF",
+    "NAMED_STORY_SYSTEM",
+    "GIT_IMPLEMENTATION",
+    "RECEIPT_VALIDATION",
+    "LATER_COMPRESSION_LAYER",
+    "REVERSE_REPLAY",
+    "HUMAN_CANON_DECISION"
+  ],
+  "forward_flywheel_binding": "IDEA -> BUILD -> RECEIPT -> REPLAY -> CANON_CANDIDATE -> HUMAN_APPROVED_PUBLICATION -> SDK_READBACK -> DRIFT_CHECK -> SERVICE_EVALUATION -> NEXT_ACTION_PROPOSAL",
+  "reverse_replay_binding": "PUBLICATION_TIMESTAMP -> RAW_LANGUAGE -> REPEATED_MOTIF -> LATER_NAMED_SYSTEM -> IMPLEMENTATION_TIMESTAMP -> RECEIPT -> CORRELATION_TEST",
+  "emergence_execution_receipt": {
+    "workflow": "Zora Emergence Audit",
+    "run_id": 32212486329,
+    "run_number": 4,
+    "head_sha": "06c18fba97f0fadb7b06f88d4499773d5d9ed47a",
+    "conclusion": "success",
+    "artifact_id": 9351213961,
+    "artifact_name": "zora-emergence-2025-03-31_2025-04-30",
+    "artifact_digest": "sha256:017dd79b0093a72edee99a3614d2601c41425f6616749a8760ca424937221b2a",
+    "outputs_sha256": {
+      "posts.jsonl": "8e2f9a6259126e2681375c5862591f7dd26c7a828dbb432008cfc64c12972ed8",
+      "similarity_edges.jsonl": "6e36261465b24794b37abf0b5266732eb875000f085cec208bfdf12fa2cd5062",
+      "clusters.json": "bbf35431775a7ce51b409013df2032ee2fabdbc164ae78283276a89e079b7a34",
+      "summary.md": "b7e72cb44be1d94d163dd739aba14d7cf07f3fdc7b4335543ad982b1cbe1425e"
+    },
+    "slice_rows": 111,
+    "active_days": 20,
+    "lexical_components": 49,
+    "similarity_edges": 94,
+    "modern_taxonomy_injected": false,
+    "semantic_cluster_names_assigned": false
+  },
+  "gates": {
+    "source_inventory_integrity": "PASS",
+    "narrow_slice_integrity": "PASS",
+    "workflow_execution_receipt": "PASS_OBSERVED",
+    "machine_clusters_vs_manual_chronology": "HOLD_PENDING_COMPARISON",
+    "open_may_2025": "BLOCKED_UNTIL_COMPARISON",
+    "modern_ontology_correlation": "DOWNSTREAM_ONLY",
+    "full_causal_lineage": "HOLD",
+    "canon_promoted": false
+  },
+  "invariants": [
+    "COMPLETE_FOR_SOURCE_FILE != EVERY_HISTORICAL_ZORA_POST",
+    "EARLIEST_IN_SOURCE != PROVEN_FIRST_ZORA_POST_EVER",
+    "POST != CLAIM",
+    "CONTRACT != CANON",
+    "PUBLICATION != EXTERNAL_FACT",
+    "FUNCTIONAL_RESEMBLANCE != CAUSAL_DESCENT",
+    "DRIVE_SEARCH_MISS != HISTORICAL_ABSENCE",
+    "ENDPOINT_ONLY_GIT_HISTORY != IDEATION_CHRONOLOGY",
+    "REPLAY_MAY_FIND_ANCESTRY_DRIFT_OR_COINCIDENCE",
+    "REPLAY_MAY_NOT_INVENT_CAUSATION",
+    "AUTHORITY_CREATED = FALSE"
+  ],
+  "authority_created": false,
+  "canon_promoted": false
+}

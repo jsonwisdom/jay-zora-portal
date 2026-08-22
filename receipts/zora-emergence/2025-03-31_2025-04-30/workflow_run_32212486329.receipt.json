@@ -1,0 +1,47 @@
+{
+  "schema": "ZORA_EMERGENCE_WORKFLOW_RECEIPT_V0_1",
+  "interval": {
+    "start": "2025-03-31T00:00:00Z",
+    "end_exclusive": "2025-05-01T00:00:00Z"
+  },
+  "source": {
+    "path": "data/live_zora_items.json",
+    "sha256": "fa6fc9db57163912bd89c7b37e8b4428f79d9e1b251438e10eef03cf72ef1b0c",
+    "inventory_rows": 857,
+    "slice_rows": 111
+  },
+  "github": {
+    "repository": "jsonwisdom/jay-zora-portal",
+    "workflow": "Zora Emergence Audit",
+    "run_id": 32212486329,
+    "run_number": 4,
+    "head_branch": "agent/zora-wisdom-family-factory-v0-1",
+    "head_sha": "06c18fba97f0fadb7b06f88d4499773d5d9ed47a",
+    "conclusion": "success"
+  },
+  "artifact": {
+    "artifact_id": 9351213961,
+    "name": "zora-emergence-2025-03-31_2025-04-30",
+    "digest": "sha256:017dd79b0093a72edee99a3614d2601c41425f6616749a8760ca424937221b2a",
+    "outputs_sha256": {
+      "posts.jsonl": "8e2f9a6259126e2681375c5862591f7dd26c7a828dbb432008cfc64c12972ed8",
+      "similarity_edges.jsonl": "6e36261465b24794b37abf0b5266732eb875000f085cec208bfdf12fa2cd5062",
+      "clusters.json": "bbf35431775a7ce51b409013df2032ee2fabdbc164ae78283276a89e079b7a34",
+      "summary.md": "b7e72cb44be1d94d163dd739aba14d7cf07f3fdc7b4335543ad982b1cbe1425e"
+    }
+  },
+  "machine_summary": {
+    "active_days": 20,
+    "lexical_components": 49,
+    "similarity_edges": 94,
+    "modern_taxonomy_injected": false,
+    "semantic_cluster_names_assigned": false
+  },
+  "disposition": {
+    "workflow_execution_receipt": "PASS_OBSERVED",
+    "machine_manual_comparison": "HOLD_PENDING_COMPARISON",
+    "full_causal_lineage": "HOLD",
+    "canon_promoted": false
+  },
+  "authority_created": false
+}
