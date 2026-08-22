@@ -18,7 +18,8 @@ if (process.env.ZORA_API_KEY) {
  * - HALF_OPEN: allow one probe; success closes, failure re-opens
  */
 class CircuitBreaker {
-  constructor(opts = {}) {
+  constructor(name, opts = {}) {
+    this.name = name || "default";
     this.failureThreshold = opts.failureThreshold ?? 5;
     this.resetTimeoutMs = opts.resetTimeoutMs ?? 30_000;
     this.successThreshold = opts.successThreshold ?? 1;
@@ -33,6 +34,7 @@ class CircuitBreaker {
     console.log(
       JSON.stringify({
         event,
+        breaker: this.name,
         state: this.state,
         failure_count: this.failureCount,
         success_count: this.successCount,
@@ -97,6 +99,95 @@ class CircuitBreaker {
         reason: String(err?.message || err || "threshold_reached").slice(0, 120),
       });
     }
+  }
+
+  reset() {
+    this.state = "CLOSED";
+    this.failureCount = 0;
+    this.successCount = 0;
+    this.openedAt = null;
+    this._log("circuit_reset");
+  }
+
+  snapshot() {
+    return {
+      name: this.name,
+      state: this.state,
+      failure_count: this.failureCount,
+      success_count: this.successCount,
+      opened_at: this.openedAt,
+      failure_threshold: this.failureThreshold,
+      reset_timeout_ms: this.resetTimeoutMs,
+    };
+  }
+}
+
+/**
+ * Bulk circuit breaker registry.
+ * Independent named breakers; shared default options; bulk snapshot/reset.
+ */
+class BulkCircuitBreakers {
+  constructor(defaultOpts = {}) {
+    this.defaultOpts = {
+      failureThreshold:
+        defaultOpts.failureThreshold ??
+        Number(process.env.CB_FAILURE_THRESHOLD || 5),
+      resetTimeoutMs:
+        defaultOpts.resetTimeoutMs ??
+        Number(process.env.CB_RESET_TIMEOUT_MS || 30_000),
+      successThreshold:
+        defaultOpts.successThreshold ??
+        Number(process.env.CB_SUCCESS_THRESHOLD || 1),
+    };
+    this.breakers = new Map();
+  }
+
+  /** Get or lazily create a named breaker. */
+  get(name, opts = {}) {
+    if (!this.breakers.has(name)) {
+      this.breakers.set(
+        name,
+        new CircuitBreaker(name, { ...this.defaultOpts, ...opts })
+      );
+    }
+    return this.breakers.get(name);
+  }
+
+  /** Snapshot of every registered breaker. */
+  snapshot() {
+    const out = {};
+    for (const [name, breaker] of this.breakers) {
+      out[name] = breaker.snapshot();
+    }
+    return out;
+  }
+
+  /** Force-reset one breaker. */
+  reset(name) {
+    const breaker = this.breakers.get(name);
+    if (breaker) breaker.reset();
+  }
+
+  /** Force-reset all breakers. */
+  resetAll() {
+    for (const breaker of this.breakers.values()) {
+      breaker.reset();
+    }
+  }
+
+  /** True if any breaker is currently OPEN. */
+  anyOpen() {
+    for (const breaker of this.breakers.values()) {
+      if (breaker.state === "OPEN") return true;
+    }
+    return false;
+  }
+
+  /** Names of breakers currently OPEN. */
+  openNames() {
+    return [...this.breakers.values()]
+      .filter((b) => b.state === "OPEN")
+      .map((b) => b.name);
   }
 }
 
@@ -181,9 +272,10 @@ async function protectedCall(breaker, fn) {
       breaker.resetTimeoutMs - (Date.now() - (breaker.openedAt || 0))
     );
     const err = new Error(
-      `CircuitBreaker OPEN — failing fast (retry in ~${Math.ceil(waitMs / 1000)}s)`
+      `CircuitBreaker[${breaker.name}] OPEN — failing fast (retry in ~${Math.ceil(waitMs / 1000)}s)`
     );
     err.code = "CIRCUIT_OPEN";
+    err.breaker = breaker.name;
     throw err;
   }
 
@@ -250,11 +342,16 @@ function normalizeNode(node) {
   };
 }
 
-const breaker = new CircuitBreaker({
-  failureThreshold: Number(process.env.CB_FAILURE_THRESHOLD || 5),
-  resetTimeoutMs: Number(process.env.CB_RESET_TIMEOUT_MS || 30_000),
-  successThreshold: Number(process.env.CB_SUCCESS_THRESHOLD || 1),
-});
+// ---------------------------------------------------------------------------
+// Bulk registry — independent breakers per logical resource
+// ---------------------------------------------------------------------------
+const breakers = new BulkCircuitBreakers();
+
+// Named breakers used by this exporter (extend as more endpoints are added)
+const profileCoinsBreaker = breakers.get("profileCoins");
+// Future examples (lazy-created on first use):
+// const profileBalancesBreaker = breakers.get("profileBalances");
+// const coinHoldersBreaker = breakers.get("coinHolders");
 
 let after = undefined;
 let page = 0;
@@ -264,7 +361,7 @@ let lastResponse = null;
 while (true) {
   page += 1;
 
-  const response = await protectedCall(breaker, () =>
+  const response = await protectedCall(profileCoinsBreaker, () =>
     getProfileCoins({
       identifier,
       count,
@@ -287,7 +384,8 @@ while (true) {
       total_edges: allEdges.length,
       hasNextPage: !!pageInfo.hasNextPage,
       endCursor: pageInfo.endCursor ? "present" : null,
-      circuit_state: breaker.state,
+      circuit_state: profileCoinsBreaker.state,
+      circuits_open: breakers.openNames(),
     })
   );
 
@@ -322,7 +420,8 @@ console.log(
       page_size: count,
       pages: page,
       exported: items.length,
-      circuit_final_state: breaker.state,
+      circuit_final_state: profileCoinsBreaker.state,
+      circuit_snapshot: breakers.snapshot(),
       raw_receipt: "discovery/zora/latest_profile_coins_response.json",
       raw_edges: "discovery/zora/latest_profile_coins_edges.json",
       normalized: "data/live_zora_items.json",
