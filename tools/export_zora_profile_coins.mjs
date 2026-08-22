@@ -10,6 +10,97 @@ if (process.env.ZORA_API_KEY) {
 }
 
 /**
+ * Sequential circuit breaker.
+ * States: CLOSED → OPEN → HALF_OPEN → CLOSED
+ *
+ * - CLOSED: normal operation; consecutive failures increment counter
+ * - OPEN: fail fast until resetTimeoutMs elapses
+ * - HALF_OPEN: allow one probe; success closes, failure re-opens
+ */
+class CircuitBreaker {
+  constructor(opts = {}) {
+    this.failureThreshold = opts.failureThreshold ?? 5;
+    this.resetTimeoutMs = opts.resetTimeoutMs ?? 30_000;
+    this.successThreshold = opts.successThreshold ?? 1;
+
+    this.state = "CLOSED"; // CLOSED | OPEN | HALF_OPEN
+    this.failureCount = 0;
+    this.successCount = 0;
+    this.openedAt = null;
+  }
+
+  _log(event, extra = {}) {
+    console.log(
+      JSON.stringify({
+        event,
+        state: this.state,
+        failure_count: this.failureCount,
+        success_count: this.successCount,
+        ...extra,
+      })
+    );
+  }
+
+  canRequest() {
+    if (this.state === "CLOSED") return true;
+
+    if (this.state === "OPEN") {
+      const elapsed = Date.now() - (this.openedAt || 0);
+      if (elapsed >= this.resetTimeoutMs) {
+        this.state = "HALF_OPEN";
+        this.successCount = 0;
+        this._log("circuit_half_open", { elapsed_ms: elapsed });
+        return true;
+      }
+      return false;
+    }
+
+    // HALF_OPEN: allow the probe
+    return true;
+  }
+
+  recordSuccess() {
+    if (this.state === "HALF_OPEN") {
+      this.successCount += 1;
+      if (this.successCount >= this.successThreshold) {
+        this.state = "CLOSED";
+        this.failureCount = 0;
+        this.successCount = 0;
+        this.openedAt = null;
+        this._log("circuit_closed");
+      }
+      return;
+    }
+
+    // CLOSED: reset consecutive failures on success
+    this.failureCount = 0;
+  }
+
+  recordFailure(err) {
+    this.failureCount += 1;
+
+    if (this.state === "HALF_OPEN") {
+      this.state = "OPEN";
+      this.openedAt = Date.now();
+      this.successCount = 0;
+      this._log("circuit_reopened", {
+        reason: String(err?.message || err || "probe_failed").slice(0, 120),
+      });
+      return;
+    }
+
+    if (this.state === "CLOSED" && this.failureCount >= this.failureThreshold) {
+      this.state = "OPEN";
+      this.openedAt = Date.now();
+      this._log("circuit_opened", {
+        threshold: this.failureThreshold,
+        reason: String(err?.message || err || "threshold_reached").slice(0, 120),
+      });
+    }
+  }
+}
+
+/**
  * Exponential backoff with jitter for rate-limited (and transient) calls.
  * Detects 429 / rate-limit style errors and respects Retry-After when present.
  */
@@ -80,6 +171,32 @@ async function withBackoff(fn, opts = {}) {
   }
 }
 
+/**
+ * Compose circuit breaker + backoff for a single SDK call.
+ */
+async function protectedCall(breaker, fn) {
+  if (!breaker.canRequest()) {
+    const waitMs = Math.max(
+      0,
+      breaker.resetTimeoutMs - (Date.now() - (breaker.openedAt || 0))
+    );
+    const err = new Error(
+      `CircuitBreaker OPEN — failing fast (retry in ~${Math.ceil(waitMs / 1000)}s)`
+    );
+    err.code = "CIRCUIT_OPEN";
+    throw err;
+  }
+
+  try {
+    const result = await withBackoff(fn);
+    breaker.recordSuccess();
+    return result;
+  } catch (err) {
+    breaker.recordFailure(err);
+    throw err;
+  }
+}
+
 function chainName(chainId) {
   if (chainId === 8453) return "base";
   if (chainId === 1) return "ethereum";
@@ -133,6 +250,12 @@ function normalizeNode(node) {
   };
 }
 
+const breaker = new CircuitBreaker({
+  failureThreshold: Number(process.env.CB_FAILURE_THRESHOLD || 5),
+  resetTimeoutMs: Number(process.env.CB_RESET_TIMEOUT_MS || 30_000),
+  successThreshold: Number(process.env.CB_SUCCESS_THRESHOLD || 1),
+});
+
 let after = undefined;
 let page = 0;
 let allEdges = [];
@@ -141,7 +264,7 @@ let lastResponse = null;
 while (true) {
   page += 1;
 
-  const response = await withBackoff(() =>
+  const response = await protectedCall(breaker, () =>
     getProfileCoins({
       identifier,
       count,
@@ -164,6 +287,7 @@ while (true) {
       total_edges: allEdges.length,
       hasNextPage: !!pageInfo.hasNextPage,
       endCursor: pageInfo.endCursor ? "present" : null,
+      circuit_state: breaker.state,
     })
   );
 
@@ -198,6 +322,7 @@ console.log(
       page_size: count,
       pages: page,
       exported: items.length,
+      circuit_final_state: breaker.state,
       raw_receipt: "discovery/zora/latest_profile_coins_response.json",
       raw_edges: "discovery/zora/latest_profile_coins_edges.json",
       normalized: "data/live_zora_items.json",
