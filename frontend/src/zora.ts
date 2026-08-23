@@ -110,11 +110,14 @@ async function getSnapshot(): Promise<Listing[]> {
 
 async function getLiveProfile(): Promise<IndexResult> {
   const { getProfile, getProfileCoins, getProfileBalances } = await getSdk();
-  const [profileResponse, coinsResponse, balanceResponse] = await Promise.all([
+  const [profileResult, coinsResult, balanceResult] = await Promise.allSettled([
     getProfile({ identifier: ZORA_HANDLE }),
     getProfileCoins({ identifier: ZORA_HANDLE, count: 100, chainIds: [8453] }),
     getProfileBalances({ identifier: BASE_WALLET, count: 20 })
   ]);
+  if (profileResult.status !== "fulfilled" || coinsResult.status !== "fulfilled") throw new Error("Zora profile query failed");
+  const profileResponse = profileResult.value;
+  const coinsResponse = coinsResult.value;
   const profile = profileResponse.data?.profile as Record<string, unknown> | undefined;
   const created = profile && isRecord((coinsResponse.data?.profile as Record<string, unknown> | undefined)?.createdCoins)
     ? (coinsResponse.data?.profile as Record<string, Record<string, unknown>>).createdCoins
@@ -122,7 +125,7 @@ async function getLiveProfile(): Promise<IndexResult> {
   const edges = Array.isArray(created?.edges) ? created.edges : [];
   const listings = edges.map((edge) => isRecord(edge) ? sdkListing(edge.node) : null).filter((item): item is Listing => item !== null);
   if (!listings.length) throw new Error("Zora returned no created Base coins");
-  const balances = (balanceResponse.data?.profile as Record<string, unknown> | undefined)?.coinBalances;
+  const balances = balanceResult.status === "fulfilled" ? (balanceResult.value.data?.profile as Record<string, unknown> | undefined)?.coinBalances : undefined;
   return {
     listings,
     sourceState: "OBSERVED",
