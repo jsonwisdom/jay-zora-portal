@@ -1,0 +1,34 @@
+[
+  {
+    "id": "base:0x694ce46c64d9d1a5e9376a9febcf85ec05d72e9f",
+    "name": "JAYWISDOM",
+    "symbol": "jaywisdom",
+    "kind": "coin",
+    "chainId": 8453,
+    "address": "0x694cE46C64D9D1a5e9376A9feBcF85Ec05D72e9F",
+    "creatorAddress": "0x829AdfEdBe565F9885a7eA6Bc78912acAef055E2",
+    "createdAt": "2025-06-20T17:28:21Z",
+    "tokenUri": "ipfs://bafybeibdshmigqm56zayjuhgyiniatzpexmamgoxhfeadhjujmvjspbksa",
+    "sourceState": "SNAPSHOT",
+    "source": "local receipt snapshot",
+    "receipt": {
+      "txHash": "0x49c29d9b305a297c6a754f068fbf8ec4921e5e038b3c037757d99635da477a10",
+      "mediaHash": null
+    }
+  },
+  {
+    "id": "meta-tesla-scope-hold",
+    "name": "Meta Tesla Scope",
+    "symbol": null,
+    "kind": "post",
+    "chainId": 8453,
+    "address": null,
+    "creatorAddress": "0x829AdfEdBe565F9885a7eA6Bc78912acAef055E2",
+    "createdAt": null,
+    "tokenUri": null,
+    "description": "Feature slot preserved. Exact Zora contract, transaction, timestamp, and media receipt still need a source-bound replay.",
+    "sourceState": "HOLD",
+    "source": "local receipt snapshot",
+    "receipt": { "txHash": null, "mediaHash": null }
+  }
+]
