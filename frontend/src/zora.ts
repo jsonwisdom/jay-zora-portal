@@ -1,4 +1,5 @@
 import fallbackListings from "./listings.json";
+import metaTeslaHoldReceipt from "./meta-tesla-evidence-receipt-v1.hold.json";
 
 export type SourceState = "OBSERVED" | "SNAPSHOT" | "HOLD";
 export type ListingKind = "coin" | "post" | "collection" | "contract";
@@ -9,6 +10,30 @@ export type Activity = {
   txHash: string | null;
   sender: string | null;
   amount: string | null;
+};
+
+/** META_TESLA_EVIDENCE_RECEIPT_V1 — typed shape from DEFINE_META_TESLA_EVIDENCE_GATE_V1 */
+export type EvidenceReceiptV1 = {
+  schema: "META_TESLA_EVIDENCE_RECEIPT_V1";
+  object_key: string | null;
+  candidate_label: string;
+  state: "PASS" | "HOLD" | "CONFLICT";
+  retrieved_at_utc: string | null;
+  source_state: SourceState;
+  contract: string | null;
+  creation_tx: string | null;
+  block_number: number | null;
+  block_timestamp_utc: string | null;
+  token_uri: string | null;
+  media_uri: string | null;
+  media_sha256: string | null;
+  creator_address: string | null;
+  payout_recipient: string | null;
+  zora_url: string | null;
+  independent_witness_url: string | null;
+  holds: string[];
+  conflicts: string[];
+  notes?: string;
 };
 
 export type Listing = {
@@ -26,6 +51,7 @@ export type Listing = {
   sourceState: SourceState;
   source: string;
   receipt: { txHash: string | null; mediaHash: string | null };
+  evidenceReceipt?: EvidenceReceiptV1;
   raw?: Record<string, unknown>;
 };
 
@@ -39,6 +65,10 @@ export type IndexResult = {
 export const ZORA_HANDLE = "jaywisdom";
 export const BASE_WALLET = "0x829AdfEdBe565F9885a7eA6Bc78912acAef055E2";
 export const JAYWISDOM_COIN = "0x694cE46C64D9D1a5e9376A9feBcF85Ec05D72e9F";
+export const META_TESLA_HOLD_ID = "meta-tesla-scope-hold";
+
+/** Static HOLD fixture — never invents missing edges */
+export const META_TESLA_HOLD_RECEIPT = metaTeslaHoldReceipt as EvidenceReceiptV1;
 
 type CoinsSdk = {
   getProfile: (params: Record<string, unknown>) => Promise<any>;
@@ -65,6 +95,13 @@ const number = (record: Record<string, unknown>, key: string, fallback = 8453): 
 function safeUrl(uri: string | null) {
   if (!uri) return null;
   return uri.startsWith("ipfs://") ? `https://ipfs.io/ipfs/${uri.slice(7)}` : uri;
+}
+
+function attachHoldEvidence(listing: Listing): Listing {
+  if (listing.id === META_TESLA_HOLD_ID || listing.name === "Meta Tesla Scope") {
+    return { ...listing, evidenceReceipt: META_TESLA_HOLD_RECEIPT };
+  }
+  return listing;
 }
 
 function sdkListing(input: unknown): Listing | null {
@@ -141,11 +178,16 @@ async function getLiveProfile(): Promise<IndexResult> {
 }
 
 export async function loadIndex(): Promise<IndexResult> {
-  const local = fallbackListings as Listing[];
+  const local = (fallbackListings as Listing[]).map(attachHoldEvidence);
   let snapshot: Listing[] = [];
-  try { snapshot = await getSnapshot(); } catch { /* local snapshot is intentionally available offline */ }
-  try { return await getLiveProfile(); }
-  catch (error) {
+  try { snapshot = (await getSnapshot()).map(attachHoldEvidence); } catch { /* local snapshot is intentionally available offline */ }
+  try {
+    const live = await getLiveProfile();
+    // Preserve the local Meta Tesla HOLD slot even when live profile succeeds
+    const hasMeta = live.listings.some((l) => l.id === META_TESLA_HOLD_ID || l.name === "Meta Tesla Scope");
+    const listings = hasMeta ? live.listings.map(attachHoldEvidence) : [...live.listings, ...local.filter((l) => l.id === META_TESLA_HOLD_ID)];
+    return { ...live, listings };
+  } catch (error) {
     const listings = snapshot.length ? snapshot : local;
     return {
       listings,
@@ -157,7 +199,10 @@ export async function loadIndex(): Promise<IndexResult> {
 }
 
 export async function loadReceipt(listing: Listing): Promise<{ listing: Listing; activity: Activity[] }> {
-  if (!listing.address) return { listing, activity: [] };
+  // HOLD evidence fixture is already attached; do not invent live data for null-address objects
+  if (!listing.address) {
+    return { listing: attachHoldEvidence(listing), activity: [] };
+  }
   const { getCoin, getCoinSwaps } = await getSdk();
   const [coinResult, swapsResult] = await Promise.allSettled([
     getCoin({ address: listing.address, chain: 8453 }),
