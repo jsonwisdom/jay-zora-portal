@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jsonwisdom.github.io/jay-zora-portal/schemas/zero-trust-zora/v0.2/flywheel_cycle.schema.json",
+  "title": "Zero Trust Zora FlywheelCycle v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "cycle_id",
+    "opened_at",
+    "subject_id",
+    "current_state",
+    "transitions",
+    "agent_authority",
+    "side_effect_policy",
+    "authority_created"
+  ],
+  "properties": {
+    "schema_version": { "const": "zero-trust-zora.flywheel-cycle.v0.2" },
+    "cycle_id": { "type": "string", "minLength": 1 },
+    "opened_at": { "type": "string", "format": "date-time" },
+    "closed_at": { "type": ["string", "null"], "format": "date-time" },
+    "subject_id": { "type": "string", "minLength": 1 },
+    "zora_object_binding_id": { "type": ["string", "null"] },
+    "current_state": { "$ref": "#/$defs/state" },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["transition_id", "from", "to", "actor_type", "event_id"],
+        "properties": {
+          "transition_id": { "type": "string", "minLength": 1 },
+          "from": { "$ref": "#/$defs/state" },
+          "to": { "$ref": "#/$defs/state" },
+          "actor_type": {
+            "type": "string",
+            "enum": ["HUMAN", "AGENT_PROPOSER", "DETERMINISTIC_RUNTIME", "EXTERNAL_OBSERVER"]
+          },
+          "event_id": { "type": "string", "minLength": 1 },
+          "receipt_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "approval_receipt_id": { "type": ["string", "null"] },
+          "occurred_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric_type", "observed_at", "value", "source_locator"],
+        "properties": {
+          "metric_type": {
+            "type": "string",
+            "enum": [
+              "PROFILE_CREATED_COINS_COUNT",
+              "INVENTORY_ROW_COUNT",
+              "PORTAL_INDEX_COUNT",
+              "HOLDER_COUNT",
+              "COMMENT_COUNT",
+              "SWAP_COUNT",
+              "MARKET_CAP",
+              "VOLUME",
+              "SERVICE_OUTCOME"
+            ]
+          },
+          "observed_at": { "type": "string", "format": "date-time" },
+          "value": {},
+          "source_locator": { "type": "string", "minLength": 1 },
+          "receipt_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        }
+      }
+    },
+    "next_action": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "proposal": { "type": "string" },
+        "proposed_by": { "type": "string" },
+        "requires_human_approval": { "const": true }
+      }
+    },
+    "agent_authority": { "const": false },
+    "side_effect_policy": { "const": "AGENT_NO_SIGN_NO_TRADE_NO_PUBLISH" },
+    "market_metrics_imply_quality": { "const": false },
+    "authority_created": { "const": false }
+  },
+  "$defs": {
+    "state": {
+      "type": "string",
+      "enum": [
+        "IDEA_CAPTURED",
+        "BUILD_BOUND",
+        "RECEIPT_EMITTED",
+        "REPLAY_PASS",
+        "CANON_PROMOTED",
+        "ZORA_PUBLICATION_PROPOSED",
+        "ZORA_PUBLISHED_BY_HUMAN",
+        "SDK_READBACK_BOUND",
+        "DRIFT_CHECKED",
+        "SERVICE_EVALUATED",
+        "NEXT_ACTION_PROPOSED",
+        "HOLD",
+        "CONFLICT",
+        "CLOSED"
+      ]
+    }
+  }
+}
