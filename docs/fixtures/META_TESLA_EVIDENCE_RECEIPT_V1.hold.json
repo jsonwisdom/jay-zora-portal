@@ -1,0 +1,32 @@
+{
+  "schema": "META_TESLA_EVIDENCE_RECEIPT_V1",
+  "object_key": null,
+  "candidate_label": "Meta Tesla Scope",
+  "state": "HOLD",
+  "retrieved_at_utc": null,
+  "source_state": "HOLD",
+  "contract": null,
+  "creation_tx": null,
+  "block_number": null,
+  "block_timestamp_utc": null,
+  "token_uri": null,
+  "media_uri": null,
+  "media_sha256": null,
+  "creator_address": null,
+  "payout_recipient": null,
+  "zora_url": null,
+  "independent_witness_url": null,
+  "holds": [
+    "HOLD_IDENTITY",
+    "HOLD_ZORA_BINDING",
+    "HOLD_CREATION",
+    "HOLD_TIMESTAMP",
+    "HOLD_METADATA",
+    "HOLD_MEDIA",
+    "HOLD_ROLE",
+    "HOLD_REPLAY",
+    "HOLD_CROSSCHECK"
+  ],
+  "conflicts": [],
+  "notes": "Fixture only. No contract, transaction, timestamp, media, or provenance has been bound. Default disposition remains HOLD until every required edge is source-supplied and independently cross-checked. PASS_EVIDENCE_GATE does not equal canon, ownership, value, or authority."
+}
