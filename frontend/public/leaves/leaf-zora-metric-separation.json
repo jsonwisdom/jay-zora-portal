@@ -1,0 +1,22 @@
+{
+  "id": "leaf-zora-metric-separation",
+  "title": "Zora Metric Separation — Posts != createdCoins != Inventory",
+  "grove": "zora-visual-evidence",
+  "status": "canon",
+  "claim": "Zora UI Posts, profile createdCoins.count, deterministic inventory rows, and Merkle leaves are distinct metrics and must retain independent source, timestamp, and receipt state.",
+  "summary": "857, 923, and 1.3K can coexist without contradiction when each number remains bound to its metric and observation state. Deception is not inferred from metric difference.",
+  "proof_links": [
+    {
+      "label": "857 Inventory Manifest",
+      "url": "https://github.com/jsonwisdom/jay-zora-portal/blob/live-zora-ingestion/exports/jay_zora_inventory.manifest.json",
+      "kind": "github-manifest"
+    },
+    {
+      "label": "923 createdCoins Raw Response",
+      "url": "https://github.com/jsonwisdom/jay-zora-portal/blob/live-zora-ingestion/discovery/zora/latest_profile_coins_response.json",
+      "kind": "github-raw-response"
+    }
+  ],
+  "tags": ["zora", "living-ledger", "metric-separation", "conflict-safe", "posts!=createdCoins", "createdCoins!=inventory", "visual!=proof"],
+  "updated_at": "2026-08-17T20:34:00-05:00"
+}

@@ -1,0 +1,76 @@
+{
+  "schema": "ZORA_LIVING_LEDGER_MERKLE_V0_3",
+  "classification": "METRIC_PROVENANCE_COMMITMENT_NOT_SEMANTIC_TRUTH",
+  "generated_at": "2026-08-18T01:34:00Z",
+  "profile": "zora:@jaywisdom",
+  "identity_label": "jaywisdom.base.eth",
+  "algorithm_binding": {
+    "implementation": "tools/build-forest.mjs pairRoot semantics",
+    "leaf_hash": "SHA256(JSON.stringify({id,title,grove,status,claim,proof_links,updated_at}))",
+    "leaf_order_for_tree": "lexicographic sort of leaf hashes at every level",
+    "pair_hash": "SHA256(left_hex + right_hex)",
+    "odd_node_rule": "duplicate odd node"
+  },
+  "metric_invariants": [
+    "POST_COUNT != CREATED_COINS_COUNT",
+    "CREATED_COINS_COUNT != INVENTORY_ROWS",
+    "INVENTORY_ROWS != MERKLE_LEAVES",
+    "METRIC_DIFFERENCE != DECEPTION",
+    "SCREENSHOT_RECEIPT != LIVE_PERMANENT_STATE",
+    "MERKLE_INCLUSION != WORLD_TRUE",
+    "VISUAL != PROOF"
+  ],
+  "checkpoint_leaves": [
+    {
+      "id": "leaf-zora-metric-857",
+      "metric": "inventory_unique_contract_rows",
+      "value": 857,
+      "state": "PASS_SOURCE_FILE_SNAPSHOT",
+      "leaf_hash": "3862a89d49304ba9b00323e8e59df71bb3f1b413247c4c8e0017f20510448573"
+    },
+    {
+      "id": "leaf-zora-metric-923",
+      "metric": "profile.createdCoins.count",
+      "value": 923,
+      "state": "PASS_REPOSITORY_RAW_RESPONSE_SNAPSHOT",
+      "leaf_hash": "4f42c18b40b1544198a04aac7acc8783dbc5e5db87b15436bc36304974258fbe"
+    },
+    {
+      "id": "leaf-zora-ui-posts-1_3k",
+      "metric": "ui_posts_display",
+      "value_display": "1.3K",
+      "minimum_implied": 1000,
+      "state": "PASS_SCREENSHOT_OBSERVATION",
+      "screenshot_sha256": "60604471c1dceb58117ffb48e7ea37d29b3ef19f2703b158a9b7499d52110240",
+      "conversation_file_id": "file_000000003900822f8db373bea29d042e",
+      "leaf_hash": "06e8fbb94a177b1eb45747adba85b16adff10aaddc509397816525e6d4205475"
+    },
+    {
+      "id": "leaf-zora-metric-separation",
+      "metric": "metric_type_separation",
+      "state": "PASS_TYPED_INVARIANT",
+      "leaf_hash": "dec79bf06359bdddf4ba44c1b5ba10d77014fe76bf35cc6347b22fecddbfb227"
+    }
+  ],
+  "zora_grove": {
+    "leaf_count": 4,
+    "merkle_root_sha256": "25980207ca623db72ea7e60278c383060863a3d5af71d723941abf259017aa15"
+  },
+  "branch_full_replay": {
+    "included_existing_jayspace_leaves": [
+      "leaf-cw-001",
+      "leaf-flywheel-001",
+      "leaf-merkle-001"
+    ],
+    "total_leaf_count": 7,
+    "merkle_root_sha256": "9b36b245a687eb7b2424c8d09be681eb0eb4f5c2fdcf8451a87413cc7a10e67f"
+  },
+  "terminals": {
+    "claim_1000_plus_ui_posts": "PASS_FOR_CAPTURED_UI",
+    "current_live_exact_post_count": "HOLD_FRESH_ENUMERATION",
+    "platform_lying": "HOLD_NO_DECEPTION_RECEIPT",
+    "metrics_differ": "PASS",
+    "counts_contradict": "REJECT_UNLESS_METRICS_AND_TIMES_ARE_FIRST_NORMALIZED"
+  },
+  "authority_created": false
+}
