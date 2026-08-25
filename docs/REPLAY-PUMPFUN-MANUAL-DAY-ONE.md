@@ -61,7 +61,7 @@ Record after creation:
 
 **Mint:** `4SV4QF7ULTMcWsxWpakBjQn1mM8N3k6FYPa8Ld9Fpump`  
 **Live metadata:** name `JAYPUMP`; symbol `PUMPJAY`  
-**Screenshot:** `IMG_2981.png`  
+**Screenshot:** user-supplied `IMG_2981.png` (binary not embedded in this PR)  
 **Screenshot SHA-256:** `2739a3b8698aed8f839093e24ff378978bed9c9b92bed14ba1d34f858494f9ab`
 
 ### Constitutional Correction
