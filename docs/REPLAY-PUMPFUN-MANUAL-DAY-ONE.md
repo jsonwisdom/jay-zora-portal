@@ -54,6 +54,7 @@ Record after creation:
 - BoxDee status: `MATCH`, `DELTA`, or `HOLD`
 
 **Canonical experiment:** How to Play with Zora and the Chains — by Jay.
+
 ---
 
 ## JAYPUMP / Mayhem Replay — V0.2
