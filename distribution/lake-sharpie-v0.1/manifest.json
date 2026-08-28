@@ -1,0 +1,27 @@
+{
+  "campaign": "LAKE_SHARPIE",
+  "version": "0.1",
+  "status": "ACTIVE_PILOT",
+  "objective": "convert topical attention into independent audience, holders, collectible sales, and reusable distribution evidence",
+  "currentKnownState": {
+    "pumpHolderCountObserved": 2,
+    "observedAt": "2026-08-28T13:08:00-05:00",
+    "source": "user-supplied Pump.fun screenshot"
+  },
+  "humanActions": [
+    "approve final links and copy",
+    "publish or reply on social surfaces",
+    "perform wallet signatures",
+    "decide any spend or trade"
+  ],
+  "machineActions": [
+    "prepare copy variants",
+    "maintain outreach queue",
+    "record observed metrics",
+    "rank next actions by expected revenue and effort",
+    "prepare morning Gmail work order"
+  ],
+  "revenueRails": ["pump_fun_activity", "zora_collectible", "site_attention", "future_sponsorship_or_media_opportunity"],
+  "constraints": ["no guaranteed profit claims", "no wash trading", "no fake engagement", "no autonomous wallet spending"],
+  "authorityCreated": false
+}
