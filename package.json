@@ -4,7 +4,8 @@
   "description": "L2 Creator Index for Jay Wisdom / jaywisdom.base.eth. Goal: - Crawl Jay's Zora drops - Store metadata + receipts - Search by title, description, visual aliases, themes, contract, token ID, and tx hash - Render public portal Canonical wallet: 0x829adfedbe565f9885a7ea6bc78912acaef055e2 Canonical profile: https://zora.co/@jaywisdom",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jayform:index": "node tools/build-jayform-self-title-index.mjs"
   },
   "keywords": [],
   "author": "",
