@@ -1,0 +1,32 @@
+{
+  "schema": "ZORA_APPLIED_WISDOM_POST_V0.1",
+  "title": "Flywheel Applied Wisdom",
+  "series": "AppleBlossomAwesomeAudit",
+  "goal": "Zora post",
+  "source_asset": {
+    "type": "user_supplied_image",
+    "filename": "IMG_3165.jpeg",
+    "status": "OBSERVED_IN_CHAT_NOT_COMMITTED"
+  },
+  "visual_direction": {
+    "format": "square_or_4x5",
+    "hero_text": "APPLIED WISDOM",
+    "secondary_text": "THE GIBSON → REPLAY → RECEIPT → NEXT QUESTION",
+    "retain": ["Jay portrait", "Microsoft Learn reference", "cyber/data atmosphere"],
+    "remove_or_reduce": ["Bitcoin emphasis", "Coinbase emphasis", "generic trading chart dominance", "Made with AI badge if removable from original source"],
+    "add": ["Flywheel Applied Wisdom", "AppleBlossomAwesomeAudit", "Question → Evidence → Replay → Receipt"]
+  },
+  "flywheel": ["LEARN", "QUESTION", "VERIFY", "REPLAY", "RECEIPT", "SHARE", "NEXT_QUESTION"],
+  "routing_law": [
+    "DOCUMENTED != INFERRED",
+    "CAPABILITY != AUTHORITY",
+    "HOSTING != OWNERSHIP",
+    "ACCESS != CUSTODY",
+    "REVOKE != BLIND",
+    "DOCS != THIS_TENANT"
+  ],
+  "publish_status": "DRAFT_ONLY",
+  "mint_status": "NOT_FIRED",
+  "facts_promoted": 0,
+  "authority_created": false
+}
