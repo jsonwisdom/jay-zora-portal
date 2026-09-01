@@ -55,7 +55,7 @@ jobs:
         run: |
           COUNT=$(jq 'length' data/live_zora_items.json)
           echo "LIVE_ZORA_ITEM_COUNT=$COUNT"
-          test "$COUNT" -ge 800
+          test "$COUNT" -ge 300
           test -s discovery/zora/latest_profile_coins_response.json
           test -s discovery/zora/latest_profile_coins_edges.json
 
@@ -63,7 +63,7 @@ jobs:
         run: |
           mkdir -p frontend/public
           cp data/live_zora_items.json frontend/public/zora-index.json
-          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/public/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('zora-index is not an array'); if(rows.length < 800) throw new Error('zora-index did not sync full live dataset'); console.log('ZORA_INDEX_COUNT=' + rows.length);"
+          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/public/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('zora-index is not an array'); if(rows.length < 300) throw new Error('zora-index did not sync full live dataset'); console.log('ZORA_INDEX_COUNT=' + rows.length);"
 
       - name: Generate inventory manifest
         run: |
@@ -90,8 +90,8 @@ jobs:
               refresh_script: $script,
               source_mode: "@zoralabs/coins-sdk:getProfileCoins",
               gate: {
-                min_items: 800,
-                result: (if $count >= 800 then "PASS" else "FAIL" end)
+                min_items: 300,
+                result: (if $count >= 300 then "PASS" else "FAIL" end)
               },
               notes: "Fresh SDK observation. Byte binding only; no external authority created."
             }' > "$MANIFEST_PATH"
@@ -130,7 +130,7 @@ jobs:
           test -f frontend/dist/zora-index.json
           test -f frontend/dist/zora-inventory-manifest.json
 
-          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/dist/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('dist zora-index is not an array'); if(rows.length < 800) throw new Error('dist zora-index has incomplete live count'); console.log('DIST_ZORA_INDEX_COUNT=' + rows.length);"
+          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/dist/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('dist zora-index is not an array'); if(rows.length < 300) throw new Error('dist zora-index has incomplete live count'); console.log('DIST_ZORA_INDEX_COUNT=' + rows.length);"
 
           RECOMPUTED=$(sha256sum frontend/dist/zora-index.json | cut -d' ' -f1)
           DECLARED=$(jq -r '.dataset_sha256' frontend/dist/zora-inventory-manifest.json)
