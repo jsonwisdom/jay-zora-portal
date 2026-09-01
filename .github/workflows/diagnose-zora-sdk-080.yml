@@ -1,4 +1,4 @@
-name: Diagnose Zora SDK 0.8.0
+name: Diagnose Zora Current Profile Surface
 
 on:
   push:
@@ -43,8 +43,19 @@ jobs:
           ZORA_API_KEY: ${{ secrets.ZORA_API_KEY }}
         run: node tools/export_zora_profile_coins.mjs
 
-      - name: Report freshness
+      - name: Report coin freshness
         run: |
           echo "COUNT=$(jq 'length' data/live_zora_items.json)"
-          echo "NEWEST_10"
+          echo "NEWEST_10_COINS"
           jq -r 'sort_by(.created_at // "") | reverse | .[0:10][] | [.created_at,.title,.contract] | @tsv' data/live_zora_items.json
+
+      - name: Current Zora CLI profile help
+        run: npx -y @zoralabs/cli@1.9.2 profile --help
+
+      - name: Query current Zora profile via CLI
+        env:
+          ZORA_API_KEY: ${{ secrets.ZORA_API_KEY }}
+        run: |
+          npx -y @zoralabs/cli@1.9.2 profile jaywisdom --json --static || \
+          npx -y @zoralabs/cli@1.9.2 profile jaywisdom.base.eth --json --static || \
+          npx -y @zoralabs/cli@1.9.2 profile 0x829adfedbe565f9885a7ea6bc78912acaef055e2 --json --static
