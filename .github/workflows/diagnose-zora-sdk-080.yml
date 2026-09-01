@@ -48,12 +48,39 @@ jobs:
           echo "NEWEST_10_COINS"
           jq -r 'sort_by(.created_at // "") | reverse | .[0:10][] | [.created_at,.title,.contract] | @tsv' data/live_zora_items.json
 
-      - name: Enumerate Zora profile posts canonical rail
+      - name: Enumerate Zora profile posts canonical rail in chunks
+        shell: bash
         run: |
-          npx -y @zoralabs/cli@1.9.2 profile posts jaywisdom --limit 1000 --json > /tmp/zora-posts.json
-          echo "POST_COUNT=$(jq '.posts | length' /tmp/zora-posts.json)"
-          echo "HAS_NEXT_PAGE=$(jq -r '.pageInfo.hasNextPage' /tmp/zora-posts.json)"
+          set -euo pipefail
+          rm -f /tmp/zora-posts-all.ndjson
+          cursor=""
+          page=1
+          while true; do
+            args=(profile posts jaywisdom --limit 20 --json)
+            if [ -n "$cursor" ]; then
+              args+=(--after "$cursor")
+            fi
+            npx -y @zoralabs/cli@1.9.2 "${args[@]}" > "/tmp/zora-posts-${page}.json"
+            count=$(jq '.posts | length' "/tmp/zora-posts-${page}.json")
+            has_next=$(jq -r '.pageInfo.hasNextPage // false' "/tmp/zora-posts-${page}.json")
+            next_cursor=$(jq -r '.pageInfo.endCursor // empty' "/tmp/zora-posts-${page}.json")
+            echo "POSTS_PAGE=${page} COUNT=${count} HAS_NEXT_PAGE=${has_next} END_CURSOR=$([ -n "$next_cursor" ] && echo present || echo absent)"
+            jq -c '.posts[]' "/tmp/zora-posts-${page}.json" >> /tmp/zora-posts-all.ndjson
+            if [ "$has_next" != "true" ]; then
+              break
+            fi
+            if [ -z "$next_cursor" ]; then
+              echo "ERROR: hasNextPage=true but endCursor absent" >&2
+              exit 2
+            fi
+            cursor="$next_cursor"
+            page=$((page + 1))
+            if [ "$page" -gt 200 ]; then
+              echo "ERROR: pagination safety ceiling reached" >&2
+              exit 3
+            fi
+          done
+          echo "TOTAL_POSTS=$(wc -l < /tmp/zora-posts-all.ndjson)"
+          echo "FINAL_HAS_NEXT_PAGE=false"
           echo "KAREN11_FILTERED"
-          jq -c '[.posts[] | select((((.name // "") + " " + (.symbol // "")) | ascii_downcase | test("karen11|k11|karen"))) | {rank,name,symbol,address,createdAt,coinType}]' /tmp/zora-posts.json
-          echo "ALL_POSTS"
-          jq -c '[.posts[] | {rank,name,symbol,address,createdAt,coinType}]' /tmp/zora-posts.json
+          jq -sc '[.[] | select((((.name // "") + " " + (.symbol // "")) | ascii_downcase | test("karen11|k11|karen"))) | {rank,name,symbol,address,createdAt,coinType}]' /tmp/zora-posts-all.ndjson
