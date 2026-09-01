@@ -1,0 +1,29 @@
+{
+  "protocol": "replay-law-v0.1",
+  "receipt_id": "RRR-ZORA-3DE98CE6-CONTRACTURI-ATTEMPT-001",
+  "contract": "0x3de98ce63339443e209e948915b3a1782bcc64fc",
+  "chain_id": 8453,
+  "selector": "0xe8a3d485",
+  "method": "contractURI()",
+  "provider_url": null,
+  "block_tag": null,
+  "raw_json_response": {"result":"0x"},
+  "raw_result_hex": "0x",
+  "decoded_string": null,
+  "expected_string": "ipfs://bafkreicjwydhbwgag5ubevphiczi2yb4s62ioxsxdlw4fliqwv3iiqi4tm",
+  "match": null,
+  "status": "HOLD",
+  "error": "ERR_INVALID_RETURNDATA",
+  "reason": "eth_call returned empty bytes. This is not valid ABI-encoded string returndata for contractURI(). Provider URL and block tag were not supplied, so this observation cannot be assigned to creation-state or latest-state readback.",
+  "creation_uri_readback": "NOT_BOUND_TO_THIS_ATTEMPT",
+  "latest_uri_readback": "NOT_BOUND_TO_THIS_ATTEMPT",
+  "contract_uri_onchain": "HOLD",
+  "full_onchain_match": "HOLD",
+  "invariants": {
+    "identity_binding": "UNBOUND",
+    "authorization": "NOT_ESTABLISHED",
+    "endorsement": "NOT_ESTABLISHED",
+    "authority_created": false,
+    "no_fake_green": true
+  }
+}
