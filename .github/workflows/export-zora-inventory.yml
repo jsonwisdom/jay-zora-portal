@@ -175,9 +175,9 @@ jobs:
           git add \
             discovery/zora/latest_profile_coins_response.json \
             discovery/zora/latest_profile_coins_edges.json \
-            data/live_zora_items.json \
             exports/jay_zora_inventory.csv \
             exports/jay_zora_inventory.manifest.json
+          git add -f data/live_zora_items.json
           if git diff --cached --quiet; then
             echo "Live Zora inventory already current."
             exit 0
