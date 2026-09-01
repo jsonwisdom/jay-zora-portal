@@ -1,10 +1,10 @@
 {
   "schema": "JAY_ZORA_INVENTORY_MANIFEST_V1",
-  "generated_at": "2026-09-01T18:42:06.106051+00:00",
+  "generated_at": "2026-09-01T18:43:27.895370+00:00",
   "coverage": "LIVE_SDK_PULL",
   "source_repository": "jsonwisdom/jay-zora-portal",
   "source_ref": "live-zora-ingestion",
-  "source_commit_sha": "c5543615ae16cc0dee045f5a043aea1e192a4fc2",
+  "source_commit_sha": "b382459d70010c8d37147e8a564e64261715b6ec",
   "source_path": "data/live_zora_items.json",
   "source_git_blob_sha": "33693df8dee030ecc5bde6100459e9177e80a0a3",
   "source_sha256": "e99d2b1ddc167b9f7c8adee4936ad96a59aceb350708b4afe866f31a5bab406d",
