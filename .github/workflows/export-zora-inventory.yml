@@ -28,6 +28,31 @@ jobs:
           ref: live-zora-ingestion
           fetch-depth: 0
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install Zora SDK dependencies
+        run: npm ci
+
+      - name: Pull live Zora profile through SDK
+        env:
+          ZORA_IDENTIFIER: jaywisdom.base.eth
+          ZORA_COUNT: "50"
+          ZORA_API_KEY: ${{ secrets.ZORA_API_KEY }}
+        run: node tools/export_zora_profile_coins.mjs
+
+      - name: Verify refreshed canonical source
+        run: |
+          COUNT=$(jq 'length' data/live_zora_items.json)
+          echo "LIVE_ZORA_ITEM_COUNT=$COUNT"
+          test "$COUNT" -ge 800
+          test -s discovery/zora/latest_profile_coins_response.json
+          test -s discovery/zora/latest_profile_coins_edges.json
+
       - name: Build deterministic CSV and manifest
         shell: python
         run: |
@@ -98,7 +123,7 @@ jobs:
           manifest = {
               "schema": "JAY_ZORA_INVENTORY_MANIFEST_V1",
               "generated_at": datetime.now(timezone.utc).isoformat(),
-              "coverage": "COMPLETE_FOR_SOURCE_FILE",
+              "coverage": "LIVE_SDK_PULL",
               "source_repository": "jsonwisdom/jay-zora-portal",
               "source_ref": "live-zora-ingestion",
               "source_commit_sha": source_commit,
@@ -116,7 +141,7 @@ jobs:
               "latest_created_at": max(dates) if dates else None,
               "line_endings": "LF",
               "final_newline": csv_bytes.endswith(b"\n"),
-              "boundary": "This is the complete row-level export represented by data/live_zora_items.json at source_commit_sha. It does not claim that this source equals every historical Zora post or the dated 963-post profile counter."
+              "boundary": "Generated from a fresh @zoralabs/coins-sdk profileCoins pull for jaywisdom.base.eth. It records what the SDK returned at run time and creates no external authority."
           }
           manifest_path.write_text(
               json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
@@ -136,17 +161,26 @@ jobs:
           path: |
             exports/jay_zora_inventory.csv
             exports/jay_zora_inventory.manifest.json
+            discovery/zora/latest_profile_coins_response.json
+            discovery/zora/latest_profile_coins_edges.json
+            data/live_zora_items.json
           if-no-files-found: error
           retention-days: 30
 
-      - name: Commit generated inventory
+      - name: Commit refreshed live Zora receipts and inventory
+        if: github.event_name != 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add exports/jay_zora_inventory.csv exports/jay_zora_inventory.manifest.json
+          git add \
+            discovery/zora/latest_profile_coins_response.json \
+            discovery/zora/latest_profile_coins_edges.json \
+            data/live_zora_items.json \
+            exports/jay_zora_inventory.csv \
+            exports/jay_zora_inventory.manifest.json
           if git diff --cached --quiet; then
-            echo "Inventory already current."
+            echo "Live Zora inventory already current."
             exit 0
           fi
-          git commit -m "Export complete Jay Zora inventory [skip ci]"
+          git commit -m "Refresh live Zora inventory"
           git push origin HEAD:live-zora-ingestion
