@@ -40,7 +40,6 @@ jobs:
         env:
           ZORA_IDENTIFIER: jaywisdom.base.eth
           ZORA_COUNT: "50"
-          ZORA_API_KEY: ${{ secrets.ZORA_API_KEY }}
         run: node tools/export_zora_profile_coins.mjs
 
       - name: Report coin freshness
@@ -50,8 +49,6 @@ jobs:
           jq -r 'sort_by(.created_at // "") | reverse | .[0:10][] | [.created_at,.title,.contract] | @tsv' data/live_zora_items.json
 
       - name: Query current Zora posts via CLI
-        env:
-          ZORA_API_KEY: ${{ secrets.ZORA_API_KEY }}
         run: |
           npx -y @zoralabs/cli@1.9.2 profile posts jaywisdom --json || \
           npx -y @zoralabs/cli@1.9.2 profile posts jaywisdom.base.eth --json || \
