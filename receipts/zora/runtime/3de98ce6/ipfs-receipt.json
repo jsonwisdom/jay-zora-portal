@@ -1,0 +1,31 @@
+{
+  "protocol": "replay-law-v0.1",
+  "receipt_id": "RRR-ZORA-3DE98CE6-IPFS-V001",
+  "contract": "0x3de98ce63339443e209e948915b3a1782bcc64fc",
+  "chain_id": 8453,
+  "metadata_uri": "ipfs://bafkreicjwydhbwgag5ubevphiczi2yb4s62ioxsxdlw4fliqwv3iiqi4tm",
+  "metadata_cid": "bafkreicjwydhbwgag5ubevphiczi2yb4s62ioxsxdlw4fliqwv3iiqi4tm",
+  "metadata_sha256": "49b60670d8c037681255e740b28d603c97b4875e571aedc2ad10b57684411c9b",
+  "image_uri": "ipfs://bafkreicsw2sxpa3g23jorqehkp5elxeqin2k3lgbpgzxrebfi3tghqhajy",
+  "image_cid": "bafkreicsw2sxpa3g23jorqehkp5elxeqin2k3lgbpgzxrebfi3tghqhajy",
+  "ipfs_layer_state": "MATCH",
+  "content_addressing": "MATCH",
+  "contract_uri_onchain": "HOLD",
+  "creation_block_contract_uri": "NOT_REPLAYED",
+  "latest_contract_uri": "NOT_REPLAYED",
+  "full_onchain_match": "HOLD",
+  "invariants": {
+    "identity_binding": "UNBOUND",
+    "authorization": "NOT_ESTABLISHED",
+    "endorsement": "NOT_ESTABLISHED",
+    "authority_created": false,
+    "no_fake_green": true
+  },
+  "next_gate": {
+    "method": "contractURI()",
+    "creation_block": 50746398,
+    "expected_uri": "ipfs://bafkreicjwydhbwgag5ubevphiczi2yb4s62ioxsxdlw4fliqwv3iiqi4tm",
+    "requires_creation_match": true,
+    "requires_latest_match": true
+  }
+}
