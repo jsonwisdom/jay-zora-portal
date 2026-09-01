@@ -1,0 +1,39 @@
+{
+  "name": "ALICIA LEWIS — KAREN11 ANCHOR #8",
+  "symbol": "K11RUN",
+  "description": "KAREN11 Anchor #8 — a fictional satirical collectible-card artwork in the JSONWisdom / Garbage Pail Kids-inspired KAREN11 series. CLAIM → RECEIPT → REPLAY. This artwork and token metadata do not establish that Alicia Lewis, KARE 11, or any real person or organization created, authorized, endorsed, owns, controls, or is otherwise affiliated with this token.",
+  "image": "ipfs://bafkreicsw2sxpa3g23jorqehkp5elxeqin2k3lgbpgzxrebfi3tghqhajy",
+  "content": {
+    "type": "image",
+    "mime": "image/png",
+    "uri": "ipfs://bafkreicsw2sxpa3g23jorqehkp5elxeqin2k3lgbpgzxrebfi3tghqhajy"
+  },
+  "external_url": "https://zora.co/@jaywisdom",
+  "properties": {
+    "series": "KAREN11 RUN",
+    "edition": 8,
+    "creator_handle": "jaywisdom",
+    "identity_rail": "jaywisdom.base.eth",
+    "network": "base",
+    "chain_id": 8453,
+    "contract": "0x3de98ce63339443e209e948915b3a1782bcc64fc",
+    "replay_protocol": "replay-law-v0.1",
+    "receipt_id": "RRR-ZORA-3DE98CE6-METADATA-V001",
+    "doctrine": "CLAIM → RECEIPT → REPLAY",
+    "satire": true,
+    "real_person_identity_binding": "UNBOUND",
+    "authorization": "NOT_ESTABLISHED",
+    "endorsement": "NOT_ESTABLISHED",
+    "authority_created": false,
+    "no_fake_green": true,
+    "invariant": "The Post Became a Base Object. The Real Person Did Not Become the Token."
+  },
+  "attributes": [
+    {"trait_type": "Series", "value": "KAREN11 RUN"},
+    {"trait_type": "Card", "value": "ANCHOR #8"},
+    {"trait_type": "Protocol", "value": "Replay-Law v0.1"},
+    {"trait_type": "Evidence State", "value": "IDENTITY UNBOUND"},
+    {"trait_type": "Authority Created", "value": "FALSE"},
+    {"trait_type": "Network", "value": "Base"}
+  ]
+}
