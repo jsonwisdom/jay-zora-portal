@@ -36,7 +36,7 @@ jobs:
       - name: Print effective SDK version
         run: node -e "console.log('ZORA_SDK_VERSION=' + require('./node_modules/@zoralabs/coins-sdk/package.json').version)"
 
-      - name: Pull profile coins
+      - name: Pull profile coins secondary witness
         env:
           ZORA_IDENTIFIER: jaywisdom.base.eth
           ZORA_COUNT: "50"
@@ -48,8 +48,12 @@ jobs:
           echo "NEWEST_10_COINS"
           jq -r 'sort_by(.created_at // "") | reverse | .[0:10][] | [.created_at,.title,.contract] | @tsv' data/live_zora_items.json
 
-      - name: Query current Zora posts via CLI
+      - name: Enumerate Zora profile posts canonical rail
         run: |
-          npx -y @zoralabs/cli@1.9.2 profile posts jaywisdom --json || \
-          npx -y @zoralabs/cli@1.9.2 profile posts jaywisdom.base.eth --json || \
-          npx -y @zoralabs/cli@1.9.2 profile posts 0x829adfedbe565f9885a7ea6bc78912acaef055e2 --json
+          npx -y @zoralabs/cli@1.9.2 profile posts jaywisdom --limit 1000 --json > /tmp/zora-posts.json
+          echo "POST_COUNT=$(jq '.posts | length' /tmp/zora-posts.json)"
+          echo "HAS_NEXT_PAGE=$(jq -r '.pageInfo.hasNextPage' /tmp/zora-posts.json)"
+          echo "KAREN11_FILTERED"
+          jq -c '[.posts[] | select((((.name // "") + " " + (.symbol // "")) | ascii_downcase | test("karen11|k11|karen"))) | {rank,name,symbol,address,createdAt,coinType}]' /tmp/zora-posts.json
+          echo "ALL_POSTS"
+          jq -c '[.posts[] | {rank,name,symbol,address,createdAt,coinType}]' /tmp/zora-posts.json
