@@ -33,27 +33,43 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          cache-dependency-path: |
+            package-lock.json
+            frontend/package-lock.json
+
+      - name: Install Zora SDK dependencies
+        run: npm ci
 
       - name: Install frontend
         working-directory: frontend
         run: npm ci
 
-      - name: Refresh public Zora inventory
-        run: node tools/refresh-zora-from-public.mjs
+      - name: Pull live Zora inventory through SDK
+        env:
+          ZORA_IDENTIFIER: jaywisdom.base.eth
+          ZORA_COUNT: "50"
+          ZORA_API_KEY: ${{ secrets.ZORA_API_KEY }}
+        run: node tools/export_zora_profile_coins.mjs
+
+      - name: Verify live Zora pull
+        run: |
+          COUNT=$(jq 'length' data/live_zora_items.json)
+          echo "LIVE_ZORA_ITEM_COUNT=$COUNT"
+          test "$COUNT" -ge 800
+          test -s discovery/zora/latest_profile_coins_response.json
+          test -s discovery/zora/latest_profile_coins_edges.json
 
       - name: Sync real Zora dataset into public index
         run: |
           mkdir -p frontend/public
           cp data/live_zora_items.json frontend/public/zora-index.json
-          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/public/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('zora-index is not an array'); if(rows.length < 2) throw new Error('zora-index did not sync real dataset'); console.log('ZORA_INDEX_COUNT=' + rows.length);"
+          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/public/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('zora-index is not an array'); if(rows.length < 800) throw new Error('zora-index did not sync full live dataset'); console.log('ZORA_INDEX_COUNT=' + rows.length);"
 
       - name: Generate inventory manifest
         run: |
           INDEX_PATH="frontend/public/zora-index.json"
           MANIFEST_PATH="frontend/public/zora-inventory-manifest.json"
 
-          # Hash the exact bytes that will be served
           SHA256=$(sha256sum "$INDEX_PATH" | cut -d' ' -f1)
           COUNT=$(jq 'length' "$INDEX_PATH")
 
@@ -63,20 +79,21 @@ jobs:
             --arg generated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
             --arg source "https://zora.co/@jaywisdom" \
             --arg commit "$GITHUB_SHA" \
-            --arg script "tools/refresh-zora-from-public.mjs" \
+            --arg script "tools/export_zora_profile_coins.mjs" \
             '{
-              schema: "zora-inventory-manifest-v0",
+              schema: "zora-inventory-manifest-v1",
               dataset_sha256: $sha,
               item_count: $count,
               generated_at: $generated,
               source_profile: $source,
               workflow_commit: $commit,
               refresh_script: $script,
+              source_mode: "@zoralabs/coins-sdk:getProfileCoins",
               gate: {
-                min_items: 2,
-                result: (if $count >= 2 then "PASS" else "FAIL" end)
+                min_items: 800,
+                result: (if $count >= 800 then "PASS" else "FAIL" end)
               },
-              notes: "Byte binding only. Does not claim data truth, completeness, or authority."
+              notes: "Fresh SDK observation. Byte binding only; no external authority created."
             }' > "$MANIFEST_PATH"
 
           echo "MANIFEST_WRITTEN dataset_sha256=$SHA256 item_count=$COUNT"
@@ -93,27 +110,10 @@ jobs:
           COMMIT=$(jq -r '.workflow_commit' "$MANIFEST_PATH")
           GATE_RESULT=$(jq -r '.gate.result' "$MANIFEST_PATH")
 
-          if [ "$RECOMPUTED" != "$DECLARED" ]; then
-            echo "Manifest binding failed: SHA256 mismatch"
-            echo "  recomputed=$RECOMPUTED"
-            echo "  declared=$DECLARED"
-            exit 1
-          fi
-
-          if [ "$COUNT" != "$DECLARED_COUNT" ]; then
-            echo "Manifest binding failed: item_count mismatch"
-            exit 1
-          fi
-
-          if [ "$COMMIT" != "$GITHUB_SHA" ]; then
-            echo "Manifest binding failed: workflow_commit mismatch"
-            exit 1
-          fi
-
-          if [ "$GATE_RESULT" != "PASS" ]; then
-            echo "Manifest binding failed: gate.result is not PASS"
-            exit 1
-          fi
+          test "$RECOMPUTED" = "$DECLARED"
+          test "$COUNT" = "$DECLARED_COUNT"
+          test "$COMMIT" = "$GITHUB_SHA"
+          test "$GATE_RESULT" = "PASS"
 
           echo "Manifest binding verified"
           echo "  dataset_sha256=$RECOMPUTED"
@@ -129,27 +129,16 @@ jobs:
           test -f frontend/dist/index.html
           test -f frontend/dist/zora-index.json
           test -f frontend/dist/zora-inventory-manifest.json
-          grep -R "JaySpace" frontend/dist/index.html frontend/dist/assets || true
 
-          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/dist/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('dist zora-index is not an array'); if(rows.length < 2) throw new Error('dist zora-index has seed-only count'); console.log('DIST_ZORA_INDEX_COUNT=' + rows.length);"
+          node -e "const fs=require('fs'); const rows=JSON.parse(fs.readFileSync('frontend/dist/zora-index.json','utf8')); if(!Array.isArray(rows)) throw new Error('dist zora-index is not an array'); if(rows.length < 800) throw new Error('dist zora-index has incomplete live count'); console.log('DIST_ZORA_INDEX_COUNT=' + rows.length);"
 
-          # Recompute SHA-256 of dist index and compare to shipped manifest
           RECOMPUTED=$(sha256sum frontend/dist/zora-index.json | cut -d' ' -f1)
           DECLARED=$(jq -r '.dataset_sha256' frontend/dist/zora-inventory-manifest.json)
           COUNT=$(jq 'length' frontend/dist/zora-index.json)
           DECLARED_COUNT=$(jq -r '.item_count' frontend/dist/zora-inventory-manifest.json)
 
-          if [ "$RECOMPUTED" != "$DECLARED" ]; then
-            echo "Dist manifest binding failed: SHA256 mismatch"
-            echo "  recomputed=$RECOMPUTED"
-            echo "  declared=$DECLARED"
-            exit 1
-          fi
-
-          if [ "$COUNT" != "$DECLARED_COUNT" ]; then
-            echo "Dist manifest binding failed: item_count mismatch"
-            exit 1
-          fi
+          test "$RECOMPUTED" = "$DECLARED"
+          test "$COUNT" = "$DECLARED_COUNT"
 
           echo "Dist manifest binding verified"
           echo "  dataset_sha256=$RECOMPUTED"
