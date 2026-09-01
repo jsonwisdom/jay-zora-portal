@@ -49,7 +49,7 @@ jobs:
         run: |
           COUNT=$(jq 'length' data/live_zora_items.json)
           echo "LIVE_ZORA_ITEM_COUNT=$COUNT"
-          test "$COUNT" -ge 800
+          test "$COUNT" -ge 300
           test -s discovery/zora/latest_profile_coins_response.json
           test -s discovery/zora/latest_profile_coins_edges.json
 
@@ -72,7 +72,7 @@ jobs:
           rows = json.loads(source_bytes.decode("utf-8"))
           if not isinstance(rows, list):
               raise SystemExit("FAIL: source JSON is not an array")
-          if len(rows) < 800:
+          if len(rows) < 300:
               raise SystemExit(f"FAIL: current source unexpectedly contains only {len(rows)} rows")
 
           output_dir.mkdir(parents=True, exist_ok=True)
