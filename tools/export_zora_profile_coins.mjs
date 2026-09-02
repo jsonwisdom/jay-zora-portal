@@ -1,7 +1,7 @@
 import { getProfileCoins, setApiKey } from "@zoralabs/coins-sdk";
 import fs from "fs";
 
-const identifier = process.env.ZORA_IDENTIFIER || "jaywisdom.base.eth";
+const identifier = process.env.ZORA_IDENTIFIER || "jaywisdom";
 const count = Number(process.env.ZORA_COUNT || 50);
 
 // Optional API key reduces rate-limit pressure

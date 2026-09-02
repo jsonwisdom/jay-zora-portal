@@ -6,6 +6,9 @@ on:
       - live-zora-ingestion
     paths-ignore:
       - "exports/**"
+      - "data/live_zora_items.json"
+      - "discovery/zora/latest_profile_coins_response.json"
+      - "discovery/zora/latest_profile_coins_edges.json"
   pull_request:
     branches:
       - live-zora-ingestion
@@ -40,7 +43,7 @@ jobs:
 
       - name: Pull live Zora profile through SDK
         env:
-          ZORA_IDENTIFIER: jaywisdom.base.eth
+          ZORA_IDENTIFIER: jaywisdom
           ZORA_COUNT: "50"
           ZORA_API_KEY: ${{ secrets.ZORA_API_KEY }}
         run: node tools/export_zora_profile_coins.mjs
@@ -48,10 +51,14 @@ jobs:
       - name: Verify refreshed canonical source
         run: |
           COUNT=$(jq 'length' data/live_zora_items.json)
+          EXPECTED=$(jq -r '.data.profile.createdCoins.count' discovery/zora/latest_profile_coins_response.json)
           echo "LIVE_ZORA_ITEM_COUNT=$COUNT"
-          test "$COUNT" -ge 300
+          echo "ZORA_CREATED_COINS_COUNT=$EXPECTED"
+          test "$EXPECTED" != "null"
+          test "$COUNT" -eq "$EXPECTED"
           test -s discovery/zora/latest_profile_coins_response.json
           test -s discovery/zora/latest_profile_coins_edges.json
+          jq -e 'any(.[]; (.contract | ascii_downcase) == "0x3de98ce63339443e209e948915b3a1782bcc64fc")' data/live_zora_items.json
 
       - name: Build deterministic CSV and manifest
         shell: python
@@ -141,7 +148,7 @@ jobs:
               "latest_created_at": max(dates) if dates else None,
               "line_endings": "LF",
               "final_newline": csv_bytes.endswith(b"\n"),
-              "boundary": "Generated from a fresh @zoralabs/coins-sdk profileCoins pull for jaywisdom.base.eth. It records what the SDK returned at run time and creates no external authority."
+              "boundary": "Generated from a fresh @zoralabs/coins-sdk profileCoins pull for jaywisdom. It records what the SDK returned at run time and creates no external authority."
           }
           manifest_path.write_text(
               json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
