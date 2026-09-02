@@ -1,6 +1,6 @@
 {
   "event": "JAY_ZORA_FULL_AUDIT_RUN1",
-  "timestamp": "2026-09-02T14:38:15.446392Z",
+  "timestamp": "2026-09-02T14:59:46.274512Z",
   "status": "ENUMERABLE_CATALOG_GENERATED",
   "coverage": "LIVE_SDK_PULL_ENUMERABLE_ONLY",
   "source_commit": "55d372525a55ed7cc79824659894f2f40299d4ad",
@@ -20,10 +20,6 @@
   },
   "identity_or_brand_review_count": 75,
   "files": {
-    "JAY_ZORA_FULL_AUDIT_RUN1_RECEIPT.json": {
-      "bytes": 1619,
-      "sha256": "81d62c3f34e6910fddbc3ebb441e32c2298d327bf25c203db36c14e803305ac3"
-    },
     "JAY_ZORA_MASTER_CATALOG.csv": {
       "bytes": 216228,
       "sha256": "e8a467fce7b3f6859962c23e2afa04572978f906f38fd06bc0458ca7ff2c2aeb"
@@ -43,10 +39,6 @@
     "JAY_ZORA_TIMELINE.md": {
       "bytes": 10829,
       "sha256": "87338b5f244c8619e99a770e71becc85798a6dccdfd6cf2dedf4e277faa8f0ec"
-    },
-    "SHA256SUMS.txt": {
-      "bytes": 568,
-      "sha256": "f70b7485d73822f55ed838ae9d13675a3dfae45a0b307af85bb22861fddade3a"
     }
   },
   "flags": {
