@@ -1,0 +1,112 @@
+JAYSPACE QUIET TELEMETRY SPEC V0
+
+Purpose:
+Measure topology pressure without teaching observers how to perform for the measurement.
+
+Doctrine:
+No dashboards.
+No counters.
+No visible feedback loops.
+No rankings.
+No recommendations.
+No engagement optimization.
+
+The observatory is a ruin, cathedral, scientific instrument, and archaeological site.
+It should force orientation, not provide onboarding.
+
+Core Rule:
+The second a metric becomes visible, observers begin performing for it.
+Visible metrics convert topology pressure into theater.
+
+Capture Fields:
+- hover_duration_ms
+- grove_entry_vector
+- observer_transition_paths
+- repeat_return_frequency
+- cross_observer_convergence
+- time_to_first_disputed_zone
+- camera_dwell_coordinates
+- fork_attention_ratio
+
+Avoid Fields and Behaviors:
+- likes
+- scores
+- leaderboards
+- visible counters
+- engagement nudges
+- recommendation loops
+- public heatmaps during emergence phase
+- any prompt that teaches users where to look
+
+Event Transport:
+Append-only JSONL.
+One event per line.
+Immutable after write.
+No client-side aggregation.
+No rankings computed in the browser.
+Offline analysis only.
+
+Observer Identity:
+observer_id = daily rotated anonymous hash.
+No PII.
+No names.
+No wallets unless explicitly consented.
+No cross-session stitching during emergence phase.
+
+Minimal Event Schema:
+{
+  "event": "observer_hover",
+  "observer_id": "anon_daily_hash",
+  "grove_id": "amber_spire_04",
+  "duration_ms": 8421,
+  "entry_vector": [0.22, -0.14],
+  "camera_vector": [0.22, -0.14, 0.81],
+  "timestamp": "2026-05-19T17:04:11Z"
+}
+
+Additional Event Types:
+- observer_hover
+- grove_enter
+- grove_exit
+- camera_dwell
+- replay_scrub
+- disputed_zone_entry
+- return_visit
+- observer_transition
+
+Keystone Signal:
+independent_repeat_convergence
+
+Definition:
+Multiple distinct anonymous observers return more than once to the same disputed grove, with uncorrelated entry vectors, without prompt, recommendation, visible ranking, or explicit instruction.
+
+Interpretation:
+If independent_repeat_convergence appears, the topology is producing emergent civic gravity.
+
+Non-Goals:
+Do not maximize retention.
+Do not optimize dwell time.
+Do not make the system addictive.
+Do not train observers into the intended path.
+Do not collapse ambiguity into onboarding.
+
+Measurement Philosophy:
+Measure pressure, not popularity.
+Measure return, not capture.
+Measure independent convergence, not agreement.
+Measure friction-seeking, not completion.
+Measure topology behavior, not user performance.
+
+Emergence Phase Rule:
+Keep the system raw.
+Do not explain too much.
+Do not publish telemetry.
+Do not productize the observatory.
+Let observers invent vocabulary before canonizing language.
+
+Crystallization Trigger:
+If observers independently invent shared names for groves, pressure zones, or memory behavior, move from controlled emergence to constitutional crystallization.
+
+Status:
+SPEC_ONLY
+LOGGER_NOT_YET_DEPLOYED

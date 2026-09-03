@@ -1,0 +1,17 @@
+{
+  "id": "leaf-merkle-001",
+  "title": "Merkle Root Witness Primitive",
+  "grove": "receipt-machine",
+  "status": "canon",
+  "claim": "Every replayable civilization requires independently reproducible roots.",
+  "summary": "Merkle aggregation transforms isolated receipts into verifiable historical continuity.",
+  "proof_links": [
+    {
+      "label": "Forest Root",
+      "url": "/forest.json",
+      "kind": "forest"
+    }
+  ],
+  "tags": ["merkle", "replay", "proof", "receipts"],
+  "updated_at": "2026-05-19T00:00:00Z"
+}

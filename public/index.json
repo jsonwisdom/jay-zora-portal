@@ -1,0 +1,29 @@
+{
+  "portal": "jay-zora-portal",
+  "authority": false,
+  "records": [
+    {
+      "id": "ROUND_006",
+      "status": "ATTESTED",
+      "mirror_status": "PENDING_ZORA_TX",
+      "path": "public/rounds/ROUND_006.json",
+      "ipfs_cid": "bafkreib6q6zlclekrqdgnxgwpqflkswfhxxhx4trjqpj7miyt4uzuggnyy",
+      "eas_attestation_uid": "0x4c7877c14742d2e7613597250ce1289fecb83a4b20b28dede1ef636eb5f2aa42",
+      "content_coin_address": "0x829adfedbe565f9885a7ea6bc78912acaef055e2"
+    }
+  ],
+  "coins": [
+    {
+      "id": "NODE_008",
+      "status": "ATTESTED",
+      "path": "public/coins/NODE_008.json",
+      "contract": "0x812dc8649d7ced61278f5c052130f88cc9e374fe",
+      "chain": "base",
+      "platform": "zora",
+      "scope": "zora_coin_existence_pointer_only",
+      "ipfs_cid": "bafkreiffaupjbqargat5vkmurycyd2y6j3s3x6mc2sjvzq46zsqz4b7s5y",
+      "eas_schema_uid": "0x492a3ad3e1fa4313667f0f1260cb468e670b139652ff952d9eac6618df45096d",
+      "eas_attestation_uid": "0x756191c639c050765b00bdac2500863789f07e9c495245a7de30c237ac859dca"
+    }
+  ]
+}

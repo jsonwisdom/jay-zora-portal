@@ -1,0 +1,171 @@
+JAYSPACE JSONL MACHINE SPEED STANDARD V0.1
+
+Purpose:
+JSONL is the machine-speed skating rail for civic memory.
+One event per line.
+One receipt per line.
+One observable transition per line.
+No arrays required for streaming.
+No full-file rewrite required for append.
+
+Doctrine:
+If JSON Feed is public syndication, JSONL is replay fuel.
+JSON Feed tells humans and clients what changed.
+JSONL lets machines replay how it changed.
+
+Core Line:
+JSON Feed = public syndication.
+JSONL = replay fuel.
+
+Skating Rule:
+Machines should never wait for a full archive when a line can move the state forward.
+
+Core Rules:
+1. Each line MUST be valid JSON.
+2. Each line MUST represent one complete event.
+3. Lines MUST be append-only.
+4. Existing lines MUST NOT be mutated.
+5. Empty lines SHOULD be ignored.
+6. Event order MUST be file order unless an explicit sequence field is present.
+7. Every event SHOULD include timestamp, event_type, event_id, source, sequence, and hash fields.
+8. Payloads SHOULD remain small and pointer-based when artifacts are large.
+9. No trailing commas.
+10. No comments inside JSONL.
+11. Consumers MUST process line-by-line.
+12. Consumers MUST checkpoint progress by byte offset and/or sequence.
+13. Consumers MUST tolerate duplicate lines using event_id idempotency.
+14. Consumers MUST reject malformed lines into quarantine without stopping the stream.
+15. Producers MUST NOT require consumers to parse the full archive before applying new events.
+
+Wire Format:
+UTF-8 JSON object followed by newline.
+One object per line.
+Line ending: LF preferred, CRLF tolerated.
+No outer array.
+No comments.
+No commas between lines.
+
+Minimum Event Shape:
+{"event_id":"evt_000001","event_type":"observer_hover","timestamp":"2026-05-19T17:04:11Z","source":"jayspace","sequence":1,"payload":{},"sha256":"pending"}
+
+Recommended Event Fields:
+- event_id: globally unique stable event identifier
+- event_type: machine-readable type
+- timestamp: ISO 8601 UTC timestamp
+- source: producer or observer system
+- sequence: monotonically increasing integer within the stream
+- previous_event_id: optional lineage pointer
+- artifact_path: optional pointer to GitHub/R2/IPFS artifact
+- artifact_sha256: optional content hash
+- payload: small event-specific object
+- sha256: hash of canonical event body, or pending until sealed
+- status: observed, accepted, quarantined, superseded, rejected
+
+Recommended Receipt Shape:
+{"event_id":"rcpt_000001","event_type":"receipt_appended","timestamp":"2026-05-19T17:05:00Z","source":"github_direct","sequence":2,"artifact_path":"docs/Launch_Layer_Felt_Governance.txt","artifact_sha256":"...","previous_event_id":"evt_000001","status":"observed"}
+
+Quiet Telemetry Event:
+{"event_id":"telemetry_000001","event_type":"observer_hover","timestamp":"2026-05-19T17:04:11Z","source":"jayspace_quiet_telemetry","sequence":3,"observer_id":"anon_daily_hash","grove_id":"amber_spire_04","duration_ms":8421,"entry_vector":[0.22,-0.14],"camera_vector":[0.22,-0.14,0.81]}
+
+Vernacular Emergence Event:
+{"event_id":"vernacular_000001","event_type":"vernacular_emergence","timestamp":"2026-05-19T17:22:10Z","source":"jayspace_observation","sequence":4,"raw_phrase":"warmgrov??","mutation_policy":"NONE","normalization":false,"context":"return_navigation","prompted":false,"official_definition":null,"authority_intervention":"silent"}
+
+Watermarking:
+A watermark records how far a consumer has safely replayed.
+Watermark fields SHOULD include:
+- stream_id
+- last_sequence
+- last_event_id
+- last_byte_offset
+- last_event_sha256
+- updated_at
+
+Example Watermark:
+{"stream_id":"jayspace.events","last_sequence":42,"last_event_id":"evt_000042","last_byte_offset":18412,"last_event_sha256":"...","updated_at":"2026-05-19T18:00:00Z"}
+
+Replay Semantics:
+1. Start from genesis state or latest verified checkpoint.
+2. Read one line.
+3. Parse JSON.
+4. Validate required fields.
+5. If malformed, quarantine line and continue.
+6. If event_id already applied, skip as duplicate.
+7. Apply event transition.
+8. Update in-memory state.
+9. Write watermark.
+10. Continue to next line.
+
+Idempotency:
+- event_id is the primary idempotency key.
+- Applying the same event twice MUST NOT change final state twice.
+- Duplicate event_ids with different hashes MUST be quarantined.
+
+Backpressure:
+- Producer appends lines and does not wait for every consumer.
+- Slow consumers resume from watermark.
+- Fast consumers skate forward immediately.
+- Checkpoints allow consumers to start near current state without replaying full history.
+
+Quarantine Semantics:
+Malformed, duplicated-with-conflict, or policy-invalid lines are moved to quarantine.
+Quarantine MUST preserve the raw line exactly.
+Quarantine MUST NOT mutate the main stream.
+The stream continues after quarantine.
+
+Merkle Batch Rule:
+Events MAY be hashed individually or in batches.
+Batch roots SHOULD include:
+- first_sequence
+- last_sequence
+- line_count
+- root_sha256
+- created_at
+
+Canonical Pipeline:
+receipt/event occurs
+→ write one JSONL line
+→ consumer applies line immediately
+→ watermark advances
+→ hash line or batch
+→ update Merkle root
+→ publish JSON Feed pointer
+→ render JaySpace state
+
+Machine-Speed Properties:
+- streamable by tail -f
+- parseable line by line
+- safe for large logs
+- compatible with append-only Git diffs
+- usable by crawlers, agents, observers, replay engines
+- supports partial recovery after file corruption
+- supports low-latency state updates
+- supports independent observers at different replay speeds
+
+JSON Feed vs JSONL:
+JSON Feed:
+- human/public syndication
+- feed readers
+- latest artifacts
+- overview layer
+- tolerant of delay
+
+JSONL:
+- raw replay stream
+- machine observers
+- telemetry capture
+- receipt append events
+- forensic reconstruction
+- immediate line-level state motion
+
+Non-Goals:
+No dashboards.
+No visible counters.
+No engagement ranking.
+No semantic normalization.
+No product analytics framing.
+No full-archive gate for live replay.
+
+Status:
+STANDARD_V0_1
+TAILER_ADDED
+LOGGER_NOT_YET_DEPLOYED
