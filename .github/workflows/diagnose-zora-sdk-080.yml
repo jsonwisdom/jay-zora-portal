@@ -52,35 +52,108 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f /tmp/zora-posts-all.ndjson
+
+          OUT="artifacts/karen11-posts"
+          PAGES="$OUT/pages"
+          mkdir -p "$PAGES"
+          : > "$OUT/all-posts.ndjson"
+
           cursor=""
           page=1
+
           while true; do
             args=(profile posts jaywisdom --limit 20 --json)
             if [ -n "$cursor" ]; then
               args+=(--after "$cursor")
             fi
-            npx -y @zoralabs/cli@1.9.2 "${args[@]}" > "/tmp/zora-posts-${page}.json"
-            count=$(jq '.posts | length' "/tmp/zora-posts-${page}.json")
-            has_next=$(jq -r '.pageInfo.hasNextPage // false' "/tmp/zora-posts-${page}.json")
-            next_cursor=$(jq -r '.pageInfo.endCursor // empty' "/tmp/zora-posts-${page}.json")
+
+            page_file=$(printf "%s/page-%03d.json" "$PAGES" "$page")
+            npx -y @zoralabs/cli@1.9.2 "${args[@]}" > "$page_file"
+
+            count=$(jq '.posts | length' "$page_file")
+            has_next=$(jq -r '.pageInfo.hasNextPage // false' "$page_file")
+            next_cursor=$(jq -r '.pageInfo.endCursor // empty' "$page_file")
+
             echo "POSTS_PAGE=${page} COUNT=${count} HAS_NEXT_PAGE=${has_next} END_CURSOR=$([ -n "$next_cursor" ] && echo present || echo absent)"
-            jq -c '.posts[]' "/tmp/zora-posts-${page}.json" >> /tmp/zora-posts-all.ndjson
+
+            jq -c --argjson page "$page" '.posts[] | . + {_page:$page}' "$page_file" >> "$OUT/all-posts.ndjson"
+
             if [ "$has_next" != "true" ]; then
               break
             fi
+
             if [ -z "$next_cursor" ]; then
               echo "ERROR: hasNextPage=true but endCursor absent" >&2
               exit 2
             fi
+
             cursor="$next_cursor"
             page=$((page + 1))
+
             if [ "$page" -gt 200 ]; then
               echo "ERROR: pagination safety ceiling reached" >&2
               exit 3
             fi
           done
-          echo "TOTAL_POSTS=$(wc -l < /tmp/zora-posts-all.ndjson)"
+
+          total_posts=$(wc -l < "$OUT/all-posts.ndjson" | tr -d ' ')
+          total_pages="$page"
+
+          jq -sc '[.[] | select((((.name // "") + " " + (.symbol // "")) | ascii_downcase | test("karen11|karenn11|k11|karen"))) | {page:._page,rank,name,symbol,address,createdAt,coinType}]' \
+            "$OUT/all-posts.ndjson" > "$OUT/KAREN11_FILTERED.json"
+
+          jq -sc '[.[] | select((((.name // "") + " " + (.symbol // "")) | ascii_downcase | test("karen11|karenn11|k11"))) | {page:._page,rank,name,symbol,address,createdAt,coinType}]' \
+            "$OUT/all-posts.ndjson" > "$OUT/KAREN11_STRICT.json"
+
+          match_count=$(jq 'length' "$OUT/KAREN11_FILTERED.json")
+          strict_match_count=$(jq 'length' "$OUT/KAREN11_STRICT.json")
+
+          jq -n \
+            --arg schema "KAREN11_POSTS_ENUMERATION_V1" \
+            --arg repository "jsonwisdom/jay-zora-portal" \
+            --arg source_ref "live-zora-ingestion" \
+            --arg source_commit "$GITHUB_SHA" \
+            --arg profile_identifier "jaywisdom.base.eth" \
+            --arg cli_handle "jaywisdom" \
+            --arg cli "@zoralabs/cli@1.9.2" \
+            --arg query "profile posts jaywisdom --limit 20 --json [--after <cursor>]" \
+            --argjson page_count "$total_pages" \
+            --argjson total_posts "$total_posts" \
+            --argjson filtered_match_count "$match_count" \
+            --argjson strict_match_count "$strict_match_count" \
+            '{
+              schema:$schema,
+              repository:$repository,
+              source_ref:$source_ref,
+              source_commit:$source_commit,
+              profile_identifier:$profile_identifier,
+              cli_handle:$cli_handle,
+              cli:$cli,
+              query:$query,
+              page_count:$page_count,
+              total_posts:$total_posts,
+              final_hasNextPage:false,
+              cursor_exhausted:true,
+              filtered_match_count:$filtered_match_count,
+              strict_match_count:$strict_match_count,
+              authority_created:false,
+              boundary:"Canonical posts-surface enumeration. profileCoins remains a secondary witness only."
+            }' > "$OUT/manifest.json"
+
+          echo "TOTAL_POSTS=$total_posts"
+          echo "TOTAL_PAGES=$total_pages"
           echo "FINAL_HAS_NEXT_PAGE=false"
+          echo "CURSOR_EXHAUSTED=true"
+          echo "KAREN11_FILTERED_COUNT=$match_count"
+          echo "KAREN11_STRICT_COUNT=$strict_match_count"
           echo "KAREN11_FILTERED"
-          jq -sc '[.[] | select((((.name // "") + " " + (.symbol // "")) | ascii_downcase | test("karen11|k11|karen"))) | {rank,name,symbol,address,createdAt,coinType}]' /tmp/zora-posts-all.ndjson
+          cat "$OUT/KAREN11_FILTERED.json"
+
+      - name: Upload KAREN11 chunked posts artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: KAREN11-posts-full-enumeration
+          path: artifacts/karen11-posts/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6
