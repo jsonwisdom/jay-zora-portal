@@ -1,0 +1,29 @@
+name: jay-agent sleep console
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  maintain:
+    name: Zora read-only maintenance pulse
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run jay-agent sleep console
+        run: |
+          chmod +x scripts/jay_agent_sleep_console.sh
+          ./scripts/jay_agent_sleep_console.sh
+
+      - name: Upload sleep console artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jay-agent-sleep-console
+          path: artifacts/jay-agent/

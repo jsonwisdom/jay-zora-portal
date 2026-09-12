@@ -1,0 +1,95 @@
+name: JayForm Self-Title Classifier
+
+on:
+  push:
+    branches:
+      - live-zora-ingestion
+    paths:
+      - tools/build-jayform-self-title-index.mjs
+      - data/live_zora_items.json
+      - package.json
+      - .github/workflows/jayform-self-title-index.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  classify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Syntax check
+        run: node --check tools/build-jayform-self-title-index.mjs
+
+      - name: Build JayForm self-title index
+        run: npm run jayform:index
+
+      - name: Verify classifier contract
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+
+          const index = JSON.parse(
+            fs.readFileSync("data/jayform_self_title_index.json", "utf8")
+          );
+
+          const expectedClasses = [
+            "SELF_EXACT",
+            "SELF_DERIVATIVE",
+            "JAY_SYSTEM",
+            "SELF_CONTEXT",
+            "AMBIGUOUS",
+            "NON_SELF",
+          ];
+
+          if (index.schema !== "JAYFORM_SELF_TITLE_INDEX_V0") {
+            throw new Error(`Unexpected schema: ${index.schema}`);
+          }
+          if (index.authority_created !== false) {
+            throw new Error("authority_created must remain false");
+          }
+          if (JSON.stringify(index.classes) !== JSON.stringify(expectedClasses)) {
+            throw new Error("Classifier vocabulary changed unexpectedly");
+          }
+          if (!Number.isInteger(index.source?.item_count) || index.source.item_count < 1) {
+            throw new Error("Source item count must be a positive integer");
+          }
+          if (!Array.isArray(index.title_index) || index.title_index.length < 1) {
+            throw new Error("title_index must contain at least one normalized title");
+          }
+
+          console.log(
+            JSON.stringify(
+              {
+                schema: index.schema,
+                authority_created: index.authority_created,
+                items: index.source.item_count,
+                distinct_normalized_titles:
+                  index.counts.distinct_normalized_titles,
+                item_class_counts: index.counts.item_class_counts,
+                distinct_title_class_counts:
+                  index.counts.distinct_title_class_counts,
+              },
+              null,
+              2
+            )
+          );
+          NODE
+
+      - name: Upload generated index
+        uses: actions/upload-artifact@v4
+        with:
+          name: jayform-self-title-index
+          path: data/jayform_self_title_index.json
+          if-no-files-found: error
+          retention-days: 14

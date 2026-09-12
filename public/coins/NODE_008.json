@@ -1,0 +1,37 @@
+{
+  "id": "NODE_008",
+  "status": "ATTESTED",
+  "authority": false,
+  "scope": "zora_coin_existence_pointer_only",
+  "timeline": {
+    "observed": "2026-06-27T00:00:00Z",
+    "indexed": "2026-06-27T00:15:00Z",
+    "schema_created": "2026-06-27T10:31:59Z",
+    "attested": "2026-06-27T15:37:29Z",
+    "mirrored": null
+  },
+  "coin": {
+    "platform": "zora",
+    "contract": "0x812dc8649d7ced61278f5c052130f88cc9e374fe",
+    "chain": "base",
+    "url": "https://zora.co/coin/base:0x812dc8649d7ced61278f5c052130f88cc9e374fe",
+    "referrer": "0x829adfedbe565f9885a7ea6bc78912acaef055e2",
+    "ipfsCid": "bafkreiffaupjbqargat5vkmurycyd2y6j3s3x6mc2sjvzq46zsqz4b7s5y",
+    "pointerHash": "0xcd8c96edb6acbbe075da50931b3548002ade2b02315474776e814d7dcca8655d"
+  },
+  "eas": {
+    "chain": "base",
+    "revocable": true,
+    "schemaUid": "0x492a3ad3e1fa4313667f0f1260cb468e670b139652ff952d9eac6618df45096d",
+    "schemaTx": "0xe5a2bb2e5285a5dd675bef0a5d4c902cf08331027a9d98109cbfd90e6f7fc161",
+    "attestationUid": "0x756191c639c050765b00bdac2500863789f07e9c495245a7de30c237ac859dca",
+    "attestationTx": "0x8c459bd50845e52d98b0fbf017896fa07756faf206a79a62bf70bc8fa5ab35dc",
+    "attester": "0xC345B26094c63C69222Ee775189a3d3eaead5a84",
+    "block": 47892651
+  },
+  "schema": {
+    "id": 1629,
+    "definition": "string nodeId,address contractAddress,string chain,string platform,string ipfsCid,bytes32 pointerHash,uint64 observedAt,bool authority,string scope"
+  },
+  "notes": "This record indexes the Zora coin pointer only. It does not verify training data, safety, legality, or real-world program operations."
+}

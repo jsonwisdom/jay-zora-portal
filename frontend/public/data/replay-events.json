@@ -1,0 +1,76 @@
+{
+  "schema": "JAYSPACE_REPLAY_EVENTS_V1",
+  "doctrine": "Live forest shows what is. Ghosts show how we got here.",
+  "events": [
+    {
+      "id": "evt-checkpoint-000000",
+      "timestamp": "2026-05-19T00:00:00Z",
+      "type": "checkpoint",
+      "checkpoint": 0,
+      "label": "Genesis local truth established",
+      "from": "root",
+      "to": "root",
+      "payload": { "grove": "root", "grove_x": 50, "grove_y": 88, "status": "local_valid" }
+    },
+    {
+      "id": "evt-receipt-machine-001",
+      "timestamp": "2026-05-19T00:01:12Z",
+      "type": "receipt",
+      "checkpoint": 0,
+      "label": "Receipt Machine leaf observed",
+      "from": "root",
+      "to": "receipt-machine",
+      "payload": { "grove": "receipt-machine", "grove_x": 50, "grove_y": 12, "leaf": "leaf-flywheel-001" }
+    },
+    {
+      "id": "evt-zora-flywheel-001",
+      "timestamp": "2026-05-19T00:02:24Z",
+      "type": "receipt",
+      "checkpoint": 0,
+      "label": "Zora Flywheel ignition observed",
+      "from": "root",
+      "to": "zora-flywheel",
+      "payload": { "grove": "zora-flywheel", "grove_x": 83, "grove_y": 62, "leaf": "leaf-zora-001" }
+    },
+    {
+      "id": "evt-computerwisdom-001",
+      "timestamp": "2026-05-19T00:03:16Z",
+      "type": "receipt",
+      "checkpoint": 0,
+      "label": "COMPUTERWISDOM replay layer indexed",
+      "from": "root",
+      "to": "computerwisdom",
+      "payload": { "grove": "computerwisdom", "grove_x": 17, "grove_y": 62, "leaf": "leaf-cw-001" }
+    },
+    {
+      "id": "evt-checkpoint-000001",
+      "timestamp": "2026-05-19T00:04:30Z",
+      "type": "checkpoint",
+      "checkpoint": 1,
+      "label": "Forest topology committed",
+      "from": "root",
+      "to": "root",
+      "payload": { "grove": "root", "grove_x": 50, "grove_y": 88, "status": "topology_committed" }
+    },
+    {
+      "id": "evt-merkle-001",
+      "timestamp": "2026-05-19T00:05:42Z",
+      "type": "receipt",
+      "checkpoint": 1,
+      "label": "Merkle root witness primitive indexed",
+      "from": "root",
+      "to": "receipt-machine",
+      "payload": { "grove": "receipt-machine", "grove_x": 50, "grove_y": 12, "leaf": "leaf-merkle-001" }
+    },
+    {
+      "id": "evt-checkpoint-000002",
+      "timestamp": "2026-05-19T00:06:18Z",
+      "type": "checkpoint",
+      "checkpoint": 2,
+      "label": "Replay ghost layer enabled",
+      "from": "root",
+      "to": "root",
+      "payload": { "grove": "root", "grove_x": 50, "grove_y": 88, "status": "ghosts_enabled" }
+    }
+  ]
+}

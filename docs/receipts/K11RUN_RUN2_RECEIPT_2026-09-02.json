@@ -1,0 +1,43 @@
+{
+  "receipt_id": "K11RUN_RUN2_RECEIPT",
+  "receipt_timestamp": "2026-09-02T13:26:42Z",
+  "receipt_timezone": "UTC",
+  "github_head": "e53beae2cf1246c85b46307f38cf8f31bdc4de32",
+  "ens_read_chain_id": 8453,
+  "ens_read_block": 50783048,
+  "name": "jaywisdom.base.eth",
+  "namehash": "0x769523c94647d6f87d14aa75900b45c35a8ddb11dc33388fbd5dd5aea752e0ed",
+  "registry": "0xb94704422c2a1e396835a571837aa5ae53285a95",
+  "resolver": "0x426fA03fB86E510d0Dd9F70335Cf102a98b10875",
+  "resolved_address": "0xA380552a27b0a5a2874Ea7AA52CAC09f542002E8",
+  "payout_owner_address": "0x829AdfEdBe565F9885a7eA6Bc78912acAef055E2",
+  "address_equality": false,
+  "inventory_sha256": "89ea69d495b2a4bd53e24c41d4fa03bfd0abe085703abf1656f83d8f15e5cc8d",
+  "csv_sha256": "a82e54e31f7f8b2db6f43f9680ed08c7e143840d56aacbc71ff62184126df594",
+  "k11run_contract": "0x3de98CE63339443E209E948915B3A1782bcC64Fc",
+  "lp_controller": "0x0469a4Bd3724DC86C9542F4694c976DA13C450c0",
+  "payout_is_lp_sender": false,
+  "creator_coin_metadata": "jaywisdom",
+  "rails": {
+    "inventory_rail": "CLOSED",
+    "k11run_enumerable": true,
+    "control_addresses_listed": true,
+    "basename_comparison": "MISMATCH",
+    "pool_exists": true
+  },
+  "flags": {
+    "rail_findings_valid": true,
+    "receipt_byte_sealed": true,
+    "identity_fusion": false,
+    "ens_identity_link": false,
+    "human_identity_inferred": false,
+    "authority_created": false,
+    "quad_onion_pass": false
+  },
+  "notes": [
+    "Inventory publication is GitHub head e53beae2 only; this receipt does not republish inventory.",
+    "Basename addr() replay matched the locked 20-byte values; equality is false.",
+    "Liquidity, payout/owner, profile enumeration, and Basename resolution remain separate rails.",
+    "Token metadata string jaywisdom is not treated as a resolver result."
+  ]
+}

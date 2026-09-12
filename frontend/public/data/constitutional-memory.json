@@ -1,0 +1,59 @@
+{
+  "schema": "JAYSPACE_CONSTITUTIONAL_MEMORY_V0",
+  "doctrine": "A civilization remembers not only what converged, but where it almost split.",
+  "legend": {
+    "canonical": "cyan",
+    "fork": "amber",
+    "disputed": "red",
+    "reconciled": "white"
+  },
+  "forks": [
+    {
+      "id": "fork-flywheel-fly-drift",
+      "label": "Fly runtime drift rejected",
+      "status": "reconciled",
+      "checkpoint_start": 0,
+      "checkpoint_end": 2,
+      "reason": "GitHub Direct replaced unverifiable deployment mythology.",
+      "paths": [
+        { "from": { "x": 50, "y": 88 }, "to": { "x": 28, "y": 34 }, "state": "disputed", "label": "Fly runtime ambiguity" },
+        { "from": { "x": 50, "y": 88 }, "to": { "x": 50, "y": 12 }, "state": "reconciled", "label": "GitHub Direct receipt machine" }
+      ]
+    },
+    {
+      "id": "fork-zora-culture-proof",
+      "label": "Token narrative converted into receipt primitive",
+      "status": "canonical",
+      "checkpoint_start": 1,
+      "checkpoint_end": 2,
+      "reason": "Mint became witness trigger, not speculative claim.",
+      "paths": [
+        { "from": { "x": 50, "y": 88 }, "to": { "x": 83, "y": 62 }, "state": "canonical", "label": "Zora ignition witness" }
+      ]
+    }
+  ],
+  "observer_views": [
+    {
+      "id": "observer-jay",
+      "label": "Jay Operator View",
+      "camera": { "zoom": 1.0, "pan_x": 0, "pan_y": 0 },
+      "focus": "root"
+    }
+  ],
+  "timeline_diff": [
+    {
+      "id": "diff-000001",
+      "from_checkpoint": 0,
+      "to_checkpoint": 2,
+      "summary": "Static portal became spatial replay observatory.",
+      "impact": "interface_to_memory_substrate"
+    }
+  ],
+  "branch_reconciliation": [
+    {
+      "id": "reconcile-github-direct",
+      "status": "accepted",
+      "rule": "If the public cannot observe it directly from GitHub, it is not part of the proof machine."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "JAYSPACE_OBSERVERS_V1",
+  "doctrine": "One receipt stream. Multiple observer lenses. Disagreement is data.",
+  "observers": [
+    {
+      "id": "jay",
+      "label": "Jay Operator View",
+      "role": "root_operator",
+      "focus": "root",
+      "time_bias_seconds": 0,
+      "trust_posture": "root_authority_high",
+      "detail": "high",
+      "blur": 0,
+      "color": "cyan",
+      "visible_states": ["canonical", "reconciled", "disputed"]
+    },
+    {
+      "id": "auditor-west",
+      "label": "Auditor West",
+      "role": "skeptical_auditor",
+      "focus": "fork-amber",
+      "time_bias_seconds": -120,
+      "trust_posture": "root_skeptical",
+      "detail": "high",
+      "blur": 0.35,
+      "color": "amber",
+      "visible_states": ["disputed", "fork", "reconciled"]
+    },
+    {
+      "id": "public-citizen",
+      "label": "Public Citizen",
+      "role": "public_reader",
+      "focus": "canonical",
+      "time_bias_seconds": 0,
+      "trust_posture": "low_detail_public",
+      "detail": "low",
+      "blur": 0.75,
+      "color": "blue",
+      "visible_states": ["canonical", "reconciled"]
+    }
+  ]
+}

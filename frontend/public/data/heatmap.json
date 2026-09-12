@@ -1,0 +1,50 @@
+{
+  "schema": "JAYSPACE_HEATMAP_V1",
+  "description": "Consensus density and replay pressure zones",
+  "edges": [
+    {
+      "id": "edge-root-canonical",
+      "from": "root",
+      "to": "canonical-grove",
+      "observer_count": 3,
+      "consensus": 3,
+      "heat": 18,
+      "status": "converged"
+    },
+    {
+      "id": "edge-root-fork-amber",
+      "from": "root",
+      "to": "fork-amber",
+      "observer_count": 2,
+      "consensus": 1,
+      "heat": 27,
+      "status": "disputed"
+    },
+    {
+      "id": "edge-reconciled-github-direct",
+      "from": "fork-amber",
+      "to": "canonical-grove",
+      "observer_count": 3,
+      "consensus": 3,
+      "heat": 11,
+      "status": "reconciled"
+    }
+  ],
+  "rules": {
+    "disputed": {
+      "pulse_duration": 1.2,
+      "stroke_width": 0.6,
+      "hue": "amber-red"
+    },
+    "converged": {
+      "pulse_duration": 6,
+      "stroke_width": 0.3,
+      "hue": "cyan"
+    },
+    "abandoned": {
+      "grayscale": 0.8,
+      "blur": 0.5,
+      "dasharray": "0.5 3"
+    }
+  }
+}
