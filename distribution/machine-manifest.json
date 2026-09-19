@@ -1,0 +1,24 @@
+{
+  "version": "0.1",
+  "state": "PILOT",
+  "human": {
+    "role": "J",
+    "mustApprove": ["wallet_signature", "trade", "spend", "publish", "send_external_outreach"],
+    "sleepProtected": true
+  },
+  "systems": {
+    "github": "state_and_receipts",
+    "google_drive": "asset_and_working_doc_mirror",
+    "gmail": "daily_work_order_and_outreach",
+    "openai": "ranking_drafting_measurement_and_dispatch"
+  },
+  "optimization": {
+    "primary": "verified_revenue_opportunity",
+    "secondary": ["independent_holders", "qualified_clicks", "reply_rate", "reusable_assets"],
+    "prohibited": ["wash_trading", "fake_volume", "fake_holders", "misleading_financial_claims"]
+  },
+  "dailyDispatch": {
+    "sections": ["money_first", "publish_or_reply", "distribution_queue", "build_one_thing", "holds", "stop_time"]
+  },
+  "authorityCreated": false
+}
