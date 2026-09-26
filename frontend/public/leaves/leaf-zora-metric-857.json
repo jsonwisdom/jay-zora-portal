@@ -1,0 +1,17 @@
+{
+  "id": "leaf-zora-metric-857",
+  "title": "Zora Inventory Checkpoint — 857 Unique Contracts",
+  "grove": "zora-visual-evidence",
+  "status": "canon",
+  "claim": "The deterministic Jay Zora inventory manifest generated 2026-08-14 binds 857 rows and 857 unique contracts for its source file snapshot.",
+  "summary": "This is an inventory-row metric. It does not claim to equal Zora UI Posts, profile createdCoins.count, or every historical Zora creation.",
+  "proof_links": [
+    {
+      "label": "Inventory Manifest",
+      "url": "https://github.com/jsonwisdom/jay-zora-portal/blob/live-zora-ingestion/exports/jay_zora_inventory.manifest.json",
+      "kind": "github-manifest"
+    }
+  ],
+  "tags": ["zora", "living-ledger", "inventory", "857", "version-lock"],
+  "updated_at": "2026-08-14T18:54:10Z"
+}

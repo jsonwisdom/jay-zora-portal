@@ -1,0 +1,17 @@
+{
+  "id": "leaf-zora-metric-923",
+  "title": "Zora Profile Checkpoint — 923 createdCoins",
+  "grove": "zora-visual-evidence",
+  "status": "canon",
+  "claim": "The checked-in raw Zora profile response for handle jaywisdom reports profile.createdCoins.count = 923.",
+  "summary": "This is a profile createdCoins metric from a repository snapshot. It is not the same metric as UI Posts or deterministic inventory rows.",
+  "proof_links": [
+    {
+      "label": "Raw Zora Profile Response",
+      "url": "https://github.com/jsonwisdom/jay-zora-portal/blob/live-zora-ingestion/discovery/zora/latest_profile_coins_response.json",
+      "kind": "github-raw-response"
+    }
+  ],
+  "tags": ["zora", "living-ledger", "createdCoins", "923", "version-lock"],
+  "updated_at": "2026-08-17T20:34:00-05:00"
+}

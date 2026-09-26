@@ -1,0 +1,17 @@
+{
+  "id": "leaf-zora-ui-posts-1_3k",
+  "title": "Zora UI Receipt — 1.3K Posts",
+  "grove": "zora-visual-evidence",
+  "status": "canon",
+  "claim": "A user-supplied screenshot observed 2026-08-17 at approximately 20:30 local time displays the @jaywisdom Zora profile with '1.3K Posts'.",
+  "summary": "The screenshot supports the narrow claim that the captured Zora UI displayed 1.3K Posts. It does not prove the live current count after capture and does not make Posts equivalent to createdCoins or inventory rows.",
+  "proof_links": [
+    {
+      "label": "Conversation Attachment Receipt",
+      "url": "chat-file:file_000000003900822f8db373bea29d042e",
+      "kind": "conversation-attachment"
+    }
+  ],
+  "tags": ["zora", "living-ledger", "ui", "posts", "1.3k", "screenshot", "sha256:60604471c1dceb58117ffb48e7ea37d29b3ef19f2703b158a9b7499d52110240"],
+  "updated_at": "2026-08-17T20:34:00-05:00"
+}
