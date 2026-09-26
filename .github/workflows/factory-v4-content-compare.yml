@@ -1,0 +1,88 @@
+name: Factory V4 Content Set Compare
+
+on:
+  workflow_dispatch:
+    inputs:
+      from_block:
+        description: "Inclusive Base start block"
+        required: false
+        default: "0"
+      to_block:
+        description: "Inclusive Base end block"
+        required: false
+        default: "999999999"
+
+permissions:
+  contents: read
+
+jobs:
+  factory-v4-compare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Require Etherscan API key
+        shell: bash
+        env:
+          ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${ETHERSCAN_API_KEY}" ]; then
+            echo "ETHERSCAN_API_KEY secret is not configured" >&2
+            exit 2
+          fi
+
+      - name: Recover frozen Sep-2 1015 catalog from Git history
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/factory-v4
+          git show 55d372525a55ed7cc79824659894f2f40299d4ad:exports/jay_zora_inventory.csv > artifacts/factory-v4/sep2_1015.csv
+          rows=$(python3 - <<'PY'
+          import csv
+          p="artifacts/factory-v4/sep2_1015.csv"
+          with open(p, newline="", encoding="utf-8") as f:
+              print(sum(1 for _ in csv.DictReader(f)))
+          PY
+          )
+          test "$rows" = "1015"
+          echo "SEP2_CATALOG_ROWS=$rows"
+
+      - name: Collect caller+payout CoinCreatedV4 and subtract Sep-2 1015
+        env:
+          ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
+        run: |
+          set -euo pipefail
+          python3 scripts/collect_factory_v4_etherscan.py \
+            --catalog artifacts/factory-v4/sep2_1015.csv \
+            --out-dir artifacts/factory-v4/run \
+            --from-block "${{ inputs.from_block }}" \
+            --to-block "${{ inputs.to_block }}"
+
+      - name: Fail closed unless pagination terminal is confirmed
+        shell: bash
+        run: |
+          set -euo pipefail
+          summary="artifacts/factory-v4/run/summary.json"
+
+          jq -e '.complete == true' "$summary" >/dev/null
+          jq -e '.catalog_rows == 1015 and .catalog_unique_contracts == 1015' "$summary" >/dev/null
+          jq -e '.pagination.both_roles_confirmed_terminal == true' "$summary" >/dev/null
+          jq -e '.pagination.caller.confirmed_terminal == true' "$summary" >/dev/null
+          jq -e '.pagination.payout.confirmed_terminal == true' "$summary" >/dev/null
+          jq -e '.pagination.suspect_truncation == false' "$summary" >/dev/null
+          jq -e '.coverage_proven == false' "$summary" >/dev/null
+
+          cat "$summary"
+
+      - name: Upload replayable factory receipt set
+        uses: actions/upload-artifact@v4
+        with:
+          name: jay-zora-factory-v4-content-compare
+          path: artifacts/factory-v4/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6
