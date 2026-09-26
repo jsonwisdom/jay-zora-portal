@@ -1,0 +1,174 @@
+name: zora-corpus-reconciliation
+
+on:
+  workflow_dispatch:
+    inputs:
+      scan_start:
+        description: "First Base block (inclusive)"
+        required: true
+        default: "26602741"
+        type: string
+      scan_end:
+        description: "Last Base block (inclusive)"
+        required: true
+        type: string
+      chunk_size:
+        description: "Inclusive block-window width"
+        required: true
+        default: "10000"
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: zora-corpus-reconciliation
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+
+    steps:
+      - name: Checkout jay-zora-portal
+        uses: actions/checkout@v4
+        with:
+          ref: live-zora-ingestion
+
+      - name: Checkout boss-brenda-crawler
+        uses: actions/checkout@v4
+        with:
+          repository: jsonwisdom/boss-brenda-crawler
+          path: boss-brenda-crawler
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install profile-export dependencies
+        run: npm ci
+
+      - name: Install Boss Brenda runtime dependency
+        run: python -m pip install requests
+
+      - name: Export profile coins
+        id: profile_export
+        continue-on-error: true
+        env:
+          ZORA_IDENTIFIER: jaywisdom
+          ZORA_COUNT: "50"
+          ZORA_API_KEY: ${{ secrets.ZORA_API_KEY }}
+        run: node tools/export_zora_profile_coins.mjs
+
+      - name: Scan Base creation-log windows
+        id: chain_scan
+        continue-on-error: true
+        env:
+          BASE_RPC_URL: ${{ secrets.BASE_RPC_URL }}
+          SCAN_START: ${{ inputs.scan_start }}
+          SCAN_END: ${{ inputs.scan_end }}
+          CHUNK_SIZE: ${{ inputs.chunk_size }}
+        shell: bash
+        run: |
+          set -u
+          mkdir -p data/base_raw data/chain
+
+          START="$SCAN_START"
+          END="$SCAN_END"
+          WIDTH="$CHUNK_SIZE"
+
+          if [ "$END" -lt "$START" ]; then
+            echo "scan_end < scan_start" >&2
+            exit 2
+          fi
+
+          TOPICS=(
+            "0x3d1462491f7fa8396808c230d95c3fa60fd09ef59506d0b9bd1cf072d2a03f56"
+            "0x2de436107c2096e039c98bbcc3c5a2560583738ce15c234557eecb4d3221aa81"
+            "0x74b670d628e152daa36ca95dda7cb0002d6ea7a37b55afe4593db7abd1515781"
+          )
+
+          : > data/chain/scan_command_failures.txt
+          A="$START"
+          while [ "$A" -le "$END" ]; do
+            B=$((A + WIDTH - 1))
+            if [ "$B" -gt "$END" ]; then B="$END"; fi
+
+            for TOPIC in "${TOPICS[@]}"; do
+              echo "SCAN $A $B $TOPIC"
+              if ! bash scripts/base_getlogs_window.sh "$A" "$B" "$TOPIC"; then
+                echo "$A|$B|$TOPIC|COMMAND_FAILURE" >> data/chain/scan_command_failures.txt
+              fi
+            done
+
+            A=$((B + 1))
+          done
+
+      - name: Produce pipe decoder audit
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p data/chain/pipe
+          for F in data/base_raw/logs_*.json; do
+            [ -e "$F" ] || continue
+            BASE=$(basename "$F" .json)
+            python scripts/decode_coincreated_v4_logs.py "$F"               > "data/chain/pipe/${BASE}.pipe" || true
+          done
+
+      - name: Normalize creation receipts
+        if: always()
+        run: |
+          python scripts/wrap_decoded_logs.py             --in-dir data/base_raw             --out data/chain/creation_logs.json             --scan-start "${{ inputs.scan_start }}"             --scan-end "${{ inputs.scan_end }}"
+
+      - name: Run Boss Brenda creator lane
+        id: boss_brenda
+        if: always()
+        continue-on-error: true
+        env:
+          BASE_RPC_URL: ${{ secrets.BASE_RPC_URL }}
+        working-directory: boss-brenda-crawler
+        run: python src/expand_creator_lane.py
+
+      - name: Adapt Boss Brenda artifacts
+        if: always()
+        run: |
+          mkdir -p data/zora
+          python scripts/adapt_boss_brenda_to_v1.py             --in-dir boss-brenda-crawler/data/zora             --out data/zora/boss_brenda_objects_v1.json
+
+      - name: Reconcile surfaces
+        if: always()
+        shell: bash
+        run: |
+          PRIOR_ARGS=()
+          if [ -s data/prior/prior_creation_logs.json ]; then
+            PRIOR_ARGS=(--prior data/prior/prior_creation_logs.json)
+          fi
+
+          python scripts/reconcile_surfaces.py             --root .             --out data/reconciliation             "${PRIOR_ARGS[@]}"
+
+      - name: Upload investigation artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zora-reconciliation-${{ github.run_id }}
+          path: |
+            data/reconciliation/
+            data/chain/
+            data/base_raw/
+            data/zora/boss_brenda_objects_v1.json
+            data/live_zora_items.json
+            discovery/zora/latest_profile_coins_response.json
+            discovery/zora/latest_profile_coins_edges.json
+            boss-brenda-crawler/data/zora/
+          if-no-files-found: warn
+          retention-days: 30
