@@ -62,13 +62,21 @@ jobs:
             --from-block "${{ inputs.from_block }}" \
             --to-block "${{ inputs.to_block }}"
 
-      - name: Fail closed unless complete
+      - name: Fail closed unless pagination terminal is confirmed
         shell: bash
         run: |
           set -euo pipefail
-          jq -e '.complete == true' artifacts/factory-v4/run/summary.json >/dev/null
-          jq -e '.catalog_rows == 1015 and .catalog_unique_contracts == 1015' artifacts/factory-v4/run/summary.json >/dev/null
-          cat artifacts/factory-v4/run/summary.json
+          summary="artifacts/factory-v4/run/summary.json"
+
+          jq -e '.complete == true' "$summary" >/dev/null
+          jq -e '.catalog_rows == 1015 and .catalog_unique_contracts == 1015' "$summary" >/dev/null
+          jq -e '.pagination.both_roles_confirmed_terminal == true' "$summary" >/dev/null
+          jq -e '.pagination.caller.confirmed_terminal == true' "$summary" >/dev/null
+          jq -e '.pagination.payout.confirmed_terminal == true' "$summary" >/dev/null
+          jq -e '.pagination.suspect_truncation == false' "$summary" >/dev/null
+          jq -e '.coverage_proven == false' "$summary" >/dev/null
+
+          cat "$summary"
 
       - name: Upload replayable factory receipt set
         uses: actions/upload-artifact@v4
