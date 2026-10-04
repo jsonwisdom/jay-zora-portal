@@ -1,0 +1,238 @@
+name: Export Zora Inventory CSV
+
+on:
+  push:
+    branches:
+      - live-zora-ingestion
+    paths-ignore:
+      - "exports/**"
+      - "data/live_zora_items.json"
+      - "discovery/zora/latest_profile_coins_response.json"
+      - "discovery/zora/latest_profile_coins_edges.json"
+  pull_request:
+    branches:
+      - live-zora-ingestion
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zora-inventory-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout canonical inventory branch
+        uses: actions/checkout@v4
+        with:
+          ref: live-zora-ingestion
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install Zora SDK dependencies
+        run: npm ci
+
+      - name: Pull live Zora profile through SDK
+        env:
+          ZORA_IDENTIFIER: jaywisdom
+          ZORA_COUNT: "50"
+          ZORA_API_KEY: ${{ secrets.ZORA_API_KEY }}
+        run: node tools/export_zora_profile_coins.mjs
+
+      - name: Verify refreshed canonical source
+        run: |
+          test -s discovery/zora/latest_profile_coins_response.json
+          test -s discovery/zora/latest_profile_coins_edges.json
+          COUNT=$(jq 'length' data/live_zora_items.json)
+          RAW_COUNT=$(jq 'length' discovery/zora/latest_profile_coins_edges.json)
+          DECLARED=$(jq -r '.data.profile.createdCoins.count' discovery/zora/latest_profile_coins_response.json)
+          TERMINAL=$(jq -r '.data.profile.createdCoins.pageInfo.hasNextPage' discovery/zora/latest_profile_coins_response.json)
+          UNIQUE=$(jq '[.[].contract | ascii_downcase] | unique | length' data/live_zora_items.json)
+          K11RUN=$(jq '[.[] | select((.contract | ascii_downcase) == "0x3de98ce63339443e209e948915b3a1782bcc64fc")] | length' data/live_zora_items.json)
+          GAP=$((DECLARED - COUNT))
+          echo "DECLARED_PROFILE_COUNT=$DECLARED"
+          echo "TRAVERSED_EDGE_COUNT=$RAW_COUNT"
+          echo "ENUMERABLE_INVENTORY_COUNT=$COUNT"
+          echo "UNIQUE_CONTRACT_COUNT=$UNIQUE"
+          echo "DECLARED_ENUMERABLE_GAP=$GAP"
+          echo "TERMINAL_HAS_NEXT_PAGE=$TERMINAL"
+          echo "K11RUN_ROWS=$K11RUN"
+          test "$DECLARED" != "null"
+          test "$TERMINAL" = "false"
+          test "$RAW_COUNT" -eq "$COUNT"
+          test "$UNIQUE" -eq "$COUNT"
+          test "$K11RUN" -eq 1
+          test "$GAP" -ge 0
+
+      - name: Build deterministic CSV and manifest
+        shell: python
+        run: |
+          import csv
+          import hashlib
+          import json
+          import subprocess
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          source = Path("data/live_zora_items.json")
+          response_path = Path("discovery/zora/latest_profile_coins_response.json")
+          edges_path = Path("discovery/zora/latest_profile_coins_edges.json")
+          output_dir = Path("exports")
+          csv_path = output_dir / "jay_zora_inventory.csv"
+          manifest_path = output_dir / "jay_zora_inventory.manifest.json"
+
+          source_bytes = source.read_bytes()
+          rows = json.loads(source_bytes.decode("utf-8"))
+          response = json.loads(response_path.read_text(encoding="utf-8"))
+          edges = json.loads(edges_path.read_text(encoding="utf-8"))
+          if not isinstance(rows, list):
+              raise SystemExit("FAIL: source JSON is not an array")
+          if not isinstance(edges, list):
+              raise SystemExit("FAIL: raw edges JSON is not an array")
+          declared_profile_count = int(response["data"]["profile"]["createdCoins"]["count"])
+          terminal_has_next_page = bool(response["data"]["profile"]["createdCoins"]["pageInfo"]["hasNextPage"])
+          traversed_edge_count = len(edges)
+          unique_contract_count = len({
+              str(row.get("contract", "")).lower()
+              for row in rows
+              if row.get("contract")
+          })
+          k11run_present = sum(
+              1 for row in rows
+              if str(row.get("contract", "")).lower()
+              == "0x3de98ce63339443e209e948915b3a1782bcc64fc"
+          ) == 1
+          if terminal_has_next_page:
+              raise SystemExit("FAIL: traversal is not terminal")
+          if traversed_edge_count != len(rows):
+              raise SystemExit("FAIL: raw edge/normalized row mismatch")
+          if unique_contract_count != len(rows):
+              raise SystemExit("FAIL: duplicate contracts in enumerable inventory")
+          if not k11run_present:
+              raise SystemExit("FAIL: K11RUN is not present exactly once")
+          if declared_profile_count < len(rows):
+              raise SystemExit("FAIL: enumerable rows exceed declared profile count")
+
+          output_dir.mkdir(parents=True, exist_ok=True)
+          fields = [
+              "inventory_index",
+              "title",
+              "description",
+              "image_uri",
+              "zora_url",
+              "contract",
+              "token_id",
+              "chain",
+              "tx_hash",
+              "created_at",
+              "source_repository",
+              "source_ref",
+              "source_path",
+          ]
+
+          with csv_path.open("w", encoding="utf-8", newline="") as handle:
+              writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
+              writer.writeheader()
+              for index, row in enumerate(rows, start=1):
+                  writer.writerow({
+                      "inventory_index": index,
+                      "title": row.get("title", ""),
+                      "description": row.get("description", ""),
+                      "image_uri": row.get("image_uri", ""),
+                      "zora_url": row.get("zora_url", ""),
+                      "contract": row.get("contract", ""),
+                      "token_id": row.get("token_id", ""),
+                      "chain": row.get("chain", ""),
+                      "tx_hash": row.get("tx_hash", ""),
+                      "created_at": row.get("created_at", ""),
+                      "source_repository": "jsonwisdom/jay-zora-portal",
+                      "source_ref": "live-zora-ingestion",
+                      "source_path": "data/live_zora_items.json",
+                  })
+
+          csv_bytes = csv_path.read_bytes()
+          dates = [str(row.get("created_at", "")) for row in rows if row.get("created_at")]
+          contracts = [str(row.get("contract", "")).lower() for row in rows if row.get("contract")]
+          urls = [str(row.get("zora_url", "")) for row in rows if row.get("zora_url")]
+          titles = [str(row.get("title", "")) for row in rows if row.get("title")]
+          source_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          source_blob = subprocess.check_output(["git", "hash-object", str(source)], text=True).strip()
+
+          manifest = {
+              "schema": "JAY_ZORA_INVENTORY_MANIFEST_V1",
+              "generated_at": datetime.now(timezone.utc).isoformat(),
+              "coverage": "LIVE_SDK_PULL_ENUMERABLE_ONLY",
+              "source_repository": "jsonwisdom/jay-zora-portal",
+              "source_ref": "live-zora-ingestion",
+              "source_commit_sha": source_commit,
+              "source_path": str(source),
+              "source_git_blob_sha": source_blob,
+              "source_sha256": hashlib.sha256(source_bytes).hexdigest(),
+              "csv_path": str(csv_path),
+              "csv_sha256": hashlib.sha256(csv_bytes).hexdigest(),
+              "row_count": len(rows),
+              "declared_profile_count": declared_profile_count,
+              "traversed_edge_count": traversed_edge_count,
+              "unique_contract_count": unique_contract_count,
+              "declared_enumerable_gap": declared_profile_count - traversed_edge_count,
+              "terminal_has_next_page": terminal_has_next_page,
+              "k11run_present": k11run_present,
+              "nonempty_contract_count": len(contracts),
+              "nonempty_zora_url_count": len(urls),
+              "nonempty_title_count": len(titles),
+              "earliest_created_at": min(dates) if dates else None,
+              "latest_created_at": max(dates) if dates else None,
+              "line_endings": "LF",
+              "final_newline": csv_bytes.endswith(b"\n"),
+              "boundary": "Enumerable-only inventory from a terminal @zoralabs/coins-sdk profileCoins traversal for jaywisdom. The declared profile count is an audit field, not a completeness claim. It creates no identity, control, or external authority."
+          }
+          manifest_path.write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+              newline="\n",
+          )
+
+          assert csv_bytes.endswith(b"\n")
+          assert len(contracts) == len(rows), "Every inventory row must have a contract"
+          assert len(urls) == len(rows), "Every inventory row must have a Zora URL"
+          print(json.dumps(manifest, indent=2))
+
+      - name: Upload downloadable inventory artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jay-zora-inventory-current
+          path: |
+            exports/jay_zora_inventory.csv
+            exports/jay_zora_inventory.manifest.json
+            discovery/zora/latest_profile_coins_response.json
+            discovery/zora/latest_profile_coins_edges.json
+            data/live_zora_items.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Commit refreshed live Zora receipts and inventory
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            discovery/zora/latest_profile_coins_response.json \
+            discovery/zora/latest_profile_coins_edges.json \
+            exports/jay_zora_inventory.csv \
+            exports/jay_zora_inventory.manifest.json
+          git add -f data/live_zora_items.json
+          if git diff --cached --quiet; then
+            echo "Live Zora inventory already current."
+            exit 0
+          fi
+          git commit -m "Refresh live Zora inventory"
+          git push origin HEAD:live-zora-ingestion

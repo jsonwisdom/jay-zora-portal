@@ -1,0 +1,14 @@
+[
+  {
+    "title": "GIRTH",
+    "description": "Goblin Court: The Unmeasured Virtue",
+    "image_uri": "https://picsum.photos/600/600?1",
+    "zora_url": "https://zora.co/@jaywisdom",
+    "contract": "0x694ce46c64d9d1a5e9376a9febcf85ec05d72e9f",
+    "token_id": "1",
+    "chain": "base",
+    "tx_hash": "0xdbb81126b9ef37d254c3dfbc970ca07248b38a9249e752918634c4c3efeb5a6e",
+    "themes": ["goblin", "receipts", "virtue"],
+    "query_aliases": ["girth", "goblin court", "pink goblin"]
+  }
+]

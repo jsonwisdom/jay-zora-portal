@@ -1,0 +1,52 @@
+{
+  "event": "JAY_ZORA_FULL_AUDIT_RUN1",
+  "timestamp": "2026-09-02T14:59:46.274512Z",
+  "status": "ENUMERABLE_CATALOG_GENERATED",
+  "coverage": "LIVE_SDK_PULL_ENUMERABLE_ONLY",
+  "source_commit": "55d372525a55ed7cc79824659894f2f40299d4ad",
+  "enumerable_rows": 1015,
+  "declared_profile_count": 1087,
+  "declared_enumerable_gap": 72,
+  "unique_contract_count": 1015,
+  "classification_tag_counts": {
+    "BOARD_GAME_ARTIFACT": 1,
+    "COURT_PROCESS_SATIRE": 25,
+    "GPK_NEWSROOM_SATIRE": 21,
+    "GRAY_BABY_UNIVERSE": 14,
+    "POLITICAL_PARODY": 35,
+    "PROTOCOL_TECHNICAL": 191,
+    "RECEIPT_SYSTEM": 201,
+    "STANDALONE_ART": 671
+  },
+  "identity_or_brand_review_count": 75,
+  "files": {
+    "JAY_ZORA_MASTER_CATALOG.csv": {
+      "bytes": 216228,
+      "sha256": "e8a467fce7b3f6859962c23e2afa04572978f906f38fd06bc0458ca7ff2c2aeb"
+    },
+    "JAY_ZORA_MASTER_CATALOG.json": {
+      "bytes": 1034154,
+      "sha256": "1e593c0624005e2155fafbd6ed578ed0a8c0b1b2983c72b502fa4309004e7ed0"
+    },
+    "JAY_ZORA_RISK_AND_REUSE_QUEUE.md": {
+      "bytes": 15011,
+      "sha256": "83c67c63959794fdc8cf5ca8c0c7daed5b1009f34e03f9e48a24812f9b4ff071"
+    },
+    "JAY_ZORA_SERIES_MAP.md": {
+      "bytes": 1844,
+      "sha256": "ad47984ee435af59744cdd1cb5c152988da1fde4bf612e002c7d1c8c8689f395"
+    },
+    "JAY_ZORA_TIMELINE.md": {
+      "bytes": 10829,
+      "sha256": "87338b5f244c8619e99a770e71becc85798a6dccdfd6cf2dedf4e277faa8f0ec"
+    }
+  },
+  "flags": {
+    "COMPLETE_1087_CLAIM": false,
+    "IDENTITY_FUSION": false,
+    "AUTHORITY_CREATED": false,
+    "MINT": false,
+    "TRADE": false,
+    "OWNER_UPDATE": false
+  }
+}

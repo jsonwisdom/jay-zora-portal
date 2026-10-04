@@ -1,0 +1,67 @@
+[
+  {
+    "name": "jaywisdom.eth",
+    "type": "public_wallet_identity",
+    "network": "Ethereum / ENS",
+    "url": "https://app.ens.domains/jaywisdom.eth",
+    "mirror_url": "https://etherscan.io/enslookup-search?search=jaywisdom.eth",
+    "description": "Jay Wisdom primary public ENS identity anchor.",
+    "tags": ["ens", "identity", "wallet", "jay wisdom", "public anchor"]
+  },
+  {
+    "name": "jaywisdom.base.eth",
+    "type": "public_anchor_identity",
+    "network": "Base / Basename",
+    "url": "https://www.base.org/names/jaywisdom",
+    "mirror_url": "https://basescan.org/address/0xA380552a27b0a5a2874Ea7AA52CAC09f542002E8",
+    "address": "0xA380552a27b0a5a2874Ea7AA52CAC09f542002E8",
+    "description": "Jay Wisdom Base public anchor and verification surface.",
+    "tags": ["base", "basename", "ens", "identity", "wallet", "receipt anchor", "jay wisdom"]
+  },
+  {
+    "name": "Zora @jaywisdom",
+    "type": "creator_distribution_surface",
+    "network": "Base / Zora",
+    "url": "https://zora.co/@jaywisdom",
+    "mirror_url": "https://zora.co/@jaywisdom",
+    "address": "0x829adfedbe565f9885a7ea6bc78912acaef055e2",
+    "description": "Jay Wisdom public Zora creator surface mirrored into the portal inventory.",
+    "tags": ["zora", "creator", "artwork", "base", "public inventory"]
+  },
+  {
+    "name": "Zora Invite",
+    "type": "ignition_invite_surface",
+    "network": "Zora / Creator Graph",
+    "url": "https://zora.co/invite/jaywisdom",
+    "mirror_url": "https://zora.co/invite/jaywisdom",
+    "description": "Public Zora invitation surface for creator graph ignition and mint discovery.",
+    "tags": ["zora", "invite", "creator graph", "ignition surface", "public witness"]
+  },
+  {
+    "name": "Base App Invite",
+    "type": "base_social_entry_surface",
+    "network": "Base App",
+    "url": "https://base.app/invite/jaywisdom/BS9SPCT5",
+    "mirror_url": "https://base.app/invite/jaywisdom/BS9SPCT5",
+    "description": "Base App invite route for social entry into the public verification flywheel.",
+    "tags": ["base", "invite", "social", "verification surface", "public entry"]
+  },
+  {
+    "name": "Farcaster Code",
+    "type": "farcaster_entry_surface",
+    "network": "Farcaster",
+    "url": "https://farcaster.xyz/~/code/09YHOT",
+    "mirror_url": "https://farcaster.xyz/~/code/09YHOT",
+    "description": "Farcaster entry code for witness comments, casts, and social attestation routing.",
+    "tags": ["farcaster", "code", "witness", "social attestation", "public thread"]
+  },
+  {
+    "name": "@qslices on X",
+    "type": "x_witness_surface",
+    "network": "X / Social Witness",
+    "url": "https://x.com/qslices?s=21",
+    "mirror_url": "https://x.com/qslices?s=21",
+    "description": "External X witness surface for public ignition, thread visibility, and social proof routing.",
+    "tags": ["x", "qslices", "witness", "social proof", "ignition"]
+  }
+]

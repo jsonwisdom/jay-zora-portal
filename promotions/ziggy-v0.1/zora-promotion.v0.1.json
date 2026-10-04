@@ -1,0 +1,52 @@
+{
+  "format": "JAYSPACE_ZORA_PROMOTION_V0.1",
+  "promotion_id": "ZIGGY_V0_1_ZORA_PROMOTION",
+  "state": "READY_FOR_ZORA_SIGNER",
+  "target": {
+    "platform": "Zora",
+    "profile": "https://zora.co/@jaywisdom",
+    "network_expected": "Base",
+    "publish_requires_human_signer": true
+  },
+  "artifact": {
+    "title": "Ziggy — Quantum RePlay v0.1",
+    "description": "A bounded reasoning companion for children: preserve originals, expose missing information, respect parent-defined boundaries, and make the reasoning path replayable.",
+    "system_identity": "COMPUTERWISDOM",
+    "repository": "jsonwisdom/COMPUTERWISDOM",
+    "release_merge_commit": "9f86c17d3bed5239adaa83aba1f9fb2bbdbdc48c",
+    "source_commit": "5aa886746ec08adcbbbad2c5f758b64324066d66",
+    "boxd_release_sha256": "ad22599ef68bca96af1328ed0ab60cc0ff488af21db1139db954098400146447",
+    "operator_label": "jaywisdom.eth",
+    "release_label": "100th Intelligence",
+    "prototype_url": "https://jsonwisdom.github.io/COMPUTERWISDOM/projects/ziggy/ziggy-box-v0.1.html",
+    "signer_url": "https://jsonwisdom.github.io/COMPUTERWISDOM/projects/ziggy/sign-v0.1.html"
+  },
+  "identity_claims": [
+    {
+      "address": "0x73ad550dcb47d254a5b3c335ae39d8999c42ff12",
+      "state": "USER_SUPPLIED_UNVERIFIED"
+    },
+    {
+      "address": "0xa380552a27b0a5a2874ea7aa52cac09f542002e8",
+      "state": "USER_SUPPLIED_UNVERIFIED"
+    }
+  ],
+  "zora_result": {
+    "zora_url": null,
+    "contract": null,
+    "token_id": null,
+    "transaction_hash": null,
+    "published_at": null
+  },
+  "media": {
+    "status": "GAP_REQUIRED",
+    "reason": "No canonical Zora media object has been selected in this promotion step. Do not invent one."
+  },
+  "rules": [
+    "Do not insert this candidate into the canonical Zora inventory until Zora exposes a real public object.",
+    "Do not claim minted, posted, coined, or on-chain until a human-signed Zora publish returns observable identifiers.",
+    "COMPUTERWISDOM remains the source system identity; GitHub and Zora are publication transports/surfaces.",
+    "authority_created=false"
+  ],
+  "authority_created": false
+}

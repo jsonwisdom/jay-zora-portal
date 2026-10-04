@@ -1,0 +1,26 @@
+{
+  "root": "jayspace-root",
+  "groves": [
+    {
+      "id": "receipt-machine",
+      "title": "Receipt Machine",
+      "color": "amber",
+      "description": "Truth in. Receipt out.",
+      "leaves": ["leaf-flywheel-001", "leaf-merkle-001"]
+    },
+    {
+      "id": "zora-flywheel",
+      "title": "Zora Flywheel",
+      "color": "magenta",
+      "description": "Mint → Mirror → Index → Verify → Reputation",
+      "leaves": ["leaf-zora-001"]
+    },
+    {
+      "id": "computerwisdom",
+      "title": "COMPUTERWISDOM",
+      "color": "cyan",
+      "description": "Machine-speed replay synthesis",
+      "leaves": ["leaf-cw-001"]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "JAYSPACE_CAPABILITY_PERMISSIONS_V1",
+  "doctrine": "Capability follows verifiable participation, not wealth.",
+  "updated_at": "2026-05-19T00:00:00Z",
+  "subjects": {
+    "jaywisdom.base.eth": {
+      "wallets": [
+        "0xA380552a27b0a5a2874Ea7AA52CAC09f542002E8",
+        "0x829adfedbe565f9885a7ea6bc78912acaef055e2"
+      ],
+      "tier": "keeper",
+      "coordinates": ["root", "receipt-machine", "replay-vault-depth-2"],
+      "capabilities": [
+        "archive",
+        "witness",
+        "annotate",
+        "adjudicate",
+        "replay-depth-2",
+        "time-archaeology"
+      ],
+      "basis": ["operator_genesis", "github_direct", "zora_surface", "base_anchor"]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "object": "GIRTH_BIRTH_CLASS.RAIL.0x49c29d9b…",
+  "state": "FROZEN",
+  "hold": true,
+  "github_packet_prior_state": "NOT_LOCATED",
+  "session_packet": "GIRTH_BIRTH_CLASS.RAIL.LOCK.2026-09-11.json",
+  "session_packet_sha256": "dfac73d3b95bbdc72139dbde63ef0f9f4e9261e64c0b50e60d235161aa04f9cc",
+  "session_packet_sha256_scope": "runtime/session-held packet; not asserted as the hash of this GitHub file",
+  "github_persistence": "RECEIPT_CREATED",
+  "candidate_tx": "0x49c29d9b305a297c6a754f068fbf8ec4921e5e038b3c037757d99635da477a10",
+  "excluded_tx": "0xdbb81126b9ef37d254c3dfbc970ca07248b38a9249e752918634c4c3efeb5a6e",
+  "candidate_shape": "GIRTH-BOUND / MINT-LIKE BATCH",
+  "whole_tx_identity": "NOT_GIRTH",
+  "outer_tx": "EntryPoint.handleOps batch",
+  "onchain_birth": "HOLD",
+  "portal_index": "MATCH / MIRROR ONLY",
+  "class": null,
+  "authority": null,
+  "abi_inference": null,
+  "promotion": null,
+  "write": true,
+  "write_scope": "persist this GitHub receipt only; no birth-class promotion",
+  "barry_join": "NONE",
+  "authority_created": false,
+  "invariants": [
+    "session-held packet != GitHub-persisted receipt bytes",
+    "mint-like event present != birth proven"
+  ]
+}

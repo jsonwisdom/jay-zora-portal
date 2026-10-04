@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jsonwisdom.github.io/jay-zora-portal/leaves/schema.json",
+  "title": "JaySpace Proof Leaf",
+  "type": "object",
+  "required": ["id", "title", "grove", "status", "claim", "proof_links", "updated_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string" },
+    "grove": { "type": "string" },
+    "status": { "type": "string", "enum": ["proposed", "candidate", "held", "superseded", "canon"] },
+    "claim": { "type": "string" },
+    "summary": { "type": "string" },
+    "proof_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "url", "kind"],
+        "properties": {
+          "label": { "type": "string" },
+          "url": { "type": "string" },
+          "kind": { "type": "string" }
+        }
+      }
+    },
+    "parents": { "type": "array", "items": { "type": "string" } },
+    "children": { "type": "array", "items": { "type": "string" } },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "updated_at": { "type": "string" }
+  }
+}
