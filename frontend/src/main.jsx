@@ -301,7 +301,9 @@ function App() {
         <div className="actions-row"><a href={FLYWHEEL_URL} target="_blank" rel="noreferrer">Zora</a><a href={GITHUB_URL} target="_blank" rel="noreferrer">GitHub</a><a href={`${BASE}forest.json`} target="_blank" rel="noreferrer">forest.json</a></div>
       </aside>
 
-      <GoldenPassportGame game={passportGame} />\n\n      <section className="runtime-card" aria-label="Live Replay Runtime">
+      <GoldenPassportGame game={passportGame} />
+
+      <section className="runtime-card" aria-label="Live Replay Runtime">
         <div className="runtime-grid" />
         <div className="runtime-orb" />
         <div className="runtime-kicker"><span />JAYSPACE SPECIFICATION</div>
