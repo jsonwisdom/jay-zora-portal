@@ -1,0 +1,101 @@
+{
+  "game_id": "JASONS_GOLDEN_PASSPORT_GAME_V0_1",
+  "mode": "DIRECTORY_GAME",
+  "order_rule": "ENS_BEFORE_DNS",
+  "title": "Jason's Golden Passport",
+  "subtitle": "Five directory seats. No identity join required.",
+  "denominator": {
+    "kind": "DIRECTORY_SEATS",
+    "required": 5
+  },
+  "seats": [
+    {
+      "id": "ens",
+      "order": 1,
+      "label": "ENS",
+      "state": "PASS",
+      "value": "jaywisdom.eth",
+      "href": "https://app.ens.domains/jaywisdom.eth",
+      "evidence_ref": "frontend/public/identity-index.json",
+      "note": "First namespace entry. ENS is not legal identity."
+    },
+    {
+      "id": "basename",
+      "order": 2,
+      "label": "Basename",
+      "state": "PASS",
+      "value": "jaywisdom.base.eth",
+      "href": "https://www.base.org/names/jaywisdom",
+      "evidence_ref": "frontend/public/identity-index.json",
+      "note": "Directory pointer only. Basename is not a control receipt."
+    },
+    {
+      "id": "platforms",
+      "order": 3,
+      "label": "Platform objects",
+      "state": "PASS",
+      "value": "Zora + GitHub + Drive",
+      "href": "https://github.com/jsonwisdom/jay-zora-portal",
+      "evidence_ref": "frontend/public/identity-index.json",
+      "note": "Tracked surfaces coexist in the directory; coexistence is not a join."
+    },
+    {
+      "id": "routing",
+      "order": 4,
+      "label": "Web routing",
+      "state": "PASS",
+      "value": "GitHub Pages route",
+      "href": "https://jsonwisdom.github.io/jay-zora-portal/",
+      "evidence_ref": "README.md",
+      "note": "DNS/web routing comes after ENS in the ordering rule."
+    },
+    {
+      "id": "public-page",
+      "order": 5,
+      "label": "Public page",
+      "state": "PASS",
+      "value": "JaySpace",
+      "href": "https://jsonwisdom.github.io/jay-zora-portal/",
+      "evidence_ref": "README.md",
+      "note": "Readable public membrane; not an identity authority."
+    }
+  ],
+  "optional_missions": [
+    {
+      "id": "wallet-control",
+      "label": "Wallet control proof",
+      "state": "UNRUN",
+      "required_for_clear": false
+    },
+    {
+      "id": "attestation",
+      "label": "Attestation readback",
+      "state": "UNRUN",
+      "required_for_clear": false
+    },
+    {
+      "id": "runtime",
+      "label": "Live page runtime check",
+      "state": "UNRUN",
+      "required_for_clear": false
+    },
+    {
+      "id": "dns",
+      "label": "Custom DNS bind",
+      "state": "UNRUN",
+      "required_for_clear": false
+    }
+  ],
+  "invariants": [
+    "ENS ≠ DNS",
+    "ENS ≠ LEGAL_IDENTITY",
+    "DNS ≠ IDENTITY",
+    "DIRECTORY_MEMBERSHIP ≠ IDENTITY_PROOF",
+    "POINTER ≠ JOIN",
+    "GAME_CLEAR ≠ IDENTITY_CLEAR"
+  ],
+  "identity_join_service": "NOT_REQUIRED",
+  "golden_passport_as_identity_proof": "DOES_NOT_EXIST",
+  "authority_created": false,
+  "promotion": "NONE"
+}

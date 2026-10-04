@@ -12,6 +12,7 @@ const OBSERVERS_URL = `${BASE}data/observers.json`;
 const HEATMAP_URL = `${BASE}data/heatmap.json`;
 const LINEAGE_URL = `${BASE}data/replay-lineage.json`;
 const ZORA_INDEX_URL = `${BASE}zora-index.json`;
+const GOLDEN_PASSPORT_URL = `${BASE}golden-passport-game.json`;
 const FLYWHEEL_URL = "https://zora.co/coin/base:0x5e35e630356a1b24d1b45078918ea60ef98e915a?referrer=0x829adfedbe565f9885a7ea6bc78912acaef055e2";
 const GITHUB_URL = "https://github.com/jsonwisdom/jay-zora-portal";
 
@@ -63,6 +64,77 @@ function ReplayLineageRail({ lineage }) {
   );
 }
 
+function GoldenPassportGame({ game }) {
+  if (!game) return null;
+  const seats = game.seats || [];
+  const required = game.denominator?.required || seats.length;
+  const earned = seats.filter((seat) => seat.state === "PASS").length;
+  const clear = required > 0 && earned === required;
+
+  return (
+    <section className="passport-game" aria-label="Jason's Golden Passport Directory Game">
+      <div className="passport-glow" />
+      <div className="passport-header">
+        <div>
+          <div className="passport-kicker">ENS BEFORE DNS // DIRECTORY GAME</div>
+          <h2>{game.title || "Jason's Golden Passport"}</h2>
+          <p>{game.subtitle}</p>
+        </div>
+        <div className={`passport-score ${clear ? "clear" : "hold"}`}>
+          <strong>{earned}/{required}</strong>
+          <span>{clear ? "GAME CLEAR" : "HOLD"}</span>
+        </div>
+      </div>
+
+      <div className="passport-rule">
+        <strong>{game.order_rule}</strong>
+        <span>Ordering rule, not identity proof.</span>
+      </div>
+
+      <div className="passport-seats">
+        {seats.map((seat) => (
+          <a key={seat.id} className="passport-seat" href={seat.href} target="_blank" rel="noreferrer">
+            <span className="passport-seat-order">{seat.order}</span>
+            <div>
+              <small>{seat.label}</small>
+              <strong>{seat.value}</strong>
+              <p>{seat.note}</p>
+              <code>{seat.evidence_ref}</code>
+            </div>
+            <b>{seat.state}</b>
+          </a>
+        ))}
+      </div>
+
+      <div className="passport-bottom">
+        <div>
+          <h3>Non-collapse guards</h3>
+          <div className="passport-guards">
+            {(game.invariants || []).map((rule) => <span key={rule}>{rule}</span>)}
+          </div>
+        </div>
+        <div>
+          <h3>Optional missions</h3>
+          <div className="passport-missions">
+            {(game.optional_missions || []).map((mission) => (
+              <div key={mission.id}>
+                <span>{mission.label}</span>
+                <strong>{mission.state}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <footer className="passport-footer">
+        <span>IDENTITY_JOIN_SERVICE = {game.identity_join_service}</span>
+        <span>AUTHORITY_CREATED = {String(game.authority_created).toUpperCase()}</span>
+        <span>PROMOTION = {game.promotion}</span>
+      </footer>
+    </section>
+  );
+}
+
 function App() {
   const [forest, setForest] = useState(null);
   const [history, setHistory] = useState(null);
@@ -74,6 +146,7 @@ function App() {
   const [lineage, setLineage] = useState(null);
   const [timeIndex, setTimeIndex] = useState(999);
   const [zoraCount, setZoraCount] = useState(0);
+  const [passportGame, setPassportGame] = useState(null);
   const [selected, setSelected] = useState(null);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
@@ -81,7 +154,7 @@ function App() {
 
   useEffect(() => {
     async function load() {
-      const [forestRes, historyRes, permissionsRes, activityRes, replayRes, observersRes, heatmapRes, lineageRes, zoraRes] = await Promise.allSettled([
+      const [forestRes, historyRes, permissionsRes, activityRes, replayRes, observersRes, heatmapRes, lineageRes, zoraRes, passportRes] = await Promise.allSettled([
         fetch(FOREST_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(HISTORY_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(PERMISSIONS_URL, { cache: "no-store" }).then((r) => r.json()),
@@ -91,6 +164,7 @@ function App() {
         fetch(HEATMAP_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(LINEAGE_URL, { cache: "no-store" }).then((r) => r.json()),
         fetch(ZORA_INDEX_URL, { cache: "no-store" }).then((r) => r.json()),
+        fetch(GOLDEN_PASSPORT_URL, { cache: "no-store" }).then((r) => r.json()),
       ]);
       if (forestRes.status === "fulfilled") setForest(forestRes.value);
       if (historyRes.status === "fulfilled") setHistory(historyRes.value);
@@ -105,6 +179,7 @@ function App() {
       if (heatmapRes.status === "fulfilled") setHeatmap(heatmapRes.value.edges || []);
       if (lineageRes.status === "fulfilled") setLineage(lineageRes.value);
       if (zoraRes.status === "fulfilled") setZoraCount(Array.isArray(zoraRes.value) ? zoraRes.value.length : zoraRes.value.results?.length || 0);
+      if (passportRes.status === "fulfilled") setPassportGame(passportRes.value);
     }
     load();
   }, []);
@@ -225,6 +300,8 @@ function App() {
         {selected && <div className="leaf-list">{selectedLeaves.map((leaf) => (<a key={leaf.id} href={`${BASE}${leaf.leaf_path}`} target="_blank" rel="noreferrer"><strong>{leaf.title}</strong><span>{leaf.status} · {short(leaf.leaf_hash)}</span></a>))}</div>}
         <div className="actions-row"><a href={FLYWHEEL_URL} target="_blank" rel="noreferrer">Zora</a><a href={GITHUB_URL} target="_blank" rel="noreferrer">GitHub</a><a href={`${BASE}forest.json`} target="_blank" rel="noreferrer">forest.json</a></div>
       </aside>
+
+      <GoldenPassportGame game={passportGame} />
 
       <section className="runtime-card" aria-label="Live Replay Runtime">
         <div className="runtime-grid" />
