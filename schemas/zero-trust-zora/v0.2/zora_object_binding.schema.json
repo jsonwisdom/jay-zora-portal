@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jsonwisdom.github.io/jay-zora-portal/schemas/zero-trust-zora/v0.2/zora_object_binding.schema.json",
+  "title": "Zero Trust Zora ZoraObjectBinding v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "binding_id",
+    "object_key",
+    "chain_id",
+    "contract_address",
+    "binding_namespace",
+    "repository_full_name",
+    "canonical_path",
+    "commit_sha",
+    "path_resolution_method",
+    "symbol_path_resolution",
+    "binding_state",
+    "source_receipts",
+    "authority_created"
+  ],
+  "properties": {
+    "schema_version": { "const": "zero-trust-zora.object-binding.v0.2" },
+    "binding_id": { "type": "string", "minLength": 1 },
+    "object_key": {
+      "type": "string",
+      "pattern": "^eip155:[0-9]+/erc20:0x[a-f0-9]{40}$"
+    },
+    "chain_id": { "type": "integer", "minimum": 1 },
+    "contract_address": { "type": "string", "pattern": "^0x[a-f0-9]{40}$" },
+    "display": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "symbol": { "type": "string" },
+        "zora_url": { "type": "string", "format": "uri" }
+      }
+    },
+    "binding_namespace": { "type": "string", "minLength": 1 },
+    "repository_full_name": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+    "canonical_path": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\.\.(?:/|$))[^\\\\]+$"
+    },
+    "commit_sha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "path_resolution_method": { "const": "EXPLICIT_REGISTRY_ONLY" },
+    "symbol_path_resolution": { "const": false },
+    "conflict_policy": { "const": "DUPLICATE_ACTIVE_BINDING_HOLD" },
+    "binding_state": {
+      "type": "string",
+      "enum": ["CANDIDATE", "ACTIVE", "HOLD", "CONFLICT", "SUPERSEDED"]
+    },
+    "supersedes_binding_id": { "type": ["string", "null"] },
+    "source_receipts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_type", "locator"],
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "enum": ["ZORA_SDK", "ZORA_REST", "BASE_RPC", "GITHUB", "REPLAY_RECEIPT"]
+          },
+          "locator": { "type": "string", "minLength": 1 },
+          "content_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "receipt_id": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "authority_created": { "const": false }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "chain_id": { "const": 8453 } }, "required": ["chain_id"] },
+      "then": {
+        "properties": {
+          "object_key": { "pattern": "^eip155:8453/erc20:0x[a-f0-9]{40}$" }
+        }
+      }
+    }
+  ]
+}

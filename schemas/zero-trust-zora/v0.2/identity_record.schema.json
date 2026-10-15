@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jsonwisdom.github.io/jay-zora-portal/schemas/zero-trust-zora/v0.2/identity_record.schema.json",
+  "title": "Zero Trust Zora IdentityRecord v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "subject_id",
+    "operator_label",
+    "evidence_state",
+    "identifiers",
+    "observations",
+    "authority_created"
+  ],
+  "properties": {
+    "schema_version": { "const": "zero-trust-zora.identity-record.v0.2" },
+    "record_id": { "type": "string", "minLength": 1 },
+    "subject_id": { "type": "string", "minLength": 1 },
+    "operator_label": { "type": "string", "minLength": 1 },
+    "evidence_state": {
+      "type": "string",
+      "enum": ["OBSERVED", "BOUND", "HOLD", "CONFLICT", "SUPERSEDED"]
+    },
+    "identifiers": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "wallet_address": { "type": "string", "pattern": "^0x[a-f0-9]{40}$" },
+        "ens_name": { "type": "string", "minLength": 1 },
+        "basename": { "type": "string", "minLength": 1 },
+        "zora_handle": { "type": "string", "pattern": "^@[A-Za-z0-9_.-]+$" },
+        "github_login": { "type": "string", "minLength": 1 }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claim_type", "value", "evidence_state"],
+        "properties": {
+          "claim_type": {
+            "type": "string",
+            "enum": [
+              "WALLET_POINTER",
+              "WALLET_CONTROL",
+              "ENS_RESOLUTION",
+              "BASENAME_RESOLUTION",
+              "ZORA_HANDLE_LINK",
+              "GITHUB_ACCOUNT_LINK"
+            ]
+          },
+          "value": { "type": "string" },
+          "evidence_state": {
+            "type": "string",
+            "enum": ["OBSERVED", "BOUND", "HOLD", "CONFLICT"]
+          },
+          "receipt_ids": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          }
+        }
+      }
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_type", "observed_at", "locator"],
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "enum": ["ZORA_SDK", "ZORA_REST", "ZORA_HTML_WITNESS", "BASE_RPC", "ENS", "GITHUB", "PUBLIC_DOCUMENT"]
+          },
+          "observed_at": { "type": "string", "format": "date-time" },
+          "locator": { "type": "string", "minLength": 1 },
+          "content_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "receipt_id": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "authority_created": { "const": false }
+  }
+}

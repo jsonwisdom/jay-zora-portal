@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jsonwisdom.github.io/jay-zora-portal/schemas/zero-trust-zora/v0.2/drift_event.schema.json",
+  "title": "Zero Trust Zora DriftEvent v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "observed_at",
+    "subject_key",
+    "field_path",
+    "observer_a",
+    "observer_b",
+    "comparison",
+    "disposition",
+    "no_fault_inference",
+    "fraud_inference",
+    "authority_created"
+  ],
+  "properties": {
+    "schema_version": { "const": "zero-trust-zora.drift-event.v0.2" },
+    "event_id": { "type": "string", "minLength": 1 },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "subject_key": { "type": "string", "minLength": 1 },
+    "field_path": { "type": "string", "minLength": 1 },
+    "observer_a": { "$ref": "#/$defs/observation" },
+    "observer_b": { "$ref": "#/$defs/observation" },
+    "comparison": {
+      "type": "string",
+      "enum": ["MATCH", "MISMATCH", "MISSING_A", "MISSING_B", "PARSE_ERROR_A", "PARSE_ERROR_B"]
+    },
+    "disposition": {
+      "type": "string",
+      "enum": ["PASS", "HOLD", "CONFLICT"]
+    },
+    "explanation": { "type": "string" },
+    "parent_event_ids": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "receipt_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "no_fault_inference": { "const": true },
+    "fraud_inference": { "const": false },
+    "authority_created": { "const": false }
+  },
+  "$defs": {
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observer_type", "locator", "observed_at", "value_state"],
+      "properties": {
+        "observer_type": {
+          "type": "string",
+          "enum": ["ZORA_SDK", "ZORA_REST", "ZORA_HTML_WITNESS", "BASE_RPC", "GITHUB_CANON", "PORTAL_INDEX"]
+        },
+        "locator": { "type": "string", "minLength": 1 },
+        "observed_at": { "type": "string", "format": "date-time" },
+        "value_state": { "type": "string", "enum": ["PRESENT", "ABSENT", "UNREADABLE", "ERROR"] },
+        "value": {},
+        "content_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    }
+  }
+}
